@@ -1,30 +1,35 @@
 import './App.css'
+// App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './component/Header/Header'
-import Navbar from './component/Navbar/Navbar'
-import Masthead from './component/Masthead'
-import FeatureIconsSection from './component/FeatureIconsSection'
-import TravellersSliderSection from './component/TravellersSliderSection'
-import BestSellerSection from './component/BestSellerSection'
-import TestimonialSection from './component/TestimonialSection'
-import BlogInspirationSection from './component/BlogInspirationSection'
-import DownloadAppSection from './component/DownloadAppSection'
-import JoinSection from './component/JoinSection'
 import Footer from './component/Footer'
+import Home from './component/Home/Home'
+import AllHotel from './component/AllHotel'
+import Layout from './Layout'
+import HotelDetail from './component/HotelDetail'
+import ContactPage from './component/ContactPage'
+import AboutPage from './component/AboutPage'
+import FlightBookingPage from './component/pages/FlightBookingPage'
+import BookingConfirmation from './component/pages/BookingConfirmation'
+// import FlightBookingPage from './component/pages/FlightBookingPage'
 
 function App () {
   return (
-    <>
-      <Header />
-      <Masthead />
-      <FeatureIconsSection />
-      <TravellersSliderSection />
-      <BestSellerSection />
-      <TestimonialSection />
-      <BlogInspirationSection />
-      <DownloadAppSection />
-      <JoinSection />
-      <Footer />
-    </>
+    // <Router>
+    <Layout>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/AllHotel' element={<AllHotel />} />
+        <Route path='/HotelDetail' element={<HotelDetail />} />
+        <Route path='/ContactUS' element={<ContactPage />} />
+        <Route path='/About' element={<AboutPage />} />
+        <Route path='/FlightBooking' element={<FlightBookingPage />} />
+        <Route path='/BookingConfirmation' element={<BookingConfirmation />} />
+        {/* <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} /> */}
+      </Routes>
+    </Layout>
+    // </Router>
   )
 }
 

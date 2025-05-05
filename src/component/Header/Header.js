@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
+import Login from '../Login'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
   // const [menuOpen, setMenuOpen] = useState(false)
 
-  const [menuActive, setMenuActive] = useState(false);
+  const navigate = useNavigate()
+
+  const [menuActive, setMenuActive] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const toggleMenu = () => {
-    setMenuActive((prev) => !prev);
-  };
+    setMenuActive(prev => !prev)
+  }
+
   return (
     <header
       data-add-bg='bg-dark-1'
@@ -15,6 +21,7 @@ const Header = () => {
       data-x='header'
       data-x-toggle='is-menu-opened'
     >
+      <Login setOpen={setOpen} open={open} />
       <div className='header__container container'>
         <div className='row justify-between items-center'>
           <div className='col-auto'>
@@ -24,11 +31,14 @@ const Header = () => {
                   className='d-flex items-center icon-menu text-white text-20'
                   data-x-click='desktopMenu'
                   onClick={toggleMenu}
-                > </button>
+                >
+                  {' '}
+                </button>
               </div>
 
               <a
-                href='index.html'
+                // href='index.html'
+                onClick={() => navigate('/')}
                 className='header-logo mr-30'
                 data-x='header-logo'
                 data-x-toggle='is-logo-dark'
@@ -96,9 +106,12 @@ const Header = () => {
                 </div>
               </div>
 
-              <div
-                className='desktopMenu js-desktopMenu'>
-                <div className={`desktopMenu ${menuActive ? "is-menu-active" : ""}`}></div>
+              <div className='desktopMenu js-desktopMenu'>
+                <div
+                  className={`desktopMenu ${
+                    menuActive ? 'is-menu-active' : ''
+                  }`}
+                ></div>
                 <div className='desktopMenu__content'>
                   <div className='mobile-bg js-mobile-bg'></div>
 
@@ -384,7 +397,7 @@ const Header = () => {
 
           <div className='col-auto'>
             <div className='d-flex items-center'>
-              <div className='row x-gap-20 items-center xxl:d-none'>
+              {/* <div className='row x-gap-20 items-center xxl:d-none'>
                 <div className='col-auto'>
                   <button
                     className='d-flex items-center text-14 text-white'
@@ -415,17 +428,12 @@ const Header = () => {
                     <i className='icon-chevron-sm-down text-7 ml-15'></i>
                   </button>
                 </div>
-              </div>
+              </div> */}
 
               <div className='d-flex items-center ml-20 is-menu-opened-hide md:d-none'>
                 <a
-                  href='login.html'
-                  className='button px-30 fw-400 text-14 -blue-1 bg-white h-50 text-dark-1'
-                >
-                  Become An Expert
-                </a>
-                <a
-                  href='signup.html'
+                  // href='signup.html'
+                  onClick={() => setOpen(true)}
                   className='button px-30 fw-400 text-14 border-white -blue-1 h-50 text-white ml-20'
                 >
                   Sign In / Register

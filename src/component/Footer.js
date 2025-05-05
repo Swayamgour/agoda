@@ -11,11 +11,11 @@ const Footer = () => {
               <h5 className="text-16 fw-500 mb-30">Contact Us</h5>
               <div className="mt-30">
                 <div className="text-14 mt-30">Toll Free Customer Care</div>
-                <a href="#" className="text-18 fw-500 mt-5">+(1) 123 456 7890</a>
+                <a  className="text-18 fw-500 mt-5">+(1) 123 456 7890</a>
               </div>
               <div className="mt-35">
                 <div className="text-14 mt-30">Need live support?</div>
-                <a href="#" className="text-18 fw-500 mt-5">hi@gotrip.com</a>
+                <a  className="text-18 fw-500 mt-5">hi@gotrip.com</a>
               </div>
             </div>
 
@@ -23,12 +23,12 @@ const Footer = () => {
             <div className="col-xl-2 col-lg-4 col-sm-6">
               <h5 className="text-16 fw-500 mb-30">Company</h5>
               <div className="d-flex y-gap-10 flex-column">
-                <a href="#">About Us</a>
-                <a href="#">Careers</a>
-                <a href="#">Blog</a>
-                <a href="#">Press</a>
-                <a href="#">Gift Cards</a>
-                <a href="#">Magazine</a>
+                <a >About Us</a>
+                <a >Careers</a>
+                <a >Blog</a>
+                <a >Press</a>
+                <a >Gift Cards</a>
+                <a >Magazine</a>
               </div>
             </div>
 
@@ -36,11 +36,11 @@ const Footer = () => {
             <div className="col-xl-2 col-lg-4 col-sm-6">
               <h5 className="text-16 fw-500 mb-30">Support</h5>
               <div className="d-flex y-gap-10 flex-column">
-                <a href="#">Contact</a>
-                <a href="#">Legal Notice</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms and Conditions</a>
-                <a href="#">Sitemap</a>
+                <a>Contact</a>
+                <a>Legal Notice</a>
+                <a>Privacy Policy</a>
+                <a>Terms and Conditions</a>
+                <a>Sitemap</a>
               </div>
             </div>
 
@@ -48,13 +48,13 @@ const Footer = () => {
             <div className="col-xl-2 col-lg-4 col-sm-6">
               <h5 className="text-16 fw-500 mb-30">Other Services</h5>
               <div className="d-flex y-gap-10 flex-column">
-                <a href="#">Car hire</a>
-                <a href="#">Activity Finder</a>
-                <a href="#">Tour List</a>
-                <a href="#">Flight finder</a>
-                <a href="#">Cruise Ticket</a>
-                <a href="#">Holiday Rental</a>
-                <a href="#">Travel Agents</a>
+                <a>Car hire</a>
+                <a>Activity Finder</a>
+                <a>Tour List</a>
+                <a>Flight finder</a>
+                <a>Cruise Ticket</a>
+                <a>Holiday Rental</a>
+                <a>Travel Agents</a>
               </div>
             </div>
 
@@ -87,15 +87,15 @@ const Footer = () => {
               <div className="row x-gap-30 y-gap-10">
                 <div className="col-auto">
                   <div className="d-flex items-center">
-                    © 2022 GoTrip LLC All rights reserved.
+                    © 2025 GoTrip LLC All rights reserved.
                   </div>
                 </div>
 
                 <div className="col-auto">
                   <div className="d-flex x-gap-15">
-                    <a href="#">Privacy</a>
-                    <a href="#">Terms</a>
-                    <a href="#">Site Map</a>
+                    <a>Privacy</a>
+                    <a>Terms</a>
+                    <a>Site Map</a>
                   </div>
                 </div>
               </div>
@@ -119,10 +119,10 @@ const Footer = () => {
 
                 <div className="col-auto">
                   <div className="d-flex x-gap-20 items-center">
-                    <a href="#"><i className="icon-facebook text-14"></i></a>
-                    <a href="#"><i className="icon-twitter text-14"></i></a>
-                    <a href="#"><i className="icon-instagram text-14"></i></a>
-                    <a href="#"><i className="icon-linkedin text-14"></i></a>
+                    <a><i className="icon-facebook text-14"></i></a>
+                    <a><i className="icon-twitter text-14"></i></a>
+                    <a><i className="icon-instagram text-14"></i></a>
+                    <a><i className="icon-linkedin text-14"></i></a>
                   </div>
                 </div>
               </div>
