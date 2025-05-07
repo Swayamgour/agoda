@@ -18,7 +18,7 @@ function Home () {
       {/* <FeatureIconsSection /> */}
       <TravellersSliderSection />
       <BestSellerSection />
-      <TestimonialSection />
+      {/* <TestimonialSection /> */}
       <BlogInspirationSection />
       <DownloadAppSection />
       <JoinSection />

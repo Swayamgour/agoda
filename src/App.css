@@ -4,6 +4,17 @@
   user-select: none;
 }
 
+/* Hide scrollbar but keep scroll functionality */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge, Opera */
+}
+
+
 .ratio {
   position: relative;
   display: block;
@@ -112,12 +123,12 @@
   --color-border: #DDDDDD;
   --color-dark-1: #051036;
   --color-dark-2: #0D2857;
-  --color-dark-3: #13357B;
+  --color-dark-3: #494343;
   --color-dark-4: #163C8C;
   --color-light-1: #697488;
   --color-light-2: #F5F5F5;
   --color-light-3: #FBFCFF;
-  --color-blue-1: #3554D1;
+  --color-blue-1: #4d4d53;
   --color-blue-2: #E5F0FD;
   --color-green-1: #EBFCEA;
   --color-green-2: #008009;
@@ -678,8 +689,8 @@ button:focus {
 }
 
 .button.-dark-1:hover {
-  border-color: var(--color-dark-1);
-  background-color: var(--color-dark-1) !important;
+  /* border-color: var(--color-dark-1); */
+  background-color: var(--color-dark-3) !important;
   color: white !important;
 }
 
@@ -2029,8 +2040,16 @@ h6 {
 }
 
 .masthead.-type-2 .mainSearch {
-  position: absolute;
-  bottom: 30px;
+  position: relative;
+  /* bottom: 30px; */
+  width: 100%;
+  padding: 20px;
+
+}
+
+.lg\:py-20 {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
 }
 
 @media (max-width: 1199px) {
@@ -2084,7 +2103,7 @@ h6 {
   }
 } */
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .masthead.-type-2 .masthead__content {
     padding-top: 40px;
   }
@@ -2094,7 +2113,7 @@ h6 {
   .masthead.-type-2 .masthead__content {
     padding-bottom: 20px;
   }
-}
+} */
 
 .masthead.-type-2 .masthead__images {
   display: grid;
@@ -2897,6 +2916,19 @@ h6 {
   z-index: 0;
 }
 
+.citiesCard {
+  transition: transform 0.3s ease, border 0.3s ease;
+}
+
+.citiesCard:hover {
+  transform: scale(1.03);
+  /* slightly pop up */
+  /* border: 2px solid black; */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+}
+
+
 .citiesCard.-type-1 .citiesCard__image {
   border-radius: inherit;
 }
@@ -2964,6 +2996,7 @@ h6 {
 .citiesCard.-type-2 {
   position: relative;
   z-index: 0;
+  /* transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); */
 }
 
 .citiesCard.-type-2 .citiesCard__image {
@@ -3452,7 +3485,7 @@ h6 {
   width: 100%;
   height: 90px;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-  background-color: rgb(19, 53, 123);
+  background-color: var(--color-dark-3);
 }
 
 @media (max-width: 767px) {
@@ -4055,13 +4088,13 @@ h6 {
 }
 
 .mainSearch .button-grid {
-  display: grid;
-  grid-template-columns: 1fr 250px 290px auto;
+  /* display: grid;
+  grid-template-columns: 1fr 250px 290px auto; */
 }
 
-.mainSearch .button-grid>*+* {
+/* .mainSearch .button-grid>*+* {
   border-left: 1px solid var(--color-border);
-}
+} */
 
 @media (max-width: 991px) {
   .mainSearch .button-grid {
@@ -4131,13 +4164,22 @@ h6 {
 
 .mainSearch.-w-900 {
   width: 900px;
+  padding: 20px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 768px) {
+  .mainSearch.-w-900 {
+    width: 90%;
+  }
+}
+
+
+/* @media (max-width: 991px) {
   .mainSearch.-w-900 {
     width: auto;
   }
-}
+} */
+
 
 .mainSearch.-w-1070 {
   width: 1070px;
@@ -9950,7 +9992,7 @@ div[data-slider]>input[type=range]::-ms-tooltip {
 }
 
 .layout-pt-lg {
-  padding-top: 120px;
+  padding-top: 10px;
 }
 
 .layout-pb-lg {
@@ -10418,7 +10460,7 @@ div[data-slider]>input[type=range]::-ms-tooltip {
 }
 
 .bg-dark-2 {
-  background-color: var(--color-dark-2) !important;
+  background-color: var(--color-dark-3) !important;
 }
 
 .bg-dark-3 {
@@ -10765,7 +10807,7 @@ div[data-slider]>input[type=range]::-ms-tooltip {
   }
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1023px) {
   .xxl\:d-none {
     display: none !important;
   }
@@ -13267,9 +13309,7 @@ a {
   text-decoration: underline
 }
 
-a:hover {
-  color: #0a58ca
-}
+
 
 a:not([href]):not([class]),
 a:not([href]):not([class]):hover {
@@ -20166,6 +20206,22 @@ iframe.wait-autoplay {
 .noUi-value-sub {
   color: #ccc;
   font-size: 10px
+}
+
+
+.fs-10 {
+  /* color: #ccc; */
+  font-size: 10px
+}
+
+.fs-12 {
+  /* color: #ccc; */
+  font-size: 12px
+}
+
+.fs-14 {
+  /* color: #ccc; */
+  font-size: 14px
 }
 
 .noUi-marker {

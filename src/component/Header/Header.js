@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import Login from '../Login'
 import { useNavigate } from 'react-router-dom'
+import SideBar from '../../component/SideBar/Sidebar'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import Badge from '@mui/material/Badge'
+import ButtonGroup from '@mui/material/ButtonGroup'
 
 const Header = () => {
   // const [menuOpen, setMenuOpen] = useState(false)
@@ -13,6 +17,14 @@ const Header = () => {
   const toggleMenu = () => {
     setMenuActive(prev => !prev)
   }
+
+  const user = {
+    name: 'John Doe',
+    profileImage:
+      'https://imgs.search.brave.com/On1jUTlYXU0nMnY-dqmpNg0PIqUoPv_J_lcSWebc9bY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTE3/OTQyMDM0My9waG90/by9zbWlsaW5nLW1h/bi1vdXRkb29ycy1p/bi10aGUtY2l0eS5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/OGwtZ09ib0dFRlN5/Q0ZYcjA5RWd1RG1W/MEUwYkZUNXVzQW1z/MXd5RkJoOD0'
+  }
+
+  const [show, setShow] = useState(false)
 
   return (
     <header
@@ -27,25 +39,19 @@ const Header = () => {
           <div className='col-auto'>
             <div className='d-flex items-center'>
               <div className='mr-20'>
-                <button
-                  className='d-flex items-center icon-menu text-white text-20'
-                  data-x-click='desktopMenu'
-                  onClick={toggleMenu}
-                >
-                  {' '}
-                </button>
+                <SideBar />
               </div>
 
-              <a
+              <div
                 // href='index.html'
                 onClick={() => navigate('/')}
-                className='header-logo mr-30'
-                data-x='header-logo'
-                data-x-toggle='is-logo-dark'
+                className='header-logo mr-30 pointer'
+                // data-x='header-logo'
+                // data-x-toggle='is-logo-dark'
               >
                 <img src='/img/general/logo-light-2.svg' alt='logo icon' />
                 <img src='/img/general/logo-dark.svg' alt='logo icon' />
-              </a>
+              </div>
 
               <div className='relative xl:d-none'>
                 <div className='searchMenu-loc js-form-dd js-liverSearch'>
@@ -58,7 +64,7 @@ const Header = () => {
                       <input
                         autoComplete='off'
                         type='search'
-                        placeholder='Destination, attraction, hotel, etc'
+                        placeholder='Destination, attraction'
                         className='text-white js-search js-dd-focus'
                       />
                     </div>
@@ -154,238 +160,10 @@ const Header = () => {
                         </li>
 
                         {/* Categories Mega Menu */}
-                        <li className='menu-item-has-children -has-mega-menu'>
-                          <a data-barba href='#'>
-                            <span className='mr-10'>Categories</span>
-                            <i className='icon icon-chevron-sm-down'></i>
-                          </a>
-                          <ul className='subnav mega-mobile'>
-                            <li className='subnav__backBtn js-nav-list-back'>
-                              <a href='#'>
-                                <i className='icon icon-chevron-sm-down'></i>{' '}
-                                Category
-                              </a>
-                            </li>
-
-                            {[
-                              {
-                                name: 'Hotel',
-                                items: [
-                                  'Hotel List v1',
-                                  'Hotel List v2',
-                                  'Hotel Single v1',
-                                  'Hotel Single v2',
-                                  'Booking Page'
-                                ]
-                              },
-                              {
-                                name: 'Tour',
-                                items: [
-                                  'Tour List v1',
-                                  'Tour List v2',
-                                  'Tour Map',
-                                  'Tour Single'
-                                ]
-                              },
-                              {
-                                name: 'Activity',
-                                items: [
-                                  'Activity List v1',
-                                  'Activity List v2',
-                                  'Activity Map',
-                                  'Activity Single'
-                                ]
-                              },
-                              {
-                                name: 'Rental',
-                                items: [
-                                  'Rental List v1',
-                                  'Rental List v2',
-                                  'Rental Map',
-                                  'Rental Single'
-                                ]
-                              },
-                              {
-                                name: 'Car',
-                                items: [
-                                  'Car List v1',
-                                  'Car List v2',
-                                  'Car Map',
-                                  'Car Single'
-                                ]
-                              },
-                              {
-                                name: 'Cruise',
-                                items: [
-                                  'Cruise List v1',
-                                  'Cruise List v2',
-                                  'Cruise Map',
-                                  'Cruise Single'
-                                ]
-                              },
-                              { name: 'Flights', items: ['Flights List v1'] }
-                            ].map((category, index) => (
-                              <li
-                                key={index}
-                                className='menu-item-has-children'
-                              >
-                                <a data-barba href='#'>
-                                  <span className='mr-10'>{category.name}</span>
-                                  <i className='icon icon-chevron-sm-down'></i>
-                                </a>
-                                <ul className='subnav'>
-                                  <li className='subnav__backBtn js-nav-list-back'>
-                                    <a href='#'>
-                                      <i className='icon icon-chevron-sm-down'></i>{' '}
-                                      {category.name}
-                                    </a>
-                                  </li>
-                                  {category.items.map((item, i) => (
-                                    <li key={i}>
-                                      <a
-                                        href={`${category.name
-                                          .toLowerCase()
-                                          .replace(' ', '-')}-${item
-                                          .toLowerCase()
-                                          .replace(' ', '-')}.html`}
-                                      >
-                                        {item}
-                                      </a>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </li>
-                            ))}
-                          </ul>
-                        </li>
 
                         {/* Simple Menu Items */}
                         <li>
                           <a href='destinations.html'>Destinations</a>
-                        </li>
-
-                        {/* Blog Menu */}
-                        <li className='menu-item-has-children'>
-                          <a data-barba href='#'>
-                            <span className='mr-10'>Blog</span>
-                            <i className='icon icon-chevron-sm-down'></i>
-                          </a>
-                          <ul className='subnav'>
-                            <li className='subnav__backBtn js-nav-list-back'>
-                              <a href='#'>
-                                <i className='icon icon-chevron-sm-down'></i>{' '}
-                                Blog
-                              </a>
-                            </li>
-                            <li>
-                              <a href='blog-list-1.html'>Blog list v1</a>
-                            </li>
-                            <li>
-                              <a href='blog-list-2.html'>Blog list v2</a>
-                            </li>
-                            <li>
-                              <a href='blog-single.html'>Blog single</a>
-                            </li>
-                          </ul>
-                        </li>
-
-                        {/* Pages Menu */}
-                        <li className='menu-item-has-children'>
-                          <a data-barba href='#'>
-                            <span className='mr-10'>Pages</span>
-                            <i className='icon icon-chevron-sm-down'></i>
-                          </a>
-                          <ul className='subnav'>
-                            <li className='subnav__backBtn js-nav-list-back'>
-                              <a href='#'>
-                                <i className='icon icon-chevron-sm-down'></i>{' '}
-                                Pages
-                              </a>
-                            </li>
-                            <li>
-                              <a href='404.html'>404</a>
-                            </li>
-                            <li>
-                              <a href='about.html'>About</a>
-                            </li>
-                            <li>
-                              <a href='become-expert.html'>Become expert</a>
-                            </li>
-                            <li>
-                              <a href='help-center.html'>Help center</a>
-                            </li>
-                            <li>
-                              <a href='login.html'>Login</a>
-                            </li>
-                            <li>
-                              <a href='signup.html'>Register</a>
-                            </li>
-                            <li>
-                              <a href='terms.html'>Terms</a>
-                            </li>
-                            <li>
-                              <a href='invoice.html'>Invoice</a>
-                            </li>
-                            <li>
-                              <a href='ui-elements.html'>UI elements</a>
-                            </li>
-                          </ul>
-                        </li>
-
-                        {/* Dashboard Menu */}
-                        <li className='menu-item-has-children'>
-                          <a data-barba href='#'>
-                            <span className='mr-10'>Dashboard</span>
-                            <i className='icon icon-chevron-sm-down'></i>
-                          </a>
-                          <ul className='subnav'>
-                            <li className='subnav__backBtn js-nav-list-back'>
-                              <a href='#'>
-                                <i className='icon icon-chevron-sm-down'></i>{' '}
-                                Dashboard
-                              </a>
-                            </li>
-                            <li>
-                              <a href='db-dashboard.html'>Dashboard</a>
-                            </li>
-                            <li>
-                              <a href='db-booking.html'>Booking</a>
-                            </li>
-                            <li>
-                              <a href='db-settings.html'>Settings</a>
-                            </li>
-                            <li>
-                              <a href='db-wishlist.html'>Wishlist</a>
-                            </li>
-                            <li>
-                              <a href='db-vendor-dashboard.html'>
-                                Vendor dashboard
-                              </a>
-                            </li>
-                            <li>
-                              <a href='db-vendor-add-hotel.html'>
-                                Vendor add hotel
-                              </a>
-                            </li>
-                            <li>
-                              <a href='db-vendor-booking.html'>
-                                Vendor booking
-                              </a>
-                            </li>
-                            <li>
-                              <a href='db-vendor-hotels.html'>Vendor hotels</a>
-                            </li>
-                            <li>
-                              <a href='db-vendor-recovery.html'>
-                                Vendor recovery
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-
-                        {/* Contact */}
-                        <li>
-                          <a href='contact.html'>Contact</a>
                         </li>
                       </ul>
                     </div>
@@ -397,11 +175,11 @@ const Header = () => {
 
           <div className='col-auto'>
             <div className='d-flex items-center'>
-              {/* <div className='row x-gap-20 items-center xxl:d-none'>
+              <div className='row x-gap-20 items-center xxl:d-none'>
                 <div className='col-auto'>
                   <button
                     className='d-flex items-center text-14 text-white'
-                    data-x-click='currency'
+                    // data-x-click='currency'
                   >
                     <span className='js-currencyMenu-mainTitle'>USD</span>
                     <i className='icon-chevron-sm-down text-7 ml-10'></i>
@@ -428,17 +206,110 @@ const Header = () => {
                     <i className='icon-chevron-sm-down text-7 ml-15'></i>
                   </button>
                 </div>
-              </div> */}
 
-              <div className='d-flex items-center ml-20 is-menu-opened-hide md:d-none'>
-                <a
-                  // href='signup.html'
-                  onClick={() => setOpen(true)}
-                  className='button px-30 fw-400 text-14 border-white -blue-1 h-50 text-white ml-20'
-                >
-                  Sign In / Register
-                </a>
+                <div className='col-auto'>
+                  {/* <button
+                    className='d-flex items-center text-14 text-white'
+                    data-x-click='lang'
+                  >
+                    <span className='js-language-mainTitle'>
+                      <ShoppingCartIcon />
+                    </span>
+                   
+                  </button> */}
+
+                  <Badge
+                    badgeContent={1}
+                    color='error' // this makes the badge red
+                    sx={{
+                      '& .MuiBadge-badge': {
+                        color: 'white', // badge text color
+                        backgroundColor: 'red' // badge background color (explicit red)
+                      }
+                    }}
+                    className='pointer'
+                  >
+                    <ShoppingCartIcon style={{ color: 'white' }} />
+                  </Badge>
+                </div>
               </div>
+
+              <div className='d-flex items-center ml-20 is-menu-opened-hide'>
+                {user ? (
+                  <div
+                    onClick={() => setShow(!show)}
+                    className='d-flex items-center '
+                  >
+                    <img
+                      src={user.profileImage || '/default-avatar.png'}
+                      alt='Profile'
+                      className='rounded-circle'
+                      style={{
+                        width: 40,
+                        height: 40,
+                        objectFit: 'cover',
+                        borderRadius: '50%'
+                      }}
+                    />
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                      <span className='text-white ml-10'>Profile</span>
+                      <span className='text-white ml-10'>{user.name}</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div
+                    onClick={() => setOpen(true)}
+                    className='button px-20 fw-400 text-14 border-white -blue-1 h-40 text-white ml-20'
+                  >
+                    Sign In
+                  </div>
+                )}
+
+                {show && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: -100, // adjust position as needed
+                      backgroundColor: '#ffff',
+                      color: 'black',
+                      padding: '10px',
+                      borderRadius: '8px',
+                      zIndex: 10,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      width: '100px',
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <button
+                      onClick={() => navigate('/Profile')}
+                      className='block w-full text-left  py-2 hover:bg-gray-700'
+                      style={{ borderBottom: '1px solid rgb(225, 223, 223)' }}
+                    >
+                      Profile
+                    </button>
+                    <button
+                      // onClick={handleLogout}
+                      className='block w-full text-left  py-2 hover:bg-gray-700'
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* <div className='col-auto'>
+                <button
+                  className='d-flex items-center text-14 text-white'
+                  data-x-click='lang'
+                >
+                  <span className='js-language-mainTitle'>
+                    <ShoppingCartIcon />
+                  </span>
+                </button>
+
+              </div> */}
             </div>
           </div>
         </div>

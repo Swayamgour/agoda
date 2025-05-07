@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 // import './';
 import '../../style/FlightBookingPage.css'
-import FlightSearch from '../FlightSearch'
+import FlightSearch from './FlightSearch'
 import { useNavigate } from 'react-router-dom'
 
 const FlightBookingPage = () => {

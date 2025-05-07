@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import '../style/CabBookingForm.css'
+import '../../style/CabBookingForm.css'
+import { useNavigate } from 'react-router-dom'
 
 const CabBookingForm = () => {
   const [tripType, setTripType] = useState('one-way')
@@ -11,8 +12,11 @@ const CabBookingForm = () => {
   const [returnTime, setReturnTime] = useState('')
   const [passengers, setPassengers] = useState(1)
 
+  const navigate = useNavigate()
+
   const handleSubmit = e => {
-    e.preventDefault()
+    navigate('/CabBookingFilter')
+    // e.preventDefault()
     // Handle form submission
     console.log({
       tripType,
@@ -24,13 +28,11 @@ const CabBookingForm = () => {
       returnTime,
       passengers
     })
-
-    
   }
 
   return (
     <div className='cab-booking-container'>
-      <form className='cab-booking-form' onSubmit={handleSubmit}>
+      <div className='cab-booking-form'>
         <div className='trip-type-selector'>
           <button
             type='button'
@@ -174,12 +176,12 @@ const CabBookingForm = () => {
         </div>
 
         <button
-          type='submit'
+          onClick={handleSubmit}
           className='mainSearch__submit button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-yellow-1 text-dark-1'
         >
           SEARCH CAR
         </button>
-      </form>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../style/AboutPage.css'
+import '../../style/AboutPage.css'
 
 // import aboutHero from './images/about-hero.jpg';
 

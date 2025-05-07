@@ -5,6 +5,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { Pagination, Navigation } from 'swiper/modules'
 import { useNavigate } from 'react-router-dom'
+import ScrollFadeIn from './scrollview/ScrollFadeIn'
 
 const destinations = [
   {
@@ -58,98 +59,100 @@ const TravellersSliderSection = () => {
 
   return (
     <section className='layout-pt-md layout-pb-md'>
-      <div className='container'>
-        <div className='row y-gap-20 justify-between items-end'>
-          <div className='col-auto'>
-            <div className='sectionTitle -md'>
-              <h2 className='sectionTitle__title'>
-                Connect With Other Travellers
-              </h2>
-              <p className='sectionTitle__text mt-5 sm:mt-0'>
-                These popular destinations have a lot to offer
-              </p>
+      <ScrollFadeIn>
+        <div className='container'>
+          <div className='row y-gap-20 justify-between items-end'>
+            <div className='col-auto'>
+              <div className='sectionTitle -md'>
+                <h2 className='sectionTitle__title'>
+                  Connect With Other Travellers
+                </h2>
+                <p className='sectionTitle__text mt-5 sm:mt-0'>
+                  These popular destinations have a lot to offer
+                </p>
+              </div>
+            </div>
+
+            <div className='col-auto'>
+              <div className='d-flex x-gap-15 items-center justify-center pt-40 sm:pt-20'>
+                <div className='col-auto'>
+                  <button
+                    ref={prevRef}
+                    className='d-flex items-center text-24 arrow-left-hover'
+                  >
+                    <i className='icon icon-arrow-left'></i>
+                  </button>
+                </div>
+                <div className='col-auto'>
+                  <div
+                    ref={paginationRef}
+                    className='pagination -dots text-border'
+                  ></div>
+                </div>
+                <div className='col-auto'>
+                  <button
+                    ref={nextRef}
+                    className='d-flex items-center text-24 arrow-right-hover'
+                  >
+                    <i className='icon icon-arrow-right'></i>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className='col-auto'>
-            <div className='d-flex x-gap-15 items-center justify-center pt-40 sm:pt-20'>
-              <div className='col-auto'>
-                <button
-                  ref={prevRef}
-                  className='d-flex items-center text-24 arrow-left-hover'
-                >
-                  <i className='icon icon-arrow-left'></i>
-                </button>
-              </div>
-              <div className='col-auto'>
-                <div
-                  ref={paginationRef}
-                  className='pagination -dots text-border'
-                ></div>
-              </div>
-              <div className='col-auto'>
-                <button
-                  ref={nextRef}
-                  className='d-flex items-center text-24 arrow-right-hover'
-                >
-                  <i className='icon icon-arrow-right'></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className='pt-40 overflow-hidden'>
-          <Swiper
-            modules={[Pagination, Navigation]}
-            spaceBetween={30}
-            onInit={swiper => {
-              swiper.params.navigation.prevEl = prevRef.current
-              swiper.params.navigation.nextEl = nextRef.current
-              swiper.params.pagination.el = paginationRef.current
-              swiper.navigation.init()
-              swiper.navigation.update()
-              swiper.pagination.init()
-              swiper.pagination.render()
-              swiper.pagination.update()
-            }}
-            breakpoints={{
-              320: { slidesPerView: 1 },
-              640: { slidesPerView: 2 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-              1280: { slidesPerView: 5 }
-            }}
-          >
-            {destinations.map((item, index) => (
-              <SwiperSlide key={index}>
-                <div
-                  onClick={() => {
-                    navigate('/AllHotel', { state: { item } })
-                  }}
-                  className='citiesCard -type-2'
-                >
-                  <div className='citiesCard__image rounded-4 ratio ratio-3:4'>
-                    <img
-                      className='img-ratio rounded-4 js-lazy'
-                      src={item.img}
-                      alt={item.country}
-                    />
-                  </div>
-                  <div className='citiesCard__content mt-10'>
-                    <h4 className='text-18 lh-13 fw-500 text-dark-1'>
-                      {item.country}
-                    </h4>
-                    <div className='text-14 text-light-1'>
-                      {item.travellers} travellers
+          <div className='pt-40 overflow-hidden'>
+            <Swiper
+              modules={[Pagination, Navigation]}
+              spaceBetween={30}
+              onInit={swiper => {
+                swiper.params.navigation.prevEl = prevRef.current
+                swiper.params.navigation.nextEl = nextRef.current
+                swiper.params.pagination.el = paginationRef.current
+                swiper.navigation.init()
+                swiper.navigation.update()
+                swiper.pagination.init()
+                swiper.pagination.render()
+                swiper.pagination.update()
+              }}
+              breakpoints={{
+                320: { slidesPerView: 1 },
+                640: { slidesPerView: 2 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 5 }
+              }}
+            >
+              {destinations.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    onClick={() => {
+                      navigate('/AllHotel', { state: { item } })
+                    }}
+                    className='citiesCard -type-2'
+                  >
+                    <div className='citiesCard__image rounded-4 ratio ratio-3:4'>
+                      <img
+                        className='img-ratio rounded-4 js-lazy'
+                        src={item.img}
+                        alt={item.country}
+                      />
+                    </div>
+                    <div className='citiesCard__content mt-10'>
+                      <h4 className='text-18 lh-13 fw-500 text-dark-1'>
+                        {item.country}
+                      </h4>
+                      <div className='text-14 text-light-1'>
+                        {item.travellers} travelers
+                      </div>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
-      </div>
+      </ScrollFadeIn>
     </section>
   )
 }

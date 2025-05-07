@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import BookHotel from './BookHotel'
-import '../style/AllHotel.css' // Import the CSS file
+import '../../style/AllHotel.css' // Import the CSS file
 import HotelCard from './HotelsCard'
+// import HotelCard from '../../HotelsCard'
 
 function AllHotel () {
   const location = useLocation()
@@ -233,6 +234,11 @@ function AllHotel () {
                 Pleasant 6+
               </label>
             </div>
+          </div>
+
+          <div>
+            <div></div>
+            <div></div>
           </div>
 
           <div className='hotels-list'>

@@ -1,0 +1,280 @@
+.train-dashboard {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.train_card_box {
+    /* margin-bottom: 20px; */
+    display: flex;
+    gap: 10px;
+}
+
+.train_card_box_left {
+    width: 30%;
+    /* border: 1px solid black; */
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.train_filter_box {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+    font-size: 14px;
+    border-bottom: 1px solid rgb(225, 223, 223);
+}
+
+.train_card_box_right {
+    width: 70%;
+    /* border: 1px solid black; */
+
+}
+
+
+
+.train_header_div {
+    background-color: #fff;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: #fff;
+    padding: 6px;
+    font-size: 12px;
+}
+
+.controls div {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.controls div button {
+    padding: 5px 10px;
+    background: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #858585;
+    font-size: 12px;
+
+}
+
+.quota-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+}
+
+.quota-tabs button {
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.quota-tabs button.active {
+    background-color: #006ce4;
+    color: white;
+    border-color: #006ce4;
+}
+
+.train-card {
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.train-summary {
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.train-info {
+    flex: 1;
+}
+
+.train-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.train-timing {
+    color: #666;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.train-days {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.view-schedule {
+    background: none;
+    border: none;
+    color: #006ce4;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font-size: 12px;
+}
+
+.train-classes {
+    display: flex;
+    gap: 15px;
+}
+
+.class-info {
+    text-align: center;
+    min-width: 80px;
+    width: 25%;
+    /* border: 1px solid #b9adad; */
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #f5efef;
+}
+
+.train-classes-type {
+    display: flex;
+    justify-content: space-around;
+    font-size: 10px;
+
+}
+
+.class-type {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.class-price {
+    color: #006ce4;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.class-availability {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 3px;
+}
+
+.class-chance {
+    font-size: 12px;
+    color: #ff5722;
+}
+
+.train-details {
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+.class-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.class-tabs button {
+    padding: 5px 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.schedule-days {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    overflow-x: auto;
+}
+
+.day-slot {
+    min-width: 150px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.date {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.availability {
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.availability span {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.regret {
+    color: #ff5722;
+}
+
+.book-button {
+    width: 100%;
+    padding: 8px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.toggle-days {
+    background: none;
+    border: none;
+    color: #006ce4;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .train-summary {
+        flex-direction: column;
+    }
+
+    .train-classes {
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+
+    .schedule-days {
+        flex-direction: column;
+    }
+
+    .day-slot {
+        width: 100%;
+    }
+}

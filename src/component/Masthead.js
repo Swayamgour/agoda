@@ -1,25 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { DateRange } from 'react-date-range'
 import { format } from 'date-fns'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 // import { addYears } from 'date-fns'
 import { enUS } from 'date-fns/locale'
-import BookHotel from './BookHotel'
-import FlightBookingForm from './FlightBookingForm'
-import CabBookingForm from './CabBookingForm'
+import BookHotel from './Hotel/BookHotel'
+import FlightBookingForm from './flight/FlightBookingForm'
+import CabBookingForm from './car/CabBookingForm'
 import { useNavigate } from 'react-router-dom'
+import TrainIcon from '@mui/icons-material/Train'
+import AirportShuttleIcon from '@mui/icons-material/AirportShuttle'
+import FlightIcon from '@mui/icons-material/Flight'
+import KingBedIcon from '@mui/icons-material/KingBed'
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
+import { motion } from 'framer-motion'
+import ScrollFadeIn from './scrollview/ScrollFadeIn'
+import TrainFrom from './Train/TrainFrom'
 
 const Masthead = () => {
   const [selectTab, setSelectTab] = useState(1)
   const navigate = useNavigate()
+  const [isFirstLoad, setIsFirstLoad] = useState(true)
 
   const tabs = [
-    { id: 1, label: 'Hotel', icon: 'icon-bed' },
-    { id: 7, label: 'Flights', icon: 'icon-tickets' },
-    { id: 5, label: 'Car', icon: 'icon-car' },
-    { id: 2, label: 'Contact', icon: 'icon-contact' },
-    { id: 3, label: 'About', icon: 'icon-about' }
+    { id: 7, label: 'Flights', icon: <FlightIcon /> },
+    { id: 1, label: 'Hotel', icon: <KingBedIcon /> },
+    { id: 5, label: 'Car rental', icon: <DirectionsCarIcon /> },
+    { id: 8, label: 'Train', icon: <TrainIcon /> },
+    { id: 9, label: 'Bus', icon: <AirportShuttleIcon /> }
+
+    // { id: 2, label: 'Contact', icon: 'icon-contact' },
+    // { id: 3, label: 'About', icon: 'icon-about' }
   ]
 
   const handelSelectTab = tab => {
@@ -34,23 +46,53 @@ const Masthead = () => {
     }
   }
 
+  useEffect(() => {
+    // Once shown, set first load to false after mount
+    const timer = setTimeout(() => {
+      setIsFirstLoad(false)
+    }, 500) // Let the animation play before disabling it
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  const animationProps = {
+    initial: { opacity: 0, y: 30 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5 }
+  }
+
+  const renderComponent = () => {
+    if (selectTab === 1) return <BookHotel />
+    if (selectTab === 7) return <FlightBookingForm />
+    if (selectTab === 5) return <CabBookingForm />
+    if (selectTab === 8) return <TrainFrom />
+    if (selectTab === 9) return <TrainFrom />
+    return null
+  }
+
   return (
     <section className='masthead -type-2 js-mouse-move-container'>
       <div className='masthead__bg bg-dark-3'>
         <img src='/img/masthead/2/bg.png' alt='image' />
       </div>
-      <div className='container'>
+      <div
+        // style={{ position: 'sticky', top: '0px', zIndex: '990000099' }}
+        className='container'
+      >
         <div className='masthead__tabs'>
           <div className='tabs__controls d-flex items-center'>
             {tabs.map(tab => (
               <div key={tab.id}>
                 <button
                   onClick={() => handelSelectTab(tab)}
-                  className={`tabs__button px-30 py-20 sm:px-20 sm:py-15 rounded-4 fw-600 text-white  ${
+                  className={`tabs__button px-20 py-10 sm:px-20 sm:py-15 rounded-4 fw-600 text-white  ${
                     selectTab === tab.id ? 'isActive' : ''
                   }`}
                 >
-                  <i className={`${tab.icon} text-20 mr-10 sm:mr-5`}></i>
+                  <i className={`${tab.icon} text-20 mr-10 sm:mr-5`}>
+                    {' '}
+                    {tab.icon}
+                  </i>
                   {tab.label}
                 </button>
               </div>
@@ -73,38 +115,18 @@ const Masthead = () => {
                 Checkout Beautiful Places Arround the World.
               </p>
 
-              {selectTab === 1 && <BookHotel />}
+              {/* {selectTab === 1 && <BookHotel />}
               {selectTab === 7 && <FlightBookingForm />}
-              {selectTab === 5 && <CabBookingForm />}
+              {selectTab === 5 && <CabBookingForm />} */}
             </div>
 
             <div className='col-xl-7'>
-              <div className='masthead__images'>
-                <div>
-                  <img
-                    src='/img/masthead/2/1.png'
-                    alt='image'
-                    className='js-mouse-move'
-                    data-move='30'
-                  />
-                </div>
-                <div>
-                  <img
-                    src='/img/masthead/2/2.png'
-                    alt='image'
-                    className='js-mouse-move'
-                    data-move='40'
-                  />
-                </div>
-                <div>
-                  <img
-                    src='/img/masthead/2/3.png'
-                    alt='image'
-                    className='js-mouse-move'
-                    data-move='50'
-                  />
-                </div>
-              </div>
+              {isFirstLoad ? (
+                // <motion.div {...animationProps}></motion.div>
+                <ScrollFadeIn >{renderComponent()} </ScrollFadeIn>
+              ) : (
+                renderComponent()
+              )}
             </div>
           </div>
         </div>

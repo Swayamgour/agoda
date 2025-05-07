@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../style/FlightBookingForm.css'
+import '../../style/FlightBookingForm.css'
 import { useNavigate } from 'react-router-dom'
 
 const FlightBookingForm = () => {

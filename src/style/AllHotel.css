@@ -1,5 +1,5 @@
 .allhotel-background {
-    height: 100vh;
+    height: 90vh;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -28,8 +28,9 @@
     text-align: center;
     padding: 0 20px;
 }
-.AllHotel-card-container{
-    padding: 20px ;
+
+.AllHotel-card-container {
+    padding: 20px;
 }
 
 .allhotel-heading-second {
@@ -39,4 +40,42 @@
     font-weight: bold;
     /* text-align: center; */
     padding: 0 20px;
+}
+
+
+
+@media (max-width: 426px) {
+    .allhotel-heading-second {
+        font-size: 20px;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .AllHotel-card-container {
+        padding: 10px;
+    }
+
+    .allhotel-background {
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+    .allhotel-heading {
+        font-size: 20px;
+    }
+
+    .filters-sidebar {
+        display: none;
+    }
+
+    .sort-options {
+        display: none;
+    }
+
+    /* .hotels-list {
+        display: none;
+    } */
 }
