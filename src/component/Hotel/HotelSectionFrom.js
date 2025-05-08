@@ -5,7 +5,7 @@ import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 import { enUS } from 'date-fns/locale'
 
-function BookHotel () {
+function HotelSectionFrom () {
   const [open, setOpen] = useState(false)
   const [state, setState] = useState([
     {
@@ -37,9 +37,12 @@ function BookHotel () {
     })
   }
   return (
-    <div className='mainSearch -w-900 z-2 bg-white  py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 shadow-1 '>
-      <div className='button-grid items-center'>
-        <div className='searchMenu-loc  lg:py-20 lg:px-0 js-form-dd js-liverSearch'>
+    <div
+      style={{ marginTop: '100px' }}
+      className='mainSearch  z-2 bg-white-tran  py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 shadow-1 '
+    >
+      <div className='hotelBookingFrom'>
+        <div className='searchMenu-loc   lg:px-0 js-form-dd js-liverSearch'>
           <div data-x-dd-click='searchMenu-loc'>
             <h4 className='text-15 fw-500 ls-2 lh-16'>Location</h4>
             <div className='text-15 text-light-1 ls-2 lh-16'>
@@ -52,11 +55,7 @@ function BookHotel () {
             </div>
           </div>
 
-          <div
-            className='searchMenu-loc__field shadow-2 js-popup-window'
-            data-x-dd='searchMenu-loc'
-            data-x-dd-toggle='-is-active'
-          >
+          <div className='searchMenu-loc__field shadow-2 js-popup-window'>
             <div className='bg-white  py-30 sm:px-0 sm:py-15 rounded-4'>
               <div className='y-gap-5 js-results'>
                 <div>
@@ -177,7 +176,7 @@ function BookHotel () {
           )}
         </div>
 
-        <div className='searchMenu-guests  lg:py-20 lg:px-0'>
+        <div className='searchMenu-guests  lg:px-0'>
           <div
             onClick={() => {
               setIsOpen(!isOpen)
@@ -185,7 +184,7 @@ function BookHotel () {
             }}
             style={{ cursor: 'pointer' }}
           >
-            <h4 className='text-15 fw-500 ls-2 lh-16'>Guest</h4>
+            <h4 className='text-15 fw-500 ls-2 lh-16'>Guest & Rooms</h4>
             <div className='text-15 text-light-1 ls-2 lh-16'>
               <span>{guests.adults}</span> adults -
               <span>{guests.children}</span> children -
@@ -195,7 +194,7 @@ function BookHotel () {
 
           {isOpen && (
             <div className='searchMenu-guests__field shadow-2'>
-              <div className='bg-white  py-30 rounded-4'>
+              <div className='bg-white  py-10 px-20 rounded-4'>
                 <GuestRow
                   label='Adults'
                   value={guests.adults}
@@ -263,4 +262,4 @@ const GuestRow = ({ label, subtext, value, onIncrease, onDecrease }) => (
     </div>
   </div>
 )
-export default BookHotel
+export default HotelSectionFrom

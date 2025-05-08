@@ -1,0 +1,252 @@
+.booking-review {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+}
+
+.booking-review-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.booking-review-container-left {
+    background-color: #fff;
+    /* border: 1px solid black; */
+    padding: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.booking-review-container-right {
+    background-color: #fff;
+    /* border: 1px solid black; */
+
+
+
+}
+
+.booking-review h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.hotel-info h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.couple-friendly {
+    display: inline-block;
+    background-color: #f0f8ff;
+    color: #0066cc;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.address {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.date-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.check-in,
+.check-out {
+    flex: 1;
+}
+
+.check-in div:first-child,
+.check-out div:first-child {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.check-in div:nth-child(2),
+.check-out div:nth-child(2) {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.check-in div:last-child,
+.check-out div:last-child {
+    font-size: 14px;
+    color: #666;
+}
+
+.nights {
+    font-size: 12px;
+    color: #666;
+    padding: 0 10px;
+}
+
+.summary {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+.price-section-hotel h3,
+.package-section h3,
+.coupon-section h3,
+.signup-benefits h3,
+.upgrade-section h3 {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.price-section-hotel,
+.coupon-section,
+.signup-benefits {
+    padding: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    margin-bottom: 20px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.subtext {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.info-icon {
+    cursor: pointer;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.package-section h4 {
+    font-size: 14px;
+    margin: 10px 0 5px;
+}
+
+.guests {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.benefits {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+
+.benefits li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.benefits li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+}
+
+.non-refundable {
+    background-color: #fff8f8;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.non-refundable strong {
+    color: #d32f2f;
+}
+
+.cancellation-policy {
+    font-size: 14px;
+    color: #0066cc;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.see-inclusions {
+    font-size: 14px;
+    color: #0066cc;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.coupon-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+.coupon-table th {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.coupon-table td {
+    padding: 5px 0;
+    font-size: 14px;
+}
+
+.have-coupon {
+    font-size: 14px;
+    color: #0066cc;
+    cursor: pointer;
+}
+
+.signup-benefits ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.signup-benefits li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.signup-benefits li:before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+}
+
+.upgrade-option {
+    font-size: 14px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+}

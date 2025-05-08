@@ -15,6 +15,8 @@ import CabBookingFilter from './component/car/CabBookingFilter'
 import TrainDashboard from './component/Train/TrainDashboard'
 import ProfilePage from './component/pages/ProfilePage'
 import BookingConfirmation from './component/flight/BookingConfirmation'
+import BookingReview from './component/Hotel/BookingReview'
+import HotelBookingPaymentPage from './component/Hotel/HotelBookingPaymentPage'
 // import FlightBookingPage from './component/pages/FlightBookingPage'
 
 function App () {
@@ -32,6 +34,8 @@ function App () {
         <Route path='/CabBookingFilter' element={<CabBookingFilter />} />
         <Route path='/TrainDashboard' element={<TrainDashboard />} />
         <Route path='/Profile' element={<ProfilePage />} />
+        <Route path='/BookingReview' element={<BookingReview />} />
+        <Route path='/PaymentDetail' element={<HotelBookingPaymentPage />} />
         {/* <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} /> */}
       </Routes>

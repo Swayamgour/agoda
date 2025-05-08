@@ -31,7 +31,7 @@ const CabBookingForm = () => {
   }
 
   return (
-    <div className='cab-booking-container'>
+    <div className='cab-booking-container bg-white-tran'>
       <div className='cab-booking-form'>
         <div className='trip-type-selector'>
           <button

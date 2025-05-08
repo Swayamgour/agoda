@@ -2,7 +2,7 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
+  /* background-color: var(); */
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -10,7 +10,7 @@
 .cab-booking-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  /* gap: 20px; */
 }
 
 .trip-type-selector {

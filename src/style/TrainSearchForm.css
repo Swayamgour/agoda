@@ -1,0 +1,55 @@
+.train-search-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    /* background-color: #f5f5f5; */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.train-search-form {
+    /* display: flex;
+    flex-direction: column; */
+    gap: 15px;
+}
+
+.input-group {
+    /* display: flex; */
+    gap: 15px;
+}
+
+.input-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field label,
+.train-date-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #34495e;
+}
+
+.input-field input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.train-date-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-display {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    /* background-color: white; */
+    font-size: 16px;
+    margin-bottom: 10px;
+}

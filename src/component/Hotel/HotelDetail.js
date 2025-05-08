@@ -1,13 +1,6 @@
-// import React from "react";
-
-// function HotelDetail() {
-//   return <div>HotelDetail</div>;
-// }
-
-// export default HotelDetail;
-
 import React, { useState, useEffect } from 'react'
 import '../../style/HotelPhotos.css'
+import { useNavigate } from 'react-router-dom'
 
 const HotelPage = () => {
   const cleanList = [
@@ -29,10 +22,25 @@ const HotelPage = () => {
     }
   ]
 
+
+  const navigate = useNavigate()
+
+  const images = {
+    all: Array(32)
+      .fill()
+      .map((_, i) => ({
+        id: i,
+        url: `https://picsum.photos/800/600?random=${i}`
+      }))
+  }
+
   // <div>Rated highly by Solo travelers</div>
   // <div>Top Value</div>
   // <div>Sparkling clean</div>
   // <div>Excellent room comfort & quality</div>
+
+  // console.log(images)
+
   return (
     <div style={{ marginTop: '100px' }} className='hotel-page'>
       {/* <header className="hotel-header">
@@ -64,7 +72,24 @@ const HotelPage = () => {
         </ul>
       </div>
 
-      <div className='see-all-section'>
+      <div className='image-grid'>
+        {images?.all.slice(0, 6).map((image, index) => (
+          <div
+            key={image.id}
+            className='grid-item'
+            // onClick={() => handleImageClick(index)}
+          >
+            <img src={image.url} alt={`Property ${image.id}`} />
+            {/* {index === 5 && images[activeTab].length > 6 && (
+              <div className='more-overlay'>
+                <span>+{images[activeTab].length - 6} more</span>
+              </div>
+            )} */}
+          </div>
+        ))}
+      </div>
+
+      <div style={{ marginTop: '10px' }} className='see-all-section'>
         <a href='#'>See all 5,372 properties in Bangalore</a>
         <a href='#'>See all photos</a>
       </div>
@@ -86,7 +111,7 @@ const HotelPage = () => {
             <span>RS. </span>
             <span>427 </span>
           </div>
-          <div className='view-deal'>View this deal.</div>
+          <div className='view-deal' onClick={()=>navigate('/BookingReview')} >Book Now</div>
         </div>
       </div>
 
@@ -171,9 +196,7 @@ const HotelPage = () => {
                   <span className='rating-label'>Exceptional</span>
                   <span className='rating-count'>93 reviews</span>
                 </div>
-                <a  className='read-reviews'>
-                  Read all reviews
-                </a>
+                <a className='read-reviews'>Read all reviews</a>
 
                 <div className='rating-details'>
                   <div className='rating-row'>

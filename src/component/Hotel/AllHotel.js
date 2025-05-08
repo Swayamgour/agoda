@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import BookHotel from './BookHotel'
+// import BookHotel from './BookHotel'a
 import '../../style/AllHotel.css' // Import the CSS file
 import HotelCard from './HotelsCard'
+import BookHotelFrom from './BookHotelFrom'
+import HotelSectionFrom from './HotelSectionFrom'
+import FilterWithBottomDrawer from './FilterWithBottomDrawer'
 // import HotelCard from '../../HotelsCard'
 
 function AllHotel () {
   const location = useLocation()
   const backgroundImage = location?.state?.item?.img
   const country = location?.state?.item?.country
+
+  const [activeFilter, setActiveFilter] = useState(null)
+
+  const handleFilterClick = filterName => {
+    setActiveFilter(activeFilter === filterName ? null : filterName)
+  }
 
   const [filters, setFilters] = useState({
     starRating: [],
@@ -159,17 +168,7 @@ function AllHotel () {
 
   return (
     <>
-      <div
-        className='allhotel-background'
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <div className='allhotel-overlay'>
-          <h1 className='allhotel-heading'>
-            {country} hotels and places to stay
-          </h1>
-          <BookHotel />
-        </div>
-      </div>
+      <HotelSectionFrom />
 
       <div className='AllHotel-card-container'>
         <h2 className='allhotel-heading-second'>
@@ -236,13 +235,12 @@ function AllHotel () {
             </div>
           </div>
 
-          <div>
-            <div></div>
-            <div></div>
-          </div>
+         
+
+          <FilterWithBottomDrawer />
 
           <div className='hotels-list'>
-            <div className='sort-options'>
+            <div className='hotel-list-sort-options'>
               <span>Sort by:</span>
               <button
                 className={filters.sortBy === 'bestReviewed' ? 'active' : ''}
@@ -263,6 +261,11 @@ function AllHotel () {
               >
                 Nearest to me
               </button>
+            </div>
+
+            <div className='filter-input-box'>
+              <i className='icon-search text-20 mr-10'></i>
+              <input placeholder='Search Hotel' />
             </div>
 
             <div className='hotels-container'>

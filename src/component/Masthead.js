@@ -5,7 +5,7 @@ import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css' // theme css file
 // import { addYears } from 'date-fns'
 import { enUS } from 'date-fns/locale'
-import BookHotel from './Hotel/BookHotel'
+import BookHotel from './Hotel/BookHotelFrom'
 import FlightBookingForm from './flight/FlightBookingForm'
 import CabBookingForm from './car/CabBookingForm'
 import { useNavigate } from 'react-router-dom'
@@ -73,7 +73,7 @@ const Masthead = () => {
   return (
     <section className='masthead -type-2 js-mouse-move-container'>
       <div className='masthead__bg bg-dark-3'>
-        <img src='/img/masthead/2/bg.png' alt='image' />
+        <img src='/images/download.webp' alt='image' />
       </div>
       <div
         // style={{ position: 'sticky', top: '0px', zIndex: '990000099' }}
@@ -123,7 +123,7 @@ const Masthead = () => {
             <div className='col-xl-7'>
               {isFirstLoad ? (
                 // <motion.div {...animationProps}></motion.div>
-                <ScrollFadeIn >{renderComponent()} </ScrollFadeIn>
+                <ScrollFadeIn>{renderComponent()} </ScrollFadeIn>
               ) : (
                 renderComponent()
               )}

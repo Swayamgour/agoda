@@ -30,7 +30,7 @@ const FlightBookingForm = () => {
   }
 
   return (
-    <div className='flight-booking-container'>
+    <div className='flight-booking-container bg-white-tran'>
       <form className='flight-booking-form' onSubmit={handleSubmit}>
         <div className='trip-type-selector'>
           <button
