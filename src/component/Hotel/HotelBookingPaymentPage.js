@@ -73,7 +73,7 @@ const HotelBookingPaymentPage = () => {
   }
 
   return (
-    <div style={{ marginTop: '100px' }} className='booking-review'>
+    <div style={{ marginTop: '70px' }} className='booking-review'>
       <p className='payment-process-timer'>
         We are holding your price....{' '}
         <span style={{ display: 'flex', gap: '5px', color: 'rgb(225,44,44)' }}>

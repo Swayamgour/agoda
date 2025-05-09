@@ -104,7 +104,7 @@ const TrainDashboard = () => {
   }
 
   return (
-    <div style={{ marginTop: '100px' }} className='train-dashboard'>
+    <div style={{ marginTop: '70px' }} className='train-dashboard'>
       <div className='Train_header'>
         <div className='train_header_div'>
           <div>

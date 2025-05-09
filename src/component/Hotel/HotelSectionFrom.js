@@ -38,7 +38,7 @@ function HotelSectionFrom () {
   }
   return (
     <div
-      style={{ marginTop: '100px' }}
+      style={{ marginTop: '70px' }}
       className='mainSearch  z-2 bg-white-tran  py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 shadow-1 '
     >
       <div className='hotelBookingFrom'>

@@ -14,7 +14,7 @@ import '../../style/Profile.css' // We'll create this CSS file next
 
 const ProfilePage = () => {
   return (
-    <div style={{ marginTop: '100px' }} className='user-details-container'>
+    <div style={{ marginTop: '70px' }} className='user-details-container'>
       <h1>User details</h1>
 
       <div className='detail-row'>

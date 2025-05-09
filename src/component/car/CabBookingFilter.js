@@ -50,7 +50,7 @@ const CabBookingFilter = () => {
   ]
 
   return (
-    <div style={{ marginTop: '100px' }} className='cab-filter-container'>
+    <div style={{ marginTop: '70px' }} className='cab-filter-container'>
       <div className='filter-section'>
         <h2>Select Filters</h2>
 

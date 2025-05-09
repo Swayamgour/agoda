@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 const BookingReview = () => {
   const navigate = useNavigate()
   return (
-    <div style={{ marginTop: '100px' }} className='booking-review'>
+    <div style={{ marginTop: '70px' }} className='booking-review'>
       <h1>Review your Booking</h1>
 
       <div className='booking-review-container'>

@@ -5,6 +5,28 @@ import SideBar from '../../component/SideBar/Sidebar'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import Badge from '@mui/material/Badge'
 import ButtonGroup from '@mui/material/ButtonGroup'
+import Box from '@mui/material/Box'
+import Modal from '@mui/material/Modal'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
+
+const style = {
+  position: 'absolute',
+  // bottom: -100, // adjust position as needed
+  backgroundColor: '#ffff',
+  color: 'black',
+  padding: '10px',
+  borderRadius: '8px',
+  zIndex: 10,
+  display: 'flex',
+  flexDirection: 'column',
+  width: '150px',
+  justifyContent: 'center',
+  alignItems: 'center',
+  top: '10%',
+  right: '2%',
+  width: '200px'
+}
 
 const Header = () => {
   // const [menuOpen, setMenuOpen] = useState(false)
@@ -13,6 +35,9 @@ const Header = () => {
 
   const [menuActive, setMenuActive] = useState(false)
   const [open, setOpen] = useState(false)
+  const [openModel, setOpenModel] = React.useState(false)
+  const handleOpen = () => setOpenModel(true)
+  const handleClose = () => setOpenModel(false)
 
   const toggleMenu = () => {
     setMenuActive(prev => !prev)
@@ -237,7 +262,8 @@ const Header = () => {
               <div className='d-flex items-center ml-20 is-menu-opened-hide'>
                 {user ? (
                   <div
-                    onClick={() => setShow(!show)}
+                    // onClick={() => setShow(!show)}
+                    onClick={handleOpen}
                     className='d-flex items-center '
                   >
                     <img
@@ -265,38 +291,31 @@ const Header = () => {
                   </div>
                 )}
 
-                {show && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: -100, // adjust position as needed
-                      backgroundColor: '#ffff',
-                      color: 'black',
-                      padding: '10px',
-                      borderRadius: '8px',
-                      zIndex: 10,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      width: '100px',
-                      justifyContent: 'center',
-                      alignItems: 'center'
-                    }}
+                <div>
+                  <Modal
+                    keepMounted
+                    open={openModel}
+                    onClose={handleClose}
+                    aria-labelledby='keep-mounted-modal-title'
+                    aria-describedby='keep-mounted-modal-description'
                   >
-                    <button
-                      onClick={() => navigate('/Profile')}
-                      className='block w-full text-left  py-2 hover:bg-gray-700'
-                      style={{ borderBottom: '1px solid rgb(225, 223, 223)' }}
-                    >
-                      Profile
-                    </button>
-                    <button
-                      // onClick={handleLogout}
-                      className='block w-full text-left  py-2 hover:bg-gray-700'
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
+                    <Box sx={style}>
+                      <button
+                        onClick={() => navigate('/Profile')}
+                        className='block w-full text-left  py-2 hover:bg-gray-700'
+                        style={{ borderBottom: '1px solid rgb(225, 223, 223)' }}
+                      >
+                        Profile
+                      </button>
+                      <button
+                        // onClick={handleLogout}
+                        className='block w-full text-left  py-2 hover:bg-gray-700'
+                      >
+                        Logout
+                      </button>
+                    </Box>
+                  </Modal>
+                </div>
               </div>
 
               {/* <div className='col-auto'>

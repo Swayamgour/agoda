@@ -42,7 +42,7 @@ const HotelPage = () => {
   // console.log(images)
 
   return (
-    <div style={{ marginTop: '100px' }} className='hotel-page'>
+    <div style={{ marginTop: '70px' }} className='hotel-page'>
       {/* <header className="hotel-header">
         <h1>The Hosteller Bangalore, Marathahalli</h1>
       </header>

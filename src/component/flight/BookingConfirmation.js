@@ -60,7 +60,7 @@ const BookingConfirmation = () => {
   }
 
   return (
-    <div style={{ marginTop: '100px' }} className='passenger-details'>
+    <div style={{ marginTop: '70px' }} className='passenger-details'>
       <div className='passenger-details-container'>
         {/* Contact Information Section */}
         <section className='contact-section'>
