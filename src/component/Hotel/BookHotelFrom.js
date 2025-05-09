@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../../style/TrainSearchForm.css'
 
 import { DateRange } from 'react-date-range'
@@ -39,6 +39,26 @@ const HotelSearchForm = () => {
     children: 1,
     rooms: 1
   })
+
+  const containerRef = useRef(null);
+
+  // useEffect
+
+  useEffect(() => {
+    function handleClickOutside (event) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   const handleSelect = ranges => {
     setState([ranges.selection])

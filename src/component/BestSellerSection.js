@@ -80,7 +80,7 @@ const BestSellerSection = () => {
                 </div>
               </div>
 
-              <div className='col-auto'>
+              {/* <div className='col-auto'>
                 <div className='tabs__controls row x-gap-10 justify-center js-tabs-controls'>
                   {tabs.map(tab => (
                     <div key={tab.id} className='col-auto'>
@@ -95,7 +95,7 @@ const BestSellerSection = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className='tabs__content pt-40 js-tabs-content'>

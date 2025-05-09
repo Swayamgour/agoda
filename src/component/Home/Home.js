@@ -15,10 +15,8 @@ function Home () {
     <>
       <Header />
       <Masthead />
-      {/* <FeatureIconsSection /> */}
       <TravellersSliderSection />
       <BestSellerSection />
-      {/* <TestimonialSection /> */}
       <BlogInspirationSection />
       <DownloadAppSection />
       <JoinSection />

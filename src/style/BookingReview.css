@@ -250,3 +250,44 @@ hr {
     background-color: #f9f9f9;
     border-radius: 4px;
 }
+
+@media(max-width:768px) {
+    .booking-review-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .booking-review-container-left {
+        padding: 0px;
+    }
+
+    .booking-review-container-right {
+        background-color: #fff;
+    }
+
+    .booking-review {
+        padding: 10px;
+    }
+
+    .price-section-hotel,
+    .coupon-section,
+    .signup-benefits {
+        padding: 0px;
+        box-shadow: none;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgb(213, 209, 209);
+    }
+
+    .booking-review-container-left {
+        background-color: #fff;
+        /* border: 1px solid black; */
+        padding: 0px;
+        box-shadow: none;
+        border-bottom: 1px solid rgb(213, 209, 209);
+
+    }
+
+
+}
