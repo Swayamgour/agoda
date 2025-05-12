@@ -1,9 +1,18 @@
+.cab-filter-container_sec {
+    /* display: flex; */
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    /* margin-top: 50px; */
+}
+
 .cab-filter-container {
     display: flex;
     font-family: Arial, sans-serif;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0px 20px;
     /* margin-top: 50px; */
 }
 
@@ -93,15 +102,6 @@
     margin: 10px 0;
 }
 
-.specs {
-    margin: 15px 0;
-}
-
-.specs p {
-    margin: 5px 0;
-    color: #333;
-    font-size: 12px;
-}
 
 .special-offer {
     display: flex;

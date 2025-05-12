@@ -201,7 +201,7 @@
 .savings {
   color: #28a745;
   margin: 10px 0;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .price-breakdown p {
@@ -235,3 +235,4 @@ ul {
   font-size: 12px;
   margin: 7px 0;
 }
+

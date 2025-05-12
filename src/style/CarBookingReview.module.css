@@ -1,0 +1,605 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    display: flex;
+    margin-top: 70px;
+    gap: 20px;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: white;
+
+}
+
+.routeInfo {
+    margin-bottom: 25px;
+    background-color: rgb(11, 34, 60);
+    color: white;
+    padding: 20px;
+    /* border-radius: 5px; */
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.route {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: white;
+
+
+}
+
+.tripDetails {
+    color: white;
+    font-size: 14px;
+}
+
+.vehicleHeaderCard {
+    padding: 0px 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.vehicleCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0px;
+    margin-bottom: 25px;
+}
+
+.vehicleHeader {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    /* margin-bottom: 15px; */
+    gap: 10px;
+}
+
+.vehicleName {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.rating {
+    color: #ffb800;
+    font-weight: bold;
+}
+
+.vehicleDetails {
+    margin-bottom: 10px;
+    line-height: 1.6;
+
+}
+
+.vehicleDetails p {
+    margin: 3px 0;
+    font-size: 12px;
+}
+
+.driverInfo {
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+.driverInfo h4 {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.driverInfo p {
+    margin: 0;
+    font-size: 14px;
+    /* color: ; */
+}
+
+.notes {
+    background-color: #fff9e6;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 95%;
+    margin: 0px auto;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+}
+
+.notes h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.notes ul {
+    padding-left: 20px;
+    margin: 0;
+    font-size: 12px;
+}
+
+.notes li {
+    margin-bottom: 5px;
+}
+
+.cancellationPolicy {
+    background-color: #e6f7ff;
+    padding: 10px 0px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+.cancellationPolicy p {
+    margin: 0;
+}
+
+.paymentSection {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    height: 100%;
+}
+
+.payNowButton {
+    width: 100%;
+    padding: 15px;
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.paymentOptions {
+    display: flex;
+    flex-direction: column;
+    /* gap: 15px; */
+    margin-bottom: 25px;
+}
+
+.paymentOption {
+    /* border: 1px solid #ddd; */
+    flex: 1;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+
+}
+
+.paymentOption h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.paymentOption h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.selectPrice {
+    background-color: rgb(242, 249, 255);
+}
+
+.paymentOption p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.price {
+    font-weight: bold;
+    color: #222;
+    font-size: 16px;
+}
+
+.priceSummary {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.priceRow {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* margin-bottom: 10px; */
+    font-size: 14px;
+}
+
+.priceRow_Price {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.originalPrice {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.finalPrice {
+    font-weight: bold;
+    font-size: 18px;
+    color: #222;
+}
+
+.fareBreakup {
+    color: #0066cc;
+    cursor: pointer;
+}
+
+.coupons {
+    margin-top: 20px;
+}
+
+.coupons h4 {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.coupon {
+    border: 1px dashed #0066cc;
+    color: #0066cc;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.specs {
+    margin: 15px 0;
+}
+
+.specs p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .container {
+    font-family: Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+} */
+
+.InclusionsExclusions_container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.InclusionsExclusions_container_left {
+    border: 1px solid rgb(200, 191, 191);
+    width: 45%;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.InclusionsExclusions_container_right {
+    border: 1px solid rgb(200, 191, 191);
+    width: 45%;
+    padding: 10px;
+    border-radius: 5px;
+
+
+}
+
+.mainTitle {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #222;
+    font-weight: bold;
+}
+
+.inclusionsList {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 25px;
+}
+
+.inclusionItem {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.inclusionItem::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #00a650;
+    font-weight: bold;
+}
+
+.exclusionsTitle {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #222;
+    font-weight: bold;
+}
+
+.exclusionsList {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 25px;
+}
+
+.exclusionItem {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+}
+
+.exclusionItem::before {
+    content: "✕";
+    position: absolute;
+    left: 0;
+    color: #ff3b30;
+    font-weight: bold;
+}
+
+.exclusionName {
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.exclusionDetails {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+    padding-left: 10px;
+    line-height: 1.4;
+}
+
+.divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+}
+
+.specialRequestsTitle_container {
+    padding: 20px;
+}
+
+.specialRequestsTitle {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.specialRequest {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.requestLabel {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.requestCheckbox {
+    margin-right: 12px;
+    margin-top: 3px;
+    accent-color: #0066cc;
+}
+
+.requestText {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.requestName {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.requestDescription {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.4;
+}
+
+.requestPrice {
+    margin-left: 15px;
+    font-weight: bold;
+    color: #222;
+    font-size: 15px;
+}
+
+.Trip_main_container {
+    padding: 0 20px 20px 20px;
+}
+
+
+.Trip_container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.Trip_title {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+/* .section {
+    margin-bottom: 20px;
+} */
+
+.sectionTitle {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.label strong {
+    font-weight: bold;
+}
+
+.inputField {
+    width: 100%;
+    padding: 12px 15px;
+    /* border: 1px solid #c92323; */
+    border-radius: 6px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.inputField::placeholder {
+    color: #999;
+}
+
+.divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 20px 0;
+}
+
+/* Gender Selection Styles */
+.genderSection {
+    margin-bottom: 20px;
+}
+
+.radioGroup {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.radioLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radioInput {
+    margin-right: 8px;
+    accent-color: #0066cc;
+}
+
+.radioText {
+    font-size: 15px;
+}
+
+/* Contact Number Styles */
+.contactSection {
+    margin-bottom: 10px;
+}
+
+.phoneInput {
+    display: flex;
+    align-items: center;
+}
+
+.countryCode {
+    padding: 12px 15px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    font-size: 15px;
+}
+
+.phoneField {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 0 6px 6px 0;
+    font-size: 15px;
+}
+
+/* Terms and Conditions Styles */
+.termsSection {
+    margin-top: 20px;
+}
+
+.termsText {
+    font-size: 14px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.checkboxInput {
+    margin-right: 10px;
+    accent-color: #0066cc;
+}
+
+.checkboxText {
+    line-height: 1.4;
+}
+
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 80px;
+        gap: 0px;
+    }
+
+    .specialRequestsTitle_container,
+    .paymentSection,
+    .driverInfo,
+    .routeInfo {
+        padding: 10px;
+    }
+
+    .Trip_main_container {
+        padding: 0 10px 10px 10px;
+    }
+
+    .priceSummary {
+        margin-bottom: 5px;
+    }
+
+}

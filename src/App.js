@@ -17,6 +17,8 @@ import ProfilePage from './component/pages/ProfilePage'
 import BookingConfirmation from './component/flight/BookingConfirmation'
 import BookingReview from './component/Hotel/BookingReview'
 import HotelBookingPaymentPage from './component/Hotel/HotelBookingPaymentPage'
+import CarBookingReview from './component/car/CarBookingReview'
+import BookingDetails from './component/car/BookingDetails'
 // import FlightBookingPage from './component/pages/FlightBookingPage'
 
 function App () {
@@ -36,6 +38,9 @@ function App () {
         <Route path='/Profile' element={<ProfilePage />} />
         <Route path='/BookingReview' element={<BookingReview />} />
         <Route path='/PaymentDetail' element={<HotelBookingPaymentPage />} />
+        <Route path='/CarBooking' element={<CarBookingReview />} />
+        <Route path='/CarBookingDetail' element={<BookingDetails />} />
+
         {/* <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} /> */}
       </Routes>

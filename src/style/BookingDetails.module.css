@@ -1,0 +1,177 @@
+/* BookingDetails.module.css */
+.container {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.header {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #000;
+}
+
+.hideDetailsButton {
+    background: none;
+    border: none;
+    color: #0066cc;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 14px;
+    /* text-decoration: underline; */
+}
+
+.vehicleSection {
+    margin-bottom: 15px;
+}
+
+.vehicleType {
+    font-size: 18px;
+    margin: 0 0 5px 0;
+    font-weight: bold;
+}
+
+.pickupTime {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    margin: 15px 0;
+}
+
+.sectionTitle {
+    font-size: 16px;
+    margin: 0 0 8px 0;
+    color: #555;
+    font-weight: normal;
+}
+
+.address {
+    margin: 0;
+    font-size: 14px;
+}
+
+.contactInfo {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.discountText {
+    font-size: 14px;
+    color: #0066cc;
+    margin: 0;
+}
+
+.totalSection {
+    margin-top: 20px;
+}
+
+.totalTitle {
+    font-size: 18px;
+    margin: 0 0 10px 0;
+}
+
+.totalAmount {
+    font-size: 32px;
+    margin: 0 0 20px 0;
+    font-weight: bold;
+}
+
+.fareTable {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.fareTable td {
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.fareTable td:last-child {
+    text-align: right;
+    font-weight: bold;
+}
+
+.scanToPay {
+    text-align: center;
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.refundText {
+    font-size: 12px;
+    color: #555;
+    text-align: center;
+    margin: 20px 0 0 0;
+}
+
+.locationContainer {
+    display: flex;
+    justify-content: center;
+    /* padding: 20px; */
+}
+
+.locationBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    /* padding-left: 30px; */
+}
+
+.verticalLine {
+    width: 2px;
+    height: 60px;
+    background-color: #ccc;
+    margin: 10px 0;
+    position: relative;
+    left: 10px;
+}
+
+.locationItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.icon {
+    font-size: 20px;
+    color: #007bff;
+    margin-top: 5px;
+}
+
+.title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.address {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: #555;
+}

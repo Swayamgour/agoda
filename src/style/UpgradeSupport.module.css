@@ -1,0 +1,145 @@
+.container {
+    font-family: Arial, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+
+
+
+
+    margin-top: 10px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.learnMore {
+    color: #0066cc;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.featuresContainer {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.row:last-child {
+    border-bottom: none;
+}
+
+.featureColumn {
+    flex: 2;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.featureCheckbox {
+    margin-top: 3px;
+}
+
+.featureCheckbox input[type="checkbox"] {
+    accent-color: #0066cc;
+}
+
+.featureText {
+    flex: 1;
+}
+
+.featureTitle {
+    font-weight: bold;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.featureDescription {
+    font-size: 12px;
+    color: #666;
+}
+
+.planColumn {
+    flex: 1;
+    text-align: center;
+    padding: 0 10px;
+    font-size: 12px;
+}
+
+.premiumColumn {
+    position: relative;
+}
+
+.planValue {
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.planSubValue {
+    font-size: 12px;
+    color: #666;
+}
+
+.popularNote {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Style for buttons */
+.row:last-child .planValue {
+    background-color: #0066cc;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Highlight premium column */
+.row:first-child .premiumColumn {
+    font-weight: bold;
+    color: #0066cc;
+}
+
+/* Add popular badge */
+.row:first-child .premiumColumn::after {
+    content: 'Popular';
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background-color: #0066cc;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0;
+        /* padding-top; */
+        margin-top: 10px;
+    }
+}

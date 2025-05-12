@@ -83,7 +83,7 @@
     align-items: center;
     cursor: pointer;
     position: relative;
-    padding-left: 30px;
+    /* padding-left: 30px; */
 }
 
 .airline-option input {
@@ -312,14 +312,15 @@
 }
 
 .flight-details {
-    padding: 20px;
+    margin: 0;
+    padding: 10px 20px;
 }
 
 .flight-times {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    width: 40%;
 }
 
 .departure,
@@ -371,12 +372,52 @@
     border-radius: 50%;
 }
 
+.duration_of_flight {
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 1px;
+    position: relative;
+}
+
+.line_duration {
+    height: 90px;
+    background-color: gray;
+    width: 100%;
+    /* position: relative; */
+}
+
+.dot_one {
+    position: absolute;
+    top: 0;
+    /* left: 50%;
+    transform: translate(-50%, -50%); */
+    width: 8px;
+    height: 8px;
+    background-color: gray;
+    border-radius: 50%;
+}
+
+.dot_two {
+    position: absolute;
+    /* top: 0; */
+
+    bottom: 0;
+    /* left: 50%;
+    transform: translate(-50%, -50%); */
+    width: 8px;
+    height: 8px;
+    background-color: gray;
+    border-radius: 50%;
+}
+
 .flight-info {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px dashed #eee;
+
 }
 
 .flight-number {
@@ -391,7 +432,8 @@
 
 .flight-airports {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .departure-airport,
@@ -403,12 +445,15 @@
 .departure-airport strong,
 .arrival-airport strong {
     color: #2c3e50;
+    font-size: 13px;
 }
 
 .departure-airport span,
 .arrival-airport span {
-    font-size: 0.9rem;
+    /* font-size: 0.9rem; */
     color: #7f8c8d;
+    font-size: 12px;
+
 }
 
 .flight-actions {
@@ -571,6 +616,51 @@
 
 .search-btn:hover {
     background-color: #e65c00;
+}
+
+.flight-booking-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    color: #2067da;
+    background-color: #E5EFFF;
+    padding: 10px;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+
+
+}
+
+.flight-booking-info p {
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    /* c */
+}
+
+.flight-booking-select-btn {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2px;
+    width: 90%;
+    margin: 0 auto;
+
+}
+
+.flight-booking-select-btn button {
+    background-color: #2067da;
+    color: white;
+    font-weight: 200;
+    padding: 6px 30px;
+    font-size: 14px;
+    border-radius: 20px;
+    margin: 10px 0;
+    /* margin-top: 10px; */
+
+
 }
 
 /* Responsive adjustments */

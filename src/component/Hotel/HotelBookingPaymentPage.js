@@ -14,6 +14,7 @@ import {
 } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
+import BookingDetails from '../car/BookingDetails'
 
 const HotelBookingPaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState('credit')
@@ -27,6 +28,8 @@ const HotelBookingPaymentPage = () => {
   const [selectedBank, setSelectedBank] = useState('credit')
   const [selectedMethod, setSelectedMethod] = useState('credit')
   const [selectedCardMethod, setSelectedCardMethod] = useState('')
+
+  const [show, setShow] = useState(false)
 
   const initialTime = '00.10.00' // hh.mm.ss
   const parseTimeToSeconds = timeStr => {
@@ -83,7 +86,7 @@ const HotelBookingPaymentPage = () => {
         </span>
       </p>
       <div className='booking-review-container'>
-        <div className='booking-review-container-left'>
+        <div className='booking-review-container-left '>
           <div className='PaymentPage_Secure'>
             <SecurityIcon /> Secure payment
           </div>
@@ -564,81 +567,87 @@ const HotelBookingPaymentPage = () => {
           )}
         </div>
 
+        {show && (
+          <div className='booking-review-container-right'>
+            <div className='price-section-hotel'>
+              <h3>Super Hotel O Kalyanpur Near IIT Kanpur</h3>
+              <p className='fs-12'>
+                Thu, May 8 - Thu, May 15 - 7 nights + 1 x classic
+              </p>
+
+              <table className='date-table'>
+                <tbody>
+                  <tr className='fs-12'>
+                    <td>Thu, May 8</td>
+                    <td>Thu, May 15</td>
+                    <td>7 nights</td>
+                  </tr>
+                  <tr className='fs-12'>
+                    <td>12:00 PM</td>
+                    <td>11:00 AM</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className='price-section-hotel'>
+              <ul className='coupon-list'>
+                <li>Auto-applied coupon</li>
+                <li>
+                  <strong>AGODASPONSORED</strong> Coupon applied
+                </li>
+                <li>Rs. 1,971.12 off</li>
+              </ul>
+            </div>
+
+            <div className='price-section-hotel'>
+              <p className='price-match'>
+                <strong> We price match. </strong> Find it for less, and we'll
+                match it!
+              </p>
+              <p className='savings'>
+                <strong>You saved Rs. </strong> 1,971.12 on this booking!
+              </p>
+            </div>
+
+            {/* <hr className='divider' /> */}
+
+            <div className='price-section-hotel'>
+              <div className='price-breakdown'>
+                <p>
+                  Original price (1 room x 7 nights) <span>₹ 9,9000</span>
+                </p>
+                <p>
+                  Our price <span>₹ 9,9000</span>
+                </p>
+                <p style={{ color: 'green' }}>
+                  AGODASPONSORED Coupon applied <span>₹ - 57.61%</span>
+                </p>
+                <p>
+                  Room price (1 room x 7 nights) <span>₹ 9,9000</span>
+                </p>
+                <p>
+                  Taxes and fees <span>₹ 9,9000</span>
+                </p>
+                <p style={{ color: 'green' }}>
+                  Booking fees <span>Free</span>
+                </p>
+              </div>
+
+              <hr className='divider' />
+
+              <div className='total-price'>
+                <h3>Price 😊</h3>
+                <h3>Rs. 7,999.11</h3>
+              </div>
+              <p></p>
+            </div>
+          </div>
+        )}
+
         <div className='booking-review-container-right'>
-          <div className='price-section-hotel'>
-            <h3>Super Hotel O Kalyanpur Near IIT Kanpur</h3>
-            <p className='fs-12'>
-              Thu, May 8 - Thu, May 15 - 7 nights + 1 x classic
-            </p>
-
-            <table className='date-table'>
-              <tbody>
-                <tr className='fs-12'>
-                  <td>Thu, May 8</td>
-                  <td>Thu, May 15</td>
-                  <td>7 nights</td>
-                </tr>
-                <tr className='fs-12'>
-                  <td>12:00 PM</td>
-                  <td>11:00 AM</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div className='price-section-hotel'>
-            <ul className='coupon-list'>
-              <li>Auto-applied coupon</li>
-              <li>
-                <strong>AGODASPONSORED</strong> Coupon applied
-              </li>
-              <li>Rs. 1,971.12 off</li>
-            </ul>
-          </div>
-
-          <div className='price-section-hotel'>
-            <p className='price-match'>
-              <strong> We price match. </strong> Find it for less, and we'll
-              match it!
-            </p>
-            <p className='savings'>
-              <strong>You saved Rs. </strong> 1,971.12 on this booking!
-            </p>
-          </div>
-
-          {/* <hr className='divider' /> */}
-
-          <div className='price-section-hotel'>
-            <div className='price-breakdown'>
-              <p>
-                Original price (1 room x 7 nights) <span>₹ 9,9000</span>
-              </p>
-              <p>
-                Our price <span>₹ 9,9000</span>
-              </p>
-              <p style={{ color: 'green' }}>
-                AGODASPONSORED Coupon applied <span>₹ - 57.61%</span>
-              </p>
-              <p>
-                Room price (1 room x 7 nights) <span>₹ 9,9000</span>
-              </p>
-              <p>
-                Taxes and fees <span>₹ 9,9000</span>
-              </p>
-              <p style={{ color: 'green' }}>
-                Booking fees <span>Free</span>
-              </p>
-            </div>
-
-            <hr className='divider' />
-
-            <div className='total-price'>
-              <h3>Price 😊</h3>
-              <h3>Rs. 7,999.11</h3>
-            </div>
-            <p></p>
-          </div>
+          <BookingDetails />
         </div>
       </div>
     </div>

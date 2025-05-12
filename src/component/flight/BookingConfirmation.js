@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
 import '../../style/BookingConfirmation.css'
+import UpgradeSupport from './UpgradeSupport'
+import { useNavigate } from 'react-router-dom'
+import styles from '../../style/CarBookingReview.module.css'
 
 const BookingConfirmation = () => {
+  const navigate = useNavigate()
+
   const [contactInfo, setContactInfo] = useState({
     firstName: 'Swayam',
     lastName: 'Gaur',
@@ -147,27 +152,8 @@ const BookingConfirmation = () => {
         <div className='divider'></div>
 
         {/* Flight Summary Section */}
-        <section className='flight-summary'>
-          <h3>{flightDetails.route}</h3>
-          <p>
-            {flightDetails.date} · {flightDetails.passengers} Passenger ·{' '}
-            {flightDetails.cabinClass}
-          </p>
 
-          <div className='flight-details'>
-            <div className='flight-info'>
-              <span className='airline'>🔍 {flightDetails.airline}</span>
-              <span className='timing'>
-                {flightDetails.date} · {flightDetails.departureTime} -{' '}
-                {flightDetails.arrivalTime} · ⓒ {flightDetails.duration}
-              </span>
-              <button className='details-btn'>Details</button>
-            </div>
-            <div className='airports'>{flightDetails.airports}</div>
-          </div>
-        </section>
-
-        <div className='divider'></div>
+        {/* <div className='divider'></div> */}
 
         {/* Baggage Section */}
         <section className='baggage-section'>
@@ -177,7 +163,7 @@ const BookingConfirmation = () => {
 
         {/* Passenger Information Section */}
         <section className='passenger-info-section'>
-          <h1>Passenger 1: (Adult, 18 years or older)</h1>
+          <h1 className='fs-16'>Passenger 1: (Adult, 18 years or older)</h1>
           <p className='description'>
             Passenger details must match your passport or photo ID
           </p>
@@ -315,32 +301,76 @@ const BookingConfirmation = () => {
             </div>
           </form>
         </section>
+        <UpgradeSupport />
       </div>
 
       {/* <div className='divider'></div> */}
 
       {/* Price Breakdown Section */}
-      <section className='price-section'>
-        <h3>Price breakdown</h3>
-        <table className='price-table'>
-          <tbody>
-            {priceBreakdown.map((item, index) => (
-              <tr
-                key={index}
-                className={`
+      <div>
+        <section className='flight-summary'>
+          <div className='detail-section-of-flight'>
+            <h3 className='fs-18'>{flightDetails.route}</h3>
+            <p className='fs-14'>
+              {flightDetails.date} · {flightDetails.passengers} Passenger ·{' '}
+              {flightDetails.cabinClass}
+            </p>
+          </div>
+
+          <div className='flight-details'>
+            <div className='airports '>{flightDetails.airports}</div>
+
+            <div className='flight-info'>
+              <span className='airline fs-12'>
+                {/* <div> */}
+                <img src='/images/JL_v1.png' width={20} height={20} />
+                {/* </div>  */}
+                {flightDetails.airline}
+              </span>
+
+              <button
+                style={{ marginTop: '5px' }}
+                className='details-btn fs-12 '
+              >
+                Details
+              </button>
+            </div>
+
+            <span className='timing fs-12'>
+              {flightDetails.date} · {flightDetails.departureTime} -{' '}
+              {flightDetails.arrivalTime} · ⓒ {flightDetails.duration}
+            </span>
+          </div>
+        </section>
+        <section className='price-section'>
+          <h3 className='fs-16'>Price breakdown</h3>
+          <table className='price-table'>
+            <tbody>
+              {priceBreakdown.map((item, index) => (
+                <tr
+                  key={index}
+                  className={`
             ${item.isTotal ? 'total-row' : ''} 
             ${item.isFinal ? 'final-row' : ''}
           `}
-              >
-                <td>{item.label}</td>
-                <td>{item.value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
+                >
+                  <td className='fs-12'>{item.label}</td>
+                  <td className='fs-12'>{item.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-      {/* <div className='divider'></div> */}
+          <button
+            onClick={() => navigate('/PaymentDetail')}
+            className={styles.payNowButton}
+          >
+            PAY ₹ 628 NOW
+          </button>
+        </section>
+
+        {/* <div className='divider'></div> */}
+      </div>
     </div>
   )
 }

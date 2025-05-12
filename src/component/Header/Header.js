@@ -12,20 +12,19 @@ import Typography from '@mui/material/Typography'
 
 const style = {
   position: 'absolute',
-  // bottom: -100, // adjust position as needed
   backgroundColor: '#ffff',
   color: 'black',
-  padding: '10px',
+  padding: '5px',
   borderRadius: '8px',
   zIndex: 10,
   display: 'flex',
   flexDirection: 'column',
-  width: '150px',
+  width: '100px',
   justifyContent: 'center',
   alignItems: 'center',
   top: '10%',
-  right: '2%',
-  width: '200px'
+  right: '5%'
+  // width: '150px'
 }
 
 const Header = () => {
@@ -301,7 +300,10 @@ const Header = () => {
                   >
                     <Box sx={style}>
                       <button
-                        onClick={() => navigate('/Profile')}
+                        onClick={() => {
+                          navigate('/Profile')
+                        }}
+                        onClose={handleClose}
                         className='block w-full text-left  py-2 hover:bg-gray-700'
                         style={{ borderBottom: '1px solid rgb(225, 223, 223)' }}
                       >
@@ -309,6 +311,7 @@ const Header = () => {
                       </button>
                       <button
                         // onClick={handleLogout}
+                        onClose={handleClose}
                         className='block w-full text-left  py-2 hover:bg-gray-700'
                       >
                         Logout

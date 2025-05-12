@@ -561,7 +561,7 @@ input:not([type="range"]),
 textarea {
   border: 0;
   outline: none;
-  width: 100%;
+  /* width: 100%; */
   background-color: transparent;
 }
 
@@ -3334,9 +3334,9 @@ h6 {
   opacity: 1;
 }
 
-@media(max-width:700px){
-  .tabs__controls{
-    width:100%
+@media(max-width:700px) {
+  .tabs__controls {
+    width: 100%
   }
 }
 
@@ -20247,6 +20247,16 @@ iframe.wait-autoplay {
   font-size: 14px
 }
 
+.fs-16 {
+  /* color: #ccc; */
+  font-size: 16px
+}
+
+.fs-18 {
+  /* color: #ccc; */
+  font-size: 18px
+}
+
 .noUi-marker {
   position: absolute;
   background: #ccc
@@ -21060,10 +21070,31 @@ button.swiper-pagination-bullet {
 
 }
 
+/* .formButton {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+} */
+
 @media (max-width: 1024px) {
   .hotelBookingFrom {
     display: flex;
     /* justify-content: space-around; */
     flex-direction: column;
   }
+
 }
+
+
+/* @media (max-width: 768px) {
+  .formButton {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+  }
+
+} */

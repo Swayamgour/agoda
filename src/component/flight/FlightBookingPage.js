@@ -3,6 +3,11 @@ import React, { useState } from 'react'
 import '../../style/FlightBookingPage.css'
 import FlightSearch from './FlightSearch'
 import { useNavigate } from 'react-router-dom'
+import Box from '@mui/material/Box'
+import Slider from '@mui/material/Slider'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import InfoIcon from '@mui/icons-material/Info'
 
 const FlightBookingPage = () => {
   const [selectedAirlines, setSelectedAirlines] = useState([])
@@ -17,6 +22,18 @@ const FlightBookingPage = () => {
     { id: 'air-india-express', name: 'Air India Express' },
     { id: 'spicejet', name: 'SpiceJet' }
   ]
+
+  const [value, setValue] = useState([0, 24])
+  const [openOrderMenu, setOpenOrderMenu] = useState(false)
+  const [ids, setIds] = useState('')
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue)
+  }
+
+  function valuetext (value) {
+    return `${value}°C`
+  }
 
   const flights = [
     {
@@ -71,6 +88,11 @@ const FlightBookingPage = () => {
     const newRange = [...arrivalTimeRange]
     newRange[index] = parseInt(e.target.value)
     setArrivalTimeRange(newRange)
+  }
+
+  const handleToggleOrderMenu = id => {
+    setOpenOrderMenu(!openOrderMenu)
+    setIds(id)
   }
 
   const filteredFlights = flights.filter(flight => {
@@ -157,34 +179,34 @@ const FlightBookingPage = () => {
 
           <div className='filter-section'>
             <h2>Stops</h2>
-            <div className='stop-options'>
-              <label className='stop-option'>
+            <div className='airline-options'>
+              <label className='airline-option'>
                 <input
                   type='radio'
                   name='stops'
                   checked={selectedStops === 'direct'}
                   onChange={() => setSelectedStops('direct')}
                 />
-                <span className='radio-mark'></span>
+                <span className='checkmark'></span>
                 Direct
               </label>
-              <label className='stop-option'>
+              <label className='airline-option'>
                 <input
                   type='radio'
                   name='stops'
                   checked={selectedStops === '1-stop'}
                   onChange={() => setSelectedStops('1-stop')}
                 />
-                <span className='radio-mark'></span>1 Stop
+                <span className='checkmark'></span>1 Stop
               </label>
-              <label className='stop-option'>
+              <label className='airline-option'>
                 <input
                   type='radio'
                   name='stops'
                   checked={selectedStops === '2-plus-stops'}
                   onChange={() => setSelectedStops('2-plus-stops')}
                 />
-                <span className='radio-mark'></span>2 Stops+
+                <span className='checkmark'></span>2 Stops+
               </label>
             </div>
           </div>
@@ -194,20 +216,15 @@ const FlightBookingPage = () => {
             <div className='time-filter'>
               <h3>Departure 00:00 - 24:00</h3>
               <div className='time-range'>
-                <input
-                  type='range'
-                  min='0'
-                  max='24'
-                  value={departureTimeRange[0]}
-                  onChange={e => handleDepartureTimeChange(e, 0)}
-                />
-                <input
-                  type='range'
-                  min='0'
-                  max='24'
-                  value={departureTimeRange[1]}
-                  onChange={e => handleDepartureTimeChange(e, 1)}
-                />
+                <Box>
+                  <Slider
+                    getAriaLabel={() => 'Temperature range'}
+                    value={value}
+                    onChange={handleChange}
+                    valueLabelDisplay='auto'
+                    getAriaValueText={valuetext}
+                  />
+                </Box>
                 <div className='time-labels'>
                   <span>00:00</span>
                   <span>24:00</span>
@@ -217,20 +234,15 @@ const FlightBookingPage = () => {
             <div className='time-filter'>
               <h3>Arrival 00:00 - 24:00</h3>
               <div className='time-range'>
-                <input
-                  type='range'
-                  min='0'
-                  max='24'
-                  value={arrivalTimeRange[0]}
-                  onChange={e => handleArrivalTimeChange(e, 0)}
-                />
-                <input
-                  type='range'
-                  min='0'
-                  max='24'
-                  value={arrivalTimeRange[1]}
-                  onChange={e => handleArrivalTimeChange(e, 1)}
-                />
+                <Box>
+                  <Slider
+                    getAriaLabel={() => 'Temperature range'}
+                    value={value}
+                    onChange={handleChange}
+                    valueLabelDisplay='auto'
+                    getAriaValueText={valuetext}
+                  />
+                </Box>
                 <div className='time-labels'>
                   <span>00:00</span>
                   <span>24:00</span>
@@ -274,21 +286,31 @@ const FlightBookingPage = () => {
 
           {sortedFlights.length > 0 ? (
             sortedFlights.map(flight => (
-              <div key={flight.id} onClick={()=>navigate('/BookingConfirmation')} className='flight-card'>
+              <div
+                key={flight.id}
+                //
+                onClick={() => handleToggleOrderMenu(flight.id)}
+                className='flight-card'
+              >
                 <div className='flight-header'>
                   <div className='flight-airline'>
-                    <h3>{flight.airline}</h3>
-                    <span>{flight.cabinClass}</span>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px'
+                      }}
+                    >
+                      <div>
+                        <img src='/images/JL_v1.png' width={50} height={50} />
+                      </div>
+                      <div>
+                        <h3>{flight.airline}</h3>
+                        <span>{flight.cabinClass}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className='flight-price'>
-                    <span className='price'>
-                      Rs. {flight.price.toLocaleString()}
-                    </span>
-                    <button className='select-btn'>Select</button>
-                  </div>
-                </div>
 
-                <div className='flight-details'>
                   <div className='flight-times'>
                     <div className='departure'>
                       <span className='time'>{flight.departureTime}</span>
@@ -307,27 +329,112 @@ const FlightBookingPage = () => {
                     </div>
                   </div>
 
-                  <div className='flight-info'>
-                    <div className='flight-number'>
-                      <span>{flight.flightNumber}</span>
-                      <span>{flight.aircraft}</span>
-                    </div>
-                    <div className='flight-airports'>
-                      <div className='departure-airport'>
-                        <strong>New Delhi and NCR (DEL)</strong>
-                        <span>{flight.departureAirportName}</span>
-                      </div>
-                      <div className='arrival-airport'>
-                        <strong>Bangalore (BLR)</strong>
-                        <span>{flight.arrivalAirportName}</span>
-                      </div>
-                    </div>
+                  <div className='flight-price'>
+                    <span className='price'>
+                      Rs. {flight.price.toLocaleString()}
+                    </span>
+                    {openOrderMenu ? <ExpandLess /> : <ExpandMore />}
+                    {/* <button className='select-btn'>Select</button> */}
                   </div>
+                  {/* <div></div> */}
                 </div>
 
-                <div className='flight-actions'>
+                {flight.id === ids && openOrderMenu && (
+                  <>
+                    <div className='flight-details'>
+                      <div className='flight-info'>
+                        <div className='flight-number'>
+                          <span>{flight.flightNumber}</span>
+                          <span>{flight.aircraft}</span>
+                        </div>
+                      </div>
+                      <div className='flight-airports'>
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '10px',
+                            alignItems: 'center'
+                          }}
+                        >
+                          <div className='fs-12'>2h 45m </div>
+                          <div className='duration_of_flight'>
+                            <div className='line_duration'></div>
+                            <div className='dot_one'></div>
+                            <div className='dot_two'></div>
+                          </div>
+                          <div className='flight-airports'>
+                            <div className='departure-airport '>
+                              <strong>New Delhi and NCR (DEL)</strong>
+                              <span>{flight.departureAirportName}</span>
+                            </div>
+                            <div className='fs-10'>
+                              Economy Class • SG 269 • Boeing 737-800
+                            </div>
+                            <div className='arrival-airport'>
+                              <strong>Bangalore (BLR)</strong>
+                              <span>{flight.arrivalAirportName}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flight-details'>
+                      <div className='flight-info'>
+                        <div className='flight-number'>
+                          <span>{flight.flightNumber}</span>
+                          <span>{flight.aircraft}</span>
+                        </div>
+                      </div>
+                      <div className='flight-airports'>
+                        <div
+                          style={{
+                            display: 'flex',
+                            gap: '10px',
+                            alignItems: 'center'
+                          }}
+                        >
+                          <div className='fs-12'>2h 45m </div>
+                          <div className='duration_of_flight'>
+                            <div className='line_duration'></div>
+                            <div className='dot_one'></div>
+                            <div className='dot_two'></div>
+                          </div>
+                          <div className='flight-airports'>
+                            <div className='departure-airport '>
+                              <strong>New Delhi and NCR (DEL)</strong>
+                              <span>{flight.departureAirportName}</span>
+                            </div>
+                            <div className='fs-10'>
+                              Economy Class • SG 269 • Boeing 737-800
+                            </div>
+                            <div className='arrival-airport'>
+                              <strong>Bangalore (BLR)</strong>
+                              <span>{flight.arrivalAirportName}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='flight-booking-info'>
+                      <InfoIcon sx={{ fontSize: '14px' }} />
+                      <p>
+                        This great fare combines two separate one-way flights,
+                        each under separate terms and conditions.
+                      </p>
+                    </div>
+
+                    <div className='flight-booking-select-btn'>
+                      <button onClick={() => navigate('/BookingConfirmation')}>
+                        Select
+                      </button>
+                    </div>
+                  </>
+                )}
+
+                {/* <div className='flight-actions'>
                   <button className='add-to-cart-btn'>Add to cart</button>
-                </div>
+                </div> */}
               </div>
             ))
           ) : (

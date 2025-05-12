@@ -39,7 +39,7 @@ const AboutPage = () => {
   ]
 
   return (
-    <div className='about-page'>
+    <div style={{ marginTop: '70px' }} className='about-page'>
       {/* Hero Section */}
       <section className='about-hero'>
         <div className='hero-image'>
