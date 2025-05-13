@@ -23,6 +23,7 @@
 
 .booking-review-container-right {
     background-color: #fff;
+    width: 30%;
 
 }
 
@@ -265,6 +266,7 @@ hr {
 
     .booking-review-container-right {
         background-color: #fff;
+        width: 100%;
     }
 
     .booking-review {

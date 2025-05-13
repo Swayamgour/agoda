@@ -1,6 +1,7 @@
 // BookingDetails.jsx
 import React from 'react'
 import styles from '../../style/BookingDetails.module.css'
+import FmdGoodIcon from '@mui/icons-material/FmdGood'
 
 const BookingDetails = () => {
   return (
@@ -8,9 +9,9 @@ const BookingDetails = () => {
       <div>
         <header className={styles.header}>
           <h1 className='fs-14'>Gumti No.5, Darsha..</h1>
-          <button className={styles.hideDetailsButton}>
+          {/* <button className={styles.hideDetailsButton}>
             <strong>HIDE DETAILS</strong>
-          </button>
+          </button> */}
         </header>
 
         <div className={styles.vehicleSection}>
@@ -23,10 +24,18 @@ const BookingDetails = () => {
         <div className={styles.divider}></div>
 
         <div className={styles.locationContainer}>
+          <div className={styles.verticalLine}>
+            <div className={styles.locationIcon}>
+              <FmdGoodIcon />
+            </div>
+            <div className={styles.locationIconInBottom}>
+              <FmdGoodIcon />
+            </div>
+          </div>
+
           <div className={styles.locationBlock}>
             {/* Pickup */}
             <div className={styles.locationItem}>
-              <div className={styles.icon}>📍</div>
               <div>
                 <h3 className={styles.title}>
                   Pickup from: 13 May 2025, 10:00 AM
@@ -38,11 +47,9 @@ const BookingDetails = () => {
             </div>
 
             {/* Vertical Line */}
-            <div className={styles.verticalLine}></div>
 
             {/* Drop Off */}
             <div className={styles.locationItem}>
-              <div className={styles.icon}>📍</div>
               <div>
                 <h3 className={styles.title}>
                   Drop off at: 13 May 2025, 10:00 AM
@@ -54,6 +61,7 @@ const BookingDetails = () => {
             </div>
           </div>
         </div>
+
         <div className={styles.divider}></div>
 
         <section className={styles.contactSection}>
@@ -75,15 +83,15 @@ const BookingDetails = () => {
           </p>
         </section>
 
-        <div className={styles.divider}></div>
+        {/* <div className={styles.divider}></div> */}
 
-        <section className={styles.paymentSection}>
+        {/* <section className={styles.paymentSection}>
           <h3 className={styles.sectionTitle}>Payment Options</h3>
-        </section>
+        </section> */}
       </div>
 
       <div>
-        <section className={styles.totalSection}>
+        {/* <section className={styles.totalSection}>
           <h2 className={styles.totalTitle}>Total Due</h2>
           <h1 className={styles.totalAmount}>405</h1>
 
@@ -103,7 +111,7 @@ const BookingDetails = () => {
           <p className={styles.refundText}>
             Instant Refund & High Success Rate | VIEW OR |
           </p>
-        </section>
+        </section> */}
       </div>
     </div>
   )

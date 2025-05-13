@@ -58,6 +58,7 @@ const FlightBookingForm = () => {
             <label>Flying from</label>
             <input
               type='text'
+              className='inputSearch'
               placeholder='City or airport'
               value={flyingFrom}
               onChange={e => setFlyingFrom(e.target.value)}
@@ -69,6 +70,7 @@ const FlightBookingForm = () => {
             <label>Flying to</label>
             <input
               type='text'
+              className='inputSearch'
               placeholder='City or airport'
               value={flyingTo}
               onChange={e => setFlyingTo(e.target.value)}
@@ -82,6 +84,7 @@ const FlightBookingForm = () => {
             <label>Departure</label>
             <input
               type='date'
+              className='inputSearch'
               value={departureDate}
               onChange={e => setDepartureDate(e.target.value)}
               required
@@ -93,6 +96,7 @@ const FlightBookingForm = () => {
               <label>Return</label>
               <input
                 type='date'
+                className='inputSearch'
                 value={returnDate}
                 onChange={e => setReturnDate(e.target.value)}
                 required
@@ -143,6 +147,7 @@ const FlightBookingForm = () => {
           <label className='checkbox-container'>
             <input
               type='checkbox'
+              className='inputSearch'
               checked={includeHotel}
               onChange={e => setIncludeHotel(e.target.checked)}
               style={{ width: 'unset' }}

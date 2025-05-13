@@ -50,7 +50,7 @@ function HotelSectionFrom () {
                 autoComplete='off'
                 type='search'
                 placeholder='Where are you going?'
-                className='js-search js-dd-focus'
+                className='js-search js-dd-focus inputSearch'
               />
             </div>
           </div>

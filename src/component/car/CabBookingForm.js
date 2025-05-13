@@ -65,6 +65,7 @@ const CabBookingForm = () => {
           <div className='form-group'>
             <label>Pickup Location</label>
             <input
+              className='inputSearch'
               type='text'
               placeholder='Enter pickup location'
               value={pickupLocation}
@@ -76,6 +77,7 @@ const CabBookingForm = () => {
           <div className='form-group'>
             <label>Drop Location</label>
             <input
+              className='inputSearch'
               type='text'
               placeholder='Enter drop location'
               value={dropLocation}
@@ -89,6 +91,7 @@ const CabBookingForm = () => {
           <div className='form-group'>
             <label>Pickup Date</label>
             <input
+              className='inputSearch'
               type='date'
               value={pickupDate}
               onChange={e => setPickupDate(e.target.value)}
@@ -99,6 +102,7 @@ const CabBookingForm = () => {
           <div className='form-group'>
             <label>Pickup Time</label>
             <input
+              className='inputSearch'
               type='time'
               value={pickupTime}
               onChange={e => setPickupTime(e.target.value)}
@@ -112,6 +116,7 @@ const CabBookingForm = () => {
             <div className='form-group'>
               <label>Return Date</label>
               <input
+                className='inputSearch'
                 type='date'
                 value={returnDate}
                 onChange={e => setReturnDate(e.target.value)}
@@ -122,6 +127,7 @@ const CabBookingForm = () => {
             <div className='form-group'>
               <label>Return Time</label>
               <input
+                className='inputSearch'
                 type='time'
                 value={returnTime}
                 onChange={e => setReturnTime(e.target.value)}
@@ -137,6 +143,7 @@ const CabBookingForm = () => {
             <select
               value={passengers}
               onChange={e => setPassengers(parseInt(e.target.value))}
+              className='inputSearch'
             >
               {[1, 2, 3, 4, 5, 6, 7, 8].map(num => (
                 <option key={num} value={num}>
@@ -148,7 +155,7 @@ const CabBookingForm = () => {
 
           <div className='form-group'>
             <label>Cab Type</label>
-            <select>
+            <select className='inputSearch'>
               <option value='hatchback'>Hatchback</option>
               <option value='sedan'>Sedan</option>
               <option value='suv'>SUV</option>

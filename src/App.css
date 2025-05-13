@@ -122,7 +122,7 @@ body::-webkit-scrollbar {
 
 :root {
   --color-white: #FFFFFF;
-  --color-white-tran: #ffffffd1 !important;
+  --color-white-tran: #fffffff0 !important;
   --color-black: #000000;
   --color-border: #DDDDDD;
   --color-dark-1: #051036;
@@ -562,6 +562,10 @@ textarea {
   border: 0;
   outline: none;
   /* width: 100%; */
+  /* */
+}
+
+.inputSearch {
   background-color: transparent;
 }
 
@@ -1242,6 +1246,38 @@ input.text-white::placeholder {
 
 .form-checkbox:hover input:checked~.form-checkbox__mark {
   background-color: var(--color-blue-1);
+}
+
+.ds-f {
+  display: flex;
+}
+
+.flex-c {
+  flex-direction: column;
+}
+
+.jcsb {
+  justify-content: space-between;
+}
+
+.aic {
+  align-items: center;
+}
+
+.colorGreen {
+  color: rgb(68, 181, 12)
+}
+
+.w50 {
+  width: 45%;
+}
+
+.gp-5 {
+  gap: 5px;
+}
+
+.gp-10 {
+  gap: 10px;
 }
 
 .form-radio {
@@ -4101,10 +4137,10 @@ h6 {
   }
 }
 
-.mainSearch .button-grid {
-  /* display: grid;
-  grid-template-columns: 1fr 250px 290px auto; */
-}
+/* .mainSearch .button-grid {
+  display: grid;
+  grid-template-columns: 1fr 250px 290px auto;
+} */
 
 /* .mainSearch .button-grid>*+* {
   border-left: 1px solid var(--color-border);
@@ -13250,7 +13286,7 @@ h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem
+  /* margin-bottom: 1rem */
 }
 
 abbr[data-bs-original-title],

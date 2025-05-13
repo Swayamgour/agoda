@@ -40,7 +40,7 @@ const HotelSearchForm = () => {
     rooms: 1
   })
 
-  const containerRef = useRef(null);
+  const containerRef = useRef(null)
 
   // useEffect
 
@@ -85,6 +85,7 @@ const HotelSearchForm = () => {
               value={from}
               onChange={e => setFrom(e.target.value)}
               placeholder='Enter Your Location'
+              className='inputSearch'
             />
           </div>
 

@@ -15,6 +15,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import BookingDetails from '../car/BookingDetails'
+import TicketSummary from '../Train/TicketSummary'
 
 const HotelBookingPaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState('credit')
@@ -566,7 +567,6 @@ const HotelBookingPaymentPage = () => {
             </div>
           )}
         </div>
-
         {show && (
           <div className='booking-review-container-right'>
             <div className='price-section-hotel'>
@@ -638,16 +638,21 @@ const HotelBookingPaymentPage = () => {
               <hr className='divider' />
 
               <div className='total-price'>
-                <h3>Price 😊</h3>
+                <h3>Price </h3>
                 <h3>Rs. 7,999.11</h3>
               </div>
               <p></p>
             </div>
           </div>
         )}
-
+        {show && (
+          <div className='booking-review-container-right'>
+            <BookingDetails />
+          </div>
+        )}
+        
         <div className='booking-review-container-right'>
-          <BookingDetails />
+          <TicketSummary />
         </div>
       </div>
     </div>

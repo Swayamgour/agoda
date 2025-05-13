@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import '../../style/TrainDashboard.css'
+import { useNavigate } from 'react-router-dom'
 
 const TrainDashboard = () => {
   const [expandedTrain, setExpandedTrain] = useState(null)
   const [showAllDays, setShowAllDays] = useState(false)
+
+  const navigate = useNavigate()
 
   const trains = [
     {
@@ -94,6 +97,45 @@ const TrainDashboard = () => {
     }
   ]
 
+  const filterQuota = [
+    {
+      name: 'AC',
+      train: '22'
+    },
+    {
+      name: 'Available',
+      train: '120'
+    },
+    {
+      name: 'Departure after 6 PM',
+      train: '22'
+    },
+    {
+      name: 'Arrival before 12 pm',
+      train: '22'
+    }
+  ]
+  const TrainType = [
+    {
+      name: 'Train Cancellation',
+      train: '22'
+    },
+    {
+      name: 'Trip Guarantee',
+      train: '120'
+    }
+  ]
+  const Quota = [
+    {
+      name: 'General Quota',
+      train: '22'
+    },
+    {
+      name: 'Tatkal',
+      train: '120'
+    }
+  ]
+
   const toggleTrain = trainId => {
     if (expandedTrain === trainId) {
       setExpandedTrain(null)
@@ -102,6 +144,77 @@ const TrainDashboard = () => {
       setExpandedTrain(trainId)
     }
   }
+
+  const [activeTab, setActiveTab] = useState('2A')
+
+  const coachData = {
+    '2A': {
+      name: 'SECOND AC',
+      availability: [
+        {
+          date: 'Tue, 13 May',
+          status: 'TRAIN DEPARTED',
+          note: 'No More Booking'
+        },
+        { date: 'Wed, 14 May', status: 'RLWL22/WL17', note: '40% Chance' },
+        { date: 'Thu, 15 May', status: 'RLWL16/WL9', note: '54% Chance' },
+        { date: 'Fri, 16 May', status: 'REGRET', note: 'No More Booking' },
+        { date: 'Sat, 17 May', status: 'RLWL26/WL14', note: '49% Chance' },
+        { date: 'Sun, 18 May', status: 'RLWL29/WL11', note: '56% Chance' }
+      ],
+      price: '₹ 2335'
+    },
+    '3A': {
+      name: 'THIRD AC',
+      availability: [
+        {
+          date: 'Tue, 13 May',
+          status: 'TRAIN DEPARTED',
+          note: 'No More Booking'
+        },
+        { date: 'Wed, 14 May', status: 'RLWL15/WL12', note: '45% Chance' },
+        { date: 'Thu, 15 May', status: 'RLWL10/WL5', note: '60% Chance' },
+        { date: 'Fri, 16 May', status: 'REGRET', note: 'No More Booking' },
+        { date: 'Sat, 17 May', status: 'RLWL20/WL10', note: '55% Chance' },
+        { date: 'Sun, 18 May', status: 'RLWL25/WL15', note: '50% Chance' }
+      ],
+      price: '₹ 1850'
+    },
+    SL: {
+      name: 'SLEEPER',
+      availability: [
+        {
+          date: 'Tue, 13 May',
+          status: 'TRAIN DEPARTED',
+          note: 'No More Booking'
+        },
+        { date: 'Wed, 14 May', status: 'RLWL30/WL20', note: '30% Chance' },
+        { date: 'Thu, 15 May', status: 'RLWL25/WL15', note: '45% Chance' },
+        { date: 'Fri, 16 May', status: 'AVAILABLE', note: 'Book Now' },
+        { date: 'Sat, 17 May', status: 'RLWL35/WL25', note: '35% Chance' },
+        { date: 'Sun, 18 May', status: 'RLWL40/WL30', note: '25% Chance' }
+      ],
+      price: '₹ 950'
+    },
+    '1A': {
+      name: 'FIRST AC',
+      availability: [
+        {
+          date: 'Tue, 13 May',
+          status: 'TRAIN DEPARTED',
+          note: 'No More Booking'
+        },
+        { date: 'Wed, 14 May', status: 'AVAILABLE', note: 'Book Now' },
+        { date: 'Thu, 15 May', status: 'AVAILABLE', note: 'Book Now' },
+        { date: 'Fri, 16 May', status: 'AVAILABLE', note: 'Book Now' },
+        { date: 'Sat, 17 May', status: 'RLWL5/WL2', note: '75% Chance' },
+        { date: 'Sun, 18 May', status: 'AVAILABLE', note: 'Book Now' }
+      ],
+      price: '₹ 3250'
+    }
+  }
+
+  const currentCoach = coachData[activeTab]
 
   return (
     <div style={{ marginTop: '70px' }} className='train-dashboard'>
@@ -120,10 +233,46 @@ const TrainDashboard = () => {
             <div>Filters</div>
             <div style={{ color: 'rgb(69,180,98)' }}>RESET ALL</div>
           </div>
-          <div className='train_filter_box'>
+          <div className='train_filter_box_Quota_outer'>
+            <div>Quota Filter</div>
+
+            {filterQuota?.map((e, index) => (
+              <div key={index} className='train_filter_box_Quota'>
+                <div className='train_filter_box_Quota_center'>
+                  <input type='checkbox' />
+                  <p>{e?.name}</p>
+                </div>
+                <p>{e?.train}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className='train_filter_box_Quota_outer'>
+            <div>Ticket Types</div>
+
+            {TrainType?.map((e, index) => (
+              <div key={index} className='train_filter_box_Quota'>
+                <div className='train_filter_box_Quota_center'>
+                  <input type='checkbox' />
+                  <p>{e?.name}</p>
+                </div>
+                <p>{e?.train}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className='train_filter_box_Quota_outer'>
             <div>Quota</div>
 
-            <div></div>
+            {Quota?.map((e, index) => (
+              <div key={index} className='train_filter_box_Quota'>
+                <div className='train_filter_box_Quota_center'>
+                  <input type='checkbox' />
+                  <p>{e?.name}</p>
+                </div>
+                <p>{e?.train}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -175,26 +324,86 @@ const TrainDashboard = () => {
                   </div>
                 </div>
 
-                <div className='train-classes'>
-                  {train.classes.map((cls, index) => (
-                    <div key={index} className='class-info'>
-                      {/* <div className='class-type'></div>
+                {expandedTrain !== train.id && (
+                  <div className='train-classes'>
+                    {train.classes.map((cls, index) => (
+                      <div key={index} className='class-info'>
+                        {/* <div className='class-type'></div>
                       <div className='class-price'>{cls.price}</div> */}
 
-                      <div className='train-classes-type'>
-                        <div>{cls.type}</div>
-                        <div>{cls.price}</div>
+                        <div className='train-classes-type'>
+                          <div>{cls.type}</div>
+                          <div>{cls.price}</div>
+                        </div>
+                        <div className='class-availability'>
+                          {cls.availability}
+                        </div>
+                        <div className='class-chance'>{cls.chance}</div>
                       </div>
-                      <div className='class-availability'>
-                        {cls.availability}
-                      </div>
-                      <div className='class-chance'>{cls.chance}</div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {/* {expandedTrain === train.id && <div>hello</div>} */}
+              {expandedTrain === train.id && (
+                <div className='train-booking-container'>
+                  <div className='coach-tabs'>
+                    {Object.keys(coachData).map(coachKey => (
+                      <div
+                        key={coachKey}
+                        className={`coach-tab ${
+                          activeTab === coachKey ? 'active' : ''
+                        }`}
+                        onClick={() => setActiveTab(coachKey)}
+                      >
+                        {coachKey === '2A' ? `# ${coachKey}` : `## ${coachKey}`}{' '}
+                        - {coachData[coachKey].name}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className='availability-table'>
+                    {currentCoach.availability.map((day, index) => (
+                      <div key={index} className='availability-row'>
+                        <div className='date-cell'>{day.date}</div>
+                        <div className='status-cell'>
+                          <div className='status' data-status={day.status}>
+                            {day.status}
+                          </div>
+                          <div className='note'>{day.note}</div>
+                        </div>
+                        <div className='booking-options'>
+                          {/* {currentCoach.availability.map((day, index) => ( */}
+                          <button
+                            key={index}
+                            onClick={() => navigate('/PassengerDetails')}
+                            className='book-button-Train'
+                            disabled={
+                              day.status === 'TRAIN DEPARTED' ||
+                              day.status === 'REGRET'
+                            }
+                          >
+                            {day.status === 'AVAILABLE' ? 'BOOK NOW' : 'BOOK'}{' '}
+                            {day.price}
+                            {/* {coachData[coachKey].name} */}
+                          </button>
+                          {/* ))} */}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div
+                    onClick={() => {
+                      setExpandedTrain(null)
+                      setShowAllDays(false)
+                    }}
+                    className='hide-option'
+                  >
+                    Hide 6 days availability
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>

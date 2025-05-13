@@ -89,7 +89,7 @@ const Header = () => {
                         autoComplete='off'
                         type='search'
                         placeholder='Destination, attraction'
-                        className='text-white js-search js-dd-focus'
+                        className='text-white js-search js-dd-focus inputSearch'
                       />
                     </div>
                   </div>

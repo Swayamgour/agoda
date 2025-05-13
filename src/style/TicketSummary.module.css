@@ -1,0 +1,128 @@
+.container {
+    font-family: Arial, sans-serif;
+    max-width: 400px;
+    /* margin: 20px auto; */
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* width: 100%; */
+}
+
+.mainHeading {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.trainInfo {
+    /* font-weight: bold; */
+    margin-bottom: 15px;
+}
+
+.trainAvailable {
+    font-size: 12px;
+    color: green;
+    font-weight: 700;
+}
+
+.infoTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.infoTable td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+    /* text-align: center; */
+}
+
+.infoTable th {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+    /* text-align: center; */
+}
+
+.infoTable .highlight {
+    font-weight: bold;
+    color: #1a73e8;
+}
+
+.divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 15px 0;
+}
+
+.fareDetails {
+    margin-bottom: 20px;
+}
+
+.fareRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.fareLabel {
+    color: #666;
+    font-size: 12px;
+}
+
+.fareValue {
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.grandTotal {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: right;
+}
+
+.gstNote {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+    /* margin-top: -10px;
+    margin-bottom: 20px; */
+}
+
+.paymentSummary {
+    margin-top: 25px;
+}
+
+.paymentRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.totalPayable {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.continueButton {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.checkmark {
+    color: #388e3c;
+    margin-right: 5px;
+}

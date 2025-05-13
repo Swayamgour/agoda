@@ -130,7 +130,10 @@
 
 .locationContainer {
     display: flex;
-    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    /* align-items: center; */
+    /* justify-content: center; */
     /* padding: 20px; */
 }
 
@@ -138,30 +141,50 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    position: relative;
+    /* position: relative; */
     /* padding-left: 30px; */
 }
 
 .verticalLine {
     width: 2px;
-    height: 60px;
+    height: 50px;
     background-color: #ccc;
-    margin: 10px 0;
     position: relative;
-    left: 10px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+
 }
+
+
+.locationIcon {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #007bff;
+    line-height: 1;
+    display: inline-block;
+}
+
+.locationIconInBottom {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #007bff;
+    line-height: 1;
+    display: inline-block;
+}
+
 
 .locationItem {
     display: flex;
     align-items: flex-start;
     gap: 10px;
     margin-bottom: 10px;
-}
-
-.icon {
-    font-size: 20px;
-    color: #007bff;
-    margin-top: 5px;
 }
 
 .title {

@@ -1,6 +1,6 @@
 .train-dashboard {
     font-family: Arial, sans-serif;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f5f5f5;
@@ -257,6 +257,156 @@
     cursor: pointer;
     padding: 0;
     font-size: 14px;
+}
+
+.train_filter_box_Quota_outer {
+
+    padding: 15px 10px;
+    font-size: 14px;
+    border-bottom: 1px solid rgb(225, 223, 223);
+}
+
+.train_filter_box_Quota {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.train_filter_box_Quota_center {
+    display: flex;
+    gap: 8px;
+}
+
+.train_filter_box_Quota_center p,
+.train_filter_box_Quota p {
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+
+/* TrainBooking.css */
+.train-booking-container {
+    font-family: Arial, sans-serif;
+    /* max-width: 400px; */
+    margin: 0 auto;
+    /* border: 1px solid #e0e0e0; */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.coach-tabs {
+    display: flex;
+    /* background-color: #f5f5f5; */
+    /* justify-content: space-between; */
+    padding: 0 20px;
+}
+
+.coach-tab {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s;
+}
+
+.coach-tab:hover {
+    background-color: #ebebeb;
+}
+
+.coach-tab.active {
+    background-color: #fff;
+    font-weight: bold;
+    border-bottom: 1px solid #ff6b00;
+    color: #ff6b00;
+}
+
+.availability-table {
+    display: flex;
+    flex-direction: column;
+}
+
+.availability-row {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 5px 25px;
+    align-items: center;
+}
+
+.date-cell {
+    width: 120px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.status-cell {
+    flex: 1;
+}
+
+.status {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.note {
+    font-size: 12px;
+    color: #666;
+}
+
+.booking-options {
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+}
+
+.book-button-Train {
+    border: none;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 115px;
+    font-size: 12px;
+    color: #ff6b00;
+    border: 1px solid #ff6b00;
+}
+
+/* .book-button:hover:not(:disabled) {
+    background-color: #e05d00;
+} */
+
+.book-button-Train:disabled {
+    color: #cccccc;
+    border: 1px solid #cccccc;
+    /* background-color: #cccccc; */
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.hide-option {
+    text-align: center;
+    padding: 12px;
+    color: #1a73e8;
+    font-size: 14px;
+    cursor: pointer;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Style for different statuses */
+.status[data-status="TRAIN DEPARTED"],
+.status[data-status="REGRET"] {
+    color: #d32f2f;
+}
+
+.status[data-status^="RLWL"] {
+    color: #ff9800;
+}
+
+.status[data-status="AVAILABLE"] {
+    color: #388e3c;
 }
 
 /* Responsive adjustments */

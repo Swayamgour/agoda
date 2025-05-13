@@ -23,6 +23,7 @@ const TrainSearchForm = () => {
           <div className='form-group'>
             <label>From</label>
             <input
+              className='inputSearch'
               type='text'
               value={from}
               onChange={e => setFrom(e.target.value)}
@@ -32,6 +33,7 @@ const TrainSearchForm = () => {
           <div className='form-group'>
             <label>To</label>
             <input
+              className='inputSearch'
               type='text'
               value={to}
               onChange={e => setTo(e.target.value)}
@@ -43,6 +45,7 @@ const TrainSearchForm = () => {
         <div className='form-group'>
           <label>Date</label>
           <input
+            className='inputSearch'
             type='date'
             value={returnDate}
             onChange={e => setReturnDate(e.target.value)}
