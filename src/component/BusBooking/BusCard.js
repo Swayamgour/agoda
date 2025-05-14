@@ -80,7 +80,7 @@ const BusCard = ({ bus }) => {
                   ))}
                 </div>
               </div>
-              <button className={styles.proceedButton}>
+              <button  className={styles.proceedButton}>
                 PROCEED TO BOOK (₹{bus.price * selectedSeats.length})
               </button>
             </div>

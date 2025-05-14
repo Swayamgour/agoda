@@ -73,17 +73,101 @@
 }
 
 
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  /* 2 items per row */
+  gap: 10px;
+  /* space between icons */
+}
+
+.iconGrid_sleeper {
+  display: grid;
+  grid-template-columns: repeat(1, auto);
+  /* 2 items per row */
+  gap: 10px;
+  /* space between icons */
+}
+
+.iconGrid_sleeper div {
+  width: 35px;
+  height: 60px;
+  border: 1px solid rgb(193, 188, 188);
+  border-radius: 10px;
+  color: rgb(186, 181, 181);
+}
+
 .upperDeck,
 .lowerDeck {
   padding: 10px;
   width: 48%;
-  margin: 0 auto;
+  margin-right: 2%;
+  float: left;
+  /* margin: 0 auto; */
   border: 1px solid rgb(197, 194, 194);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
+
+/* .pickanDwop */
+
+.pickanDwop {
+  width: 50%;
+}
+
+.selectedSeats_heading {
+  display: block;
+  width: 100%;
+  /* background-color: #b48181; */
+  display: flex;
+  /* justify-self: ; */
+  /* justify-content: space-around; */
+}
+
+.divider {
+  width: 100%;
+  margin: 10px 0;
+  border-top: 1px solid rgb(212, 209, 209);
+}
+
+.selectedSeats_heading span {
+  background: linear-gradient(90deg, #f2f2f2, hsla(0, 0%, 95%, 0));
+  padding: 8px 4px;
+  width: 50%;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+
+
+}
+
+.continue_btn {
+  width: 100%;
+  float: left;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(93.66deg, #53b2fe, #065af3);
+  color: #fff;
+  /* width: auto; */
+  height: 44px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 7px 0 #00000033;
+  margin-top: 10px;
+}
+
+
 
 .berthRow {
   /* display: flex;
   flex-wrap: wrap; */
+  display: flex;
+  justify-content: space-between;
   gap: 10px;
   margin-top: 10px;
 }

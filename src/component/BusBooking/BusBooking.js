@@ -145,8 +145,12 @@ const BusBooking = () => {
         </div>
 
         <div className={styles.busList}>
-          {busData.map(bus => (
+          {/* {busData.map(bus => (
             <BusCard key={bus.id} bus={bus} />
+          ))} */}
+
+          {Array.from({ length: 5 }).map((_, i) => (
+            <BusCard key={i} bus={busData[0]} />
           ))}
         </div>
       </div>

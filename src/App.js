@@ -21,6 +21,7 @@ import CarBookingReview from './component/car/CarBookingReview'
 import BookingDetails from './component/car/BookingDetails'
 import PassengerDetails from './component/Train/PassengerDetails'
 import BusBooking from './component/BusBooking/BusBooking'
+import BusBookingDetail from './component/BusBooking/BusBookingDetail'
 // import FlightBookingPage from './component/pages/FlightBookingPage'
 
 function App () {
@@ -43,6 +44,7 @@ function App () {
         <Route path='/CarBookingDetail' element={<BookingDetails />} />
         <Route path='/PassengerDetails' element={<PassengerDetails />} />
         <Route path='/BusBooking' element={<BusBooking />} />
+        <Route path='/BusBookingDetail' element={<BusBookingDetail />} />
       </Routes>
     </Layout>
   )
