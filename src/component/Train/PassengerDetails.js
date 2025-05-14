@@ -342,7 +342,12 @@ const PassengerDetails = () => {
 
         <button
           className={styles.Proceed_Btn}
-          onClick={() => navigate('/PaymentDetail')}
+          // onClick={() => navigate('/PaymentDetail')}
+          onClick={() =>
+            navigate('/PaymentDetail', {
+              state: { path: 'PassengerDetails' }
+            })
+          }
         >
           {' '}
           PROCEED
@@ -353,7 +358,6 @@ const PassengerDetails = () => {
         <h3 className={styles.trainName}>GOLDEN TEMPLE M</h3>
         <p className={styles.journeyDate}>Fri, 16 May 2025</p>
         <p className={styles.route}>NZM → MMCT</p>
-        
       </div>
     </div>
   )

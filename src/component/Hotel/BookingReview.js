@@ -93,7 +93,9 @@ const BookingReview = () => {
             variant='contained'
             fullWidth
             color='primary'
-            onClick={() => navigate('/PaymentDetail')}
+            onClick={() =>
+              navigate('/PaymentDetail', { state: { path: 'BookingReview' } })
+            }
             startIcon={<LockIcon />}
           >
             Book Now

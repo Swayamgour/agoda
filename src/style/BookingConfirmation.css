@@ -327,6 +327,15 @@ h4 {
     background-color: #219653;
 }
 
+.passenger_Contact_Detail {
+    padding: 20px;
+}
+
+.passenger_Contact_Detail_first_title {
+    font-size: 16px;
+    /* font-weight: 500; */
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
 

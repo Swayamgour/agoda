@@ -1,0 +1,50 @@
+.filterSection {
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filterHeader h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.clearButton {
+  background: none;
+  border: none;
+  color: rgb(0,141,254);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.timeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.timeButton {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  background: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.timeButton:hover {
+  border-color: rgb(0,141,254);
+}
+
+.timeButton.active {
+  background-color: rgb(0,141,254);
+  color: white;
+  border-color: rgb(0,141,254);
+}

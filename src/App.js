@@ -20,6 +20,7 @@ import HotelBookingPaymentPage from './component/Hotel/HotelBookingPaymentPage'
 import CarBookingReview from './component/car/CarBookingReview'
 import BookingDetails from './component/car/BookingDetails'
 import PassengerDetails from './component/Train/PassengerDetails'
+import BusBooking from './component/BusBooking/BusBooking'
 // import FlightBookingPage from './component/pages/FlightBookingPage'
 
 function App () {
@@ -41,6 +42,7 @@ function App () {
         <Route path='/CarBooking' element={<CarBookingReview />} />
         <Route path='/CarBookingDetail' element={<BookingDetails />} />
         <Route path='/PassengerDetails' element={<PassengerDetails />} />
+        <Route path='/BusBooking' element={<BusBooking />} />
       </Routes>
     </Layout>
   )

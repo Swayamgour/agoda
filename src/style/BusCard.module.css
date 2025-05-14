@@ -1,0 +1,169 @@
+.card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.operatorInfo {
+  flex: 2;
+}
+
+.operatorInfo h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+}
+
+.operatorInfo p {
+  margin: 0 0 10px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.amenities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.amenities span {
+  background-color: #f0f0f0;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.reviews {
+  font-size: 12px;
+  color: #666;
+}
+
+.timingInfo {
+  flex: 2;
+  display: flex;
+  justify-content: space-around;
+}
+
+.departure, .arrival {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.departure strong, .arrival strong {
+  font-size: 16px;
+}
+
+.departure span, .arrival span {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.priceSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+  color: rgb(0,141,254);
+}
+
+.selectButton {
+  background-color: rgb(0,141,254);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.selectButton:hover {
+  background-color: rgb(0,141,254);
+}
+
+.seatSelectionWrapper {
+  padding: 20px;
+}
+
+.selectionSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.selectedSeats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.seatTags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.seatTag {
+  background-color: #4CAF50;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.proceedButton {
+  background-color: rgb(0,141,254);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.proceedButton:hover {
+  background-color: rgb(0,141,254);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .cardHeader {
+    flex-direction: column;
+  }
+
+  .timingInfo {
+    margin: 15px 0;
+    justify-content: space-between;
+  }
+
+  .priceSection {
+    align-items: flex-start;
+    margin-top: 15px;
+  }
+
+  .selectionSummary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}

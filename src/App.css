@@ -21134,3 +21134,70 @@ button.swiper-pagination-bullet {
   }
 
 } */
+
+
+.deck-container {
+  display: flex;
+  justify-content: space-around;
+  background: #f5f7fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.deck {
+  width: 45%;
+  text-align: center;
+}
+
+.seats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.seat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border: 2px solid #4caf50;
+  color: #000;
+  border-radius: 5px;
+  position: relative;
+}
+
+.seat .price {
+  padding: 2px 4px;
+}
+
+.seat.seater {
+  width: 40px;
+  height: 40px;
+}
+
+.seat.sleeper {
+  width: 40px;
+  height: 70px;
+}
+
+.seat.available {
+  background-color: #e6ffed;
+  border-color: #28a745;
+}
+
+.seat.sold {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+  color: #999;
+}
+
+.seat.reserved.male {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+
+.seat.reserved.female {
+  background-color: #fde2e2;
+  border-color: #e91e63;
+}

@@ -99,7 +99,10 @@ const CarBookingReview = () => {
           <p>Free Cancellation before 13 May 2025, 09:00 AM IST</p>
         </div>
         <button
-          onClick={() => navigate('/PaymentDetail')}
+          // onClick={() => navigate('/PaymentDetail')}
+          onClick={() =>
+            navigate('/PaymentDetail', { state: { path: 'CarBooking' } })
+          }
           className={styles.payNowButton}
         >
           PAY ₹ 628 NOW

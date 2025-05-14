@@ -17,6 +17,7 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 import { motion } from 'framer-motion'
 import ScrollFadeIn from './scrollview/ScrollFadeIn'
 import TrainFrom from './Train/TrainFrom'
+import BusBookingForm from './BusBooking/BusBookingForm'
 
 const Masthead = () => {
   const [selectTab, setSelectTab] = useState(1)
@@ -66,7 +67,7 @@ const Masthead = () => {
     if (selectTab === 7) return <FlightBookingForm />
     if (selectTab === 5) return <CabBookingForm />
     if (selectTab === 8) return <TrainFrom />
-    if (selectTab === 9) return <TrainFrom />
+    if (selectTab === 9) return <BusBookingForm />
     return null
   }
 

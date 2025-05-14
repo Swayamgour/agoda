@@ -16,6 +16,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import BookingDetails from '../car/BookingDetails'
 import TicketSummary from '../Train/TicketSummary'
+import { useLocation } from 'react-router-dom'
+import FlightPaymentPage from '../flight/FlightPaymentPage'
 
 const HotelBookingPaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState('credit')
@@ -29,6 +31,10 @@ const HotelBookingPaymentPage = () => {
   const [selectedBank, setSelectedBank] = useState('credit')
   const [selectedMethod, setSelectedMethod] = useState('credit')
   const [selectedCardMethod, setSelectedCardMethod] = useState('')
+
+  const location = useLocation()
+
+  // console.log()
 
   const [show, setShow] = useState(false)
 
@@ -567,7 +573,7 @@ const HotelBookingPaymentPage = () => {
             </div>
           )}
         </div>
-        {show && (
+        {location?.state?.path === 'BookingReview' && (
           <div className='booking-review-container-right'>
             <div className='price-section-hotel'>
               <h3>Super Hotel O Kalyanpur Near IIT Kanpur</h3>
@@ -645,15 +651,22 @@ const HotelBookingPaymentPage = () => {
             </div>
           </div>
         )}
-        {show && (
+        {location?.state?.path === 'CarBooking' && (
           <div className='booking-review-container-right'>
             <BookingDetails />
           </div>
         )}
-        
-        <div className='booking-review-container-right'>
-          <TicketSummary />
-        </div>
+
+        {location?.state?.path === 'PassengerDetails' && (
+          <div className='booking-review-container-right'>
+            <TicketSummary />
+          </div>
+        )}
+        {location?.state?.path === 'BookingConfirmation' && (
+          <div className='booking-review-container-right'>
+            <FlightPaymentPage />
+          </div>
+        )}
       </div>
     </div>
   )
