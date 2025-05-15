@@ -260,26 +260,32 @@ const Header = () => {
 
               <div className='d-flex items-center ml-20 is-menu-opened-hide'>
                 {user ? (
+                  // <div
+                  //   onClick={handleOpen}
+                  //   className='d-flex items-center '
+                  // >
+                  //   <img
+                  //     src={user.profileImage || '/default-avatar.png'}
+                  //     alt='Profile'
+                  //     className='rounded-circle'
+                  //     style={{
+                  //       width: 40,
+                  //       height: 40,
+                  //       objectFit: 'cover',
+                  //       borderRadius: '50%'
+                  //     }}
+                  //   />
+                  //   <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  //     <span className='text-white ml-10'>Profile</span>
+                  //     <span className='text-white ml-10'>{user.name}</span>
+                  //   </div>
+                  // </div>
+
                   <div
-                    // onClick={() => setShow(!show)}
-                    onClick={handleOpen}
-                    className='d-flex items-center '
+                    onClick={() => setOpen(true)}
+                    className='button px-20 fw-400 text-14 border-white -blue-1 h-40 text-white ml-20'
                   >
-                    <img
-                      src={user.profileImage || '/default-avatar.png'}
-                      alt='Profile'
-                      className='rounded-circle'
-                      style={{
-                        width: 40,
-                        height: 40,
-                        objectFit: 'cover',
-                        borderRadius: '50%'
-                      }}
-                    />
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <span className='text-white ml-10'>Profile</span>
-                      <span className='text-white ml-10'>{user.name}</span>
-                    </div>
+                    Sign In
                   </div>
                 ) : (
                   <div

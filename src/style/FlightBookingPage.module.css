@@ -1,0 +1,497 @@
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    margin: 90px auto 10px auto;
+    color: #333;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.bookingContainer {
+    display: flex;
+    gap: 30px;
+}
+
+.filtersSidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.flightsResults {
+    flex: 1;
+}
+
+.filterSection {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.filterTitle {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.selectAllBtn {
+    background: none;
+    border: none;
+    color: #3498db;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 15px;
+    padding: 0;
+    text-align: left;
+}
+
+.selectAllBtn:hover {
+    text-decoration: underline;
+}
+
+.optionsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.optionItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.optionItem input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.optionItem:hover input~.checkmark {
+    background-color: #f1f1f1;
+}
+
+.optionItem input:checked~.checkmark {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.optionItem input:checked~.checkmark:after {
+    display: block;
+}
+
+.checkbox .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.radio .checkmark {
+    border-radius: 50%;
+}
+
+.radio .checkmark:after {
+    top: 6px;
+    left: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+.timeFilterTitle {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #7f8c8d;
+}
+
+.timeRange {
+    margin-bottom: 20px;
+}
+
+.timeLabels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+}
+
+.sortOptions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.sortTabs {
+    display: flex;
+    gap: 10px;
+}
+
+.sortTab {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.sortTab.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.sortDropdown select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.flightCard {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flightCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.flightHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.flightAirline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.airlineLogo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.airlineName {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+.cabinClass {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.flightTimes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+}
+
+.timeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.airportCode {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.duration {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 200px;
+}
+
+.timeline {
+    width: 100%;
+    position: relative;
+    margin: 10px 0;
+}
+
+.timelineLine {
+    height: 1px;
+    background-color: #ddd;
+    width: 100%;
+}
+
+.timelineDot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background-color: #3498db;
+    border-radius: 50%;
+}
+
+.flightPrice {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.flightDetails {
+    padding: 15px 20px;
+}
+
+.flightInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.flightNumber {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.durationVisual {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.durationText {
+    font-size: 0.8rem;
+}
+
+.durationLine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 1px;
+}
+
+.line {
+    height: 60px;
+    background-color: #7f8c8d;
+    width: 100%;
+}
+
+.dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #7f8c8d;
+    border-radius: 50%;
+}
+
+.dotTop {
+    top: 0;
+}
+
+.dotBottom {
+    bottom: 0;
+}
+
+.airportInfo {
+    flex: 1;
+}
+
+.airportName {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.airportFullName {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.flightMeta {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+.infoBanner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: #2067da;
+    background-color: #E5EFFF;
+    padding: 10px;
+    width: 90%;
+    margin: 15px auto;
+    border-radius: 5px;
+}
+
+.selectBtnContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.selectBtn {
+    background-color: #2067da;
+    color: white;
+    font-weight: 600;
+    padding: 8px 30px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.selectBtn:hover {
+    background-color: #1a56b5;
+}
+
+.noFlights {
+    text-align: center;
+    padding: 40px;
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .bookingContainer {
+        flex-direction: column-reverse;
+    }
+
+    .filtersSidebar {
+        width: 100%;
+    }
+
+    .sortTabs {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .filtersSidebar,
+    .sortOptions {
+        display: none;
+    }
+
+    .flightHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .flightTimes {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    .flightPrice {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 576px) {
+    /* .sortOptions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    } */
+
+    .container {
+        padding: 10px;
+    }
+
+    .sortTabs {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .sortTab {
+        width: 100%;
+        text-align: left;
+    }
+
+    .sortDropdown {
+        width: 100%;
+    }
+
+    .sortDropdown select {
+        width: 100%;
+    }
+}

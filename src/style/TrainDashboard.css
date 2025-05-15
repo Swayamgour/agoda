@@ -1,7 +1,7 @@
 .train-dashboard {
     font-family: Arial, sans-serif;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 70px auto 10px auto;
     padding: 20px;
     background-color: #f5f5f5;
 }
@@ -144,24 +144,48 @@
 .train-classes {
     display: flex;
     gap: 15px;
+    margin-top: 15px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-snap-type: x mandatory;
+    /* Optional for better scroll feel */
 }
 
 .class-info {
-    text-align: center;
+    flex: 0 0 auto;
     min-width: 80px;
     width: 25%;
-    /* border: 1px solid #b9adad; */
+    text-align: center;
     border-radius: 5px;
     padding: 5px;
     background-color: #f5efef;
+    scroll-snap-align: start;
+    max-width: 110px;
 }
 
 .train-classes-type {
     display: flex;
     justify-content: space-around;
     font-size: 10px;
-
 }
+
+/* Optional scrollbar styling (WebKit only) */
+.train-classes::-webkit-scrollbar {
+    height: 0px;
+}
+
+.train-classes::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+
+/* .train-classes-type {
+    display: flex;
+    justify-content: space-around;
+    font-size: 10px;
+
+} */
 
 .class-type {
     font-weight: bold;
@@ -297,9 +321,25 @@
 
 .coach-tabs {
     display: flex;
-    /* background-color: #f5f5f5; */
-    /* justify-content: space-between; */
+    overflow-x: auto;
     padding: 0 20px;
+    gap: 10px;
+    /* optional: spacing between tabs */
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    /* for smooth scrolling on iOS */
+    /* scrollbar-width: thin; */
+    /* for Firefox */
+}
+
+/* Optional: Style the scrollbar for WebKit browsers */
+.coach-tabs::-webkit-scrollbar {
+    height: 0px;
+}
+
+.coach-tabs::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
 }
 
 .coach-tab {
@@ -309,6 +349,8 @@
     color: #333;
     border-bottom: 1px solid #e0e0e0;
     transition: background-color 0.2s;
+    flex-shrink: 0;
+    /* prevents tab from shrinking in overflow */
 }
 
 .coach-tab:hover {
@@ -321,6 +363,7 @@
     border-bottom: 1px solid #ff6b00;
     color: #ff6b00;
 }
+
 
 .availability-table {
     display: flex;
@@ -411,14 +454,25 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .train-summary {
+
+    .train-dashboard {
+        padding: 10px;
+        margin-top: 80px;
+    }
+
+    .train-summary,
+    .train_card_box {
         flex-direction: column;
     }
 
-    .train-classes {
-        margin-top: 15px;
-        flex-wrap: wrap;
+    .train_card_box_left {
+        display: none;
     }
+
+    .train_card_box_right {
+        width: 100%;
+    }
+
 
     .schedule-days {
         flex-direction: column;
@@ -427,4 +481,43 @@
     .day-slot {
         width: 100%;
     }
+}
+
+@media (max-width: 550px) {
+
+    .coach-tab.active,
+    .coach-tab {
+        font-size: 12px;
+        padding: 5px;
+        white-space: nowrap;
+    }
+
+    .status[data-status="TRAIN DEPARTED"],
+    .status[data-status="REGRET"] {
+        color: #d32f2f;
+        font-size: 11px;
+    }
+
+    .status[data-status^="RLWL"] {
+        color: #ff9800;
+        font-size: 12px;
+    }
+
+    .status[data-status="AVAILABLE"] {
+        color: #388e3c;
+        font-size: 12px;
+    }
+
+    .status {
+        font-size: 12px;
+        margin-bottom: 1px;
+
+
+    }
+
+    .availability-row {
+
+        padding: 5px 15px;
+    }
+
 }

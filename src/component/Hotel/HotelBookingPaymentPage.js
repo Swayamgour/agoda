@@ -18,6 +18,7 @@ import BookingDetails from '../car/BookingDetails'
 import TicketSummary from '../Train/TicketSummary'
 import { useLocation } from 'react-router-dom'
 import FlightPaymentPage from '../flight/FlightPaymentPage'
+import BusPaymentPage from '../BusBooking/BusPaymentPage'
 
 const HotelBookingPaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState('credit')
@@ -81,6 +82,12 @@ const HotelBookingPaymentPage = () => {
     const seconds = String(totalSeconds % 60).padStart(2, '0')
     return `${hours}.${minutes}.${seconds}`
   }
+
+  // useEffect
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
 
   return (
     <div style={{ marginTop: '70px' }} className='booking-review'>
@@ -573,6 +580,9 @@ const HotelBookingPaymentPage = () => {
             </div>
           )}
         </div>
+
+        {/* Hotel Booking */}
+
         {location?.state?.path === 'BookingReview' && (
           <div className='booking-review-container-right'>
             <div className='price-section-hotel'>
@@ -651,20 +661,28 @@ const HotelBookingPaymentPage = () => {
             </div>
           </div>
         )}
+        {/* Car Booking */}
         {location?.state?.path === 'CarBooking' && (
           <div className='booking-review-container-right'>
             <BookingDetails />
           </div>
         )}
-
+        {/* Train Booking */}
         {location?.state?.path === 'PassengerDetails' && (
           <div className='booking-review-container-right'>
             <TicketSummary />
           </div>
         )}
+        {/* Flight Booking */}
         {location?.state?.path === 'BookingConfirmation' && (
           <div className='booking-review-container-right'>
             <FlightPaymentPage />
+          </div>
+        )}
+
+        {location?.state?.path === 'BusBookingDetail' && (
+          <div className='booking-review-container-right'>
+            <BusPaymentPage />
           </div>
         )}
       </div>

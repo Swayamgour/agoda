@@ -6,6 +6,7 @@ import HotelCard from './HotelsCard'
 import BookHotelFrom from './BookHotelFrom'
 import HotelSectionFrom from './HotelSectionFrom'
 import FilterWithBottomDrawer from './FilterWithBottomDrawer'
+import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 // import HotelCard from '../../HotelsCard'
 
 function AllHotel () {
@@ -235,8 +236,6 @@ function AllHotel () {
             </div>
           </div>
 
-         
-
           <FilterWithBottomDrawer />
 
           <div className='hotels-list'>
@@ -268,15 +267,17 @@ function AllHotel () {
               <input placeholder='Search Hotel' />
             </div>
 
-            <div className='hotels-container'>
-              {sortedHotels.length > 0 ? (
-                sortedHotels.map(hotel => (
-                  <HotelCard key={hotel.id} hotel={hotel} />
-                ))
-              ) : (
-                <p>No hotels match your filters.</p>
-              )}
-            </div>
+            <ScrollFadeIn>
+              <div className='hotels-container'>
+                {sortedHotels.length > 0 ? (
+                  sortedHotels.map(hotel => (
+                    <HotelCard key={hotel.id} hotel={hotel} />
+                  ))
+                ) : (
+                  <p>No hotels match your filters.</p>
+                )}
+              </div>
+            </ScrollFadeIn>
           </div>
         </div>
       </div>

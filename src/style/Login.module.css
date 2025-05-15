@@ -1,0 +1,133 @@
+.dialogRoot {
+  border-radius: 12px;
+}
+
+.dialogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.dialogTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.closeButton {
+  color: #666;
+}
+
+.dialogContent {
+  padding: 16px;
+}
+
+.authForm {
+  margin-bottom: 24px;
+}
+
+.inputBoxContainer {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0 12px;
+  height: 48px;
+  transition: border-color 0.3s ease;
+}
+
+.inputBoxContainer:focus-within {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 1px #1976d2;
+}
+
+.inputIcon {
+  color: #666;
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.inputBox {
+  flex: 1;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.inputBox::placeholder {
+  color: #999;
+}
+
+.passwordToggle {
+  color: #666;
+  padding: 8px;
+}
+
+.divider {
+  margin: 24px 0;
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.socialAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.socialButton {
+  border-radius: 8px;
+  padding: 10px;
+  text-transform: none;
+  font-weight: 500;
+  border-color: #ddd;
+  color: #333;
+}
+
+.socialButton:hover {
+  border-color: #bbb;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.socialIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.dialogFooter {
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.authToggle {
+  color: #1976d2;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.authToggle:hover {
+  text-decoration: underline;
+}
+
+.submitButton {
+  border-radius: 8px;
+  padding: 12px;
+  text-transform: none;
+  font-weight: 600;
+  background-color: #1976d2;
+}
+
+.submitButton:hover {
+  background-color: #1565c0;
+}

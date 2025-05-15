@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import '../../style/TrainDashboard.css'
 import { useNavigate } from 'react-router-dom'
+import TrainFilterWithBottomDrawer from './TrainFilterWithBottomDrawer'
+import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 
 const TrainDashboard = () => {
   const [expandedTrain, setExpandedTrain] = useState(null)
@@ -217,7 +219,7 @@ const TrainDashboard = () => {
   const currentCoach = coachData[activeTab]
 
   return (
-    <div style={{ marginTop: '70px' }} className='train-dashboard'>
+    <div className='train-dashboard'>
       <div className='Train_header'>
         <div className='train_header_div'>
           <div>
@@ -276,6 +278,8 @@ const TrainDashboard = () => {
           </div>
         </div>
 
+        <TrainFilterWithBottomDrawer />
+
         <div className='train_card_box_right'>
           <div className='controls'>
             <span>Sort by:</span>
@@ -293,119 +297,129 @@ const TrainDashboard = () => {
             <button>SENIOR CITIZEN/LOWER BERTH</button>
           </div> */}
 
-          {trains.map(train => (
-            <div
-              key={train.id}
-              className={`train-card ${
-                expandedTrain === train.id ? 'expanded' : ''
-              }`}
-            >
+          <ScrollFadeIn>
+            {trains.map(train => (
               <div
-                className='train-summary'
-                onClick={() => toggleTrain(train.id)}
+                key={train.id}
+                className={`train-card ${
+                  expandedTrain === train.id ? 'expanded' : ''
+                }`}
               >
-                <div className='train-info'>
-                  <div
-                    style={{ display: 'flex', justifyContent: 'space-between' }}
-                  >
-                    <div className='fs-14'>
-                      {train.number} - {train.name}
+                <div
+                  className='train-summary'
+                  onClick={() => toggleTrain(train.id)}
+                >
+                  <div className='train-info'>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <div className='fs-14'>
+                        {train.number} - {train.name}
+                      </div>
+                      <button className='view-schedule'>View Schedule</button>
                     </div>
-                    <button className='view-schedule'>View Schedule</button>
+
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <div className='train-timing fs-12'>
+                        {train.departure} — {train.duration} — {train.arrival}
+                      </div>
+                      <div className='train-days'>{train.days}</div>
+                    </div>
                   </div>
 
-                  <div
-                    style={{ display: 'flex', justifyContent: 'space-between' }}
-                  >
-                    <div className='train-timing fs-12'>
-                      {train.departure} — {train.duration} — {train.arrival}
-                    </div>
-                    <div className='train-days'>{train.days}</div>
-                  </div>
-                </div>
-
-                {expandedTrain !== train.id && (
-                  <div className='train-classes'>
-                    {train.classes.map((cls, index) => (
-                      <div key={index} className='class-info'>
-                        {/* <div className='class-type'></div>
+                  {expandedTrain !== train.id && (
+                    <div className='train-classes'>
+                      {train.classes.map((cls, index) => (
+                        <div key={index} className='class-info'>
+                          {/* <div className='class-type'></div>
                       <div className='class-price'>{cls.price}</div> */}
 
-                        <div className='train-classes-type'>
-                          <div>{cls.type}</div>
-                          <div>{cls.price}</div>
+                          <div className='train-classes-type'>
+                            <div>{cls.type}</div>
+                            <div>{cls.price}</div>
+                          </div>
+                          <div className='class-availability'>
+                            {cls.availability}
+                          </div>
+                          <div className='class-chance'>{cls.chance}</div>
                         </div>
-                        <div className='class-availability'>
-                          {cls.availability}
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {expandedTrain === train.id && (
+                  <div className='train-booking-container'>
+                    <div className='coach-tabs'>
+                      {Object.keys(coachData).map(coachKey => (
+                        <div
+                          key={coachKey}
+                          className={`coach-tab ${
+                            activeTab === coachKey ? 'active' : ''
+                          }`}
+                          onClick={() => setActiveTab(coachKey)}
+                        >
+                          {coachKey === '2A'
+                            ? `# ${coachKey}`
+                            : `## ${coachKey}`}{' '}
+                          - {coachData[coachKey].name}
                         </div>
-                        <div className='class-chance'>{cls.chance}</div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
+
+                    <div className='availability-table'>
+                      {currentCoach.availability.map((day, index) => (
+                        <div key={index} className='availability-row'>
+                          <div className='date-cell'>{day.date}</div>
+                          <div className='status-cell'>
+                            <div className='status' data-status={day.status}>
+                              {day.status}
+                            </div>
+                            <div className='note'>{day.note}</div>
+                          </div>
+                          <div className='booking-options'>
+                            {/* {currentCoach.availability.map((day, index) => ( */}
+                            <button
+                              key={index}
+                              onClick={() => navigate('/PassengerDetails')}
+                              className='book-button-Train'
+                              disabled={
+                                day.status === 'TRAIN DEPARTED' ||
+                                day.status === 'REGRET'
+                              }
+                            >
+                              {day.status === 'AVAILABLE' ? 'BOOK NOW' : 'BOOK'}{' '}
+                              {day.price}
+                              {/* {coachData[coachKey].name} */}
+                            </button>
+                            {/* ))} */}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div
+                      onClick={() => {
+                        setExpandedTrain(null)
+                        setShowAllDays(false)
+                      }}
+                      className='hide-option'
+                    >
+                      Hide 6 days availability
+                    </div>
                   </div>
                 )}
               </div>
-
-              {expandedTrain === train.id && (
-                <div className='train-booking-container'>
-                  <div className='coach-tabs'>
-                    {Object.keys(coachData).map(coachKey => (
-                      <div
-                        key={coachKey}
-                        className={`coach-tab ${
-                          activeTab === coachKey ? 'active' : ''
-                        }`}
-                        onClick={() => setActiveTab(coachKey)}
-                      >
-                        {coachKey === '2A' ? `# ${coachKey}` : `## ${coachKey}`}{' '}
-                        - {coachData[coachKey].name}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className='availability-table'>
-                    {currentCoach.availability.map((day, index) => (
-                      <div key={index} className='availability-row'>
-                        <div className='date-cell'>{day.date}</div>
-                        <div className='status-cell'>
-                          <div className='status' data-status={day.status}>
-                            {day.status}
-                          </div>
-                          <div className='note'>{day.note}</div>
-                        </div>
-                        <div className='booking-options'>
-                          {/* {currentCoach.availability.map((day, index) => ( */}
-                          <button
-                            key={index}
-                            onClick={() => navigate('/PassengerDetails')}
-                            className='book-button-Train'
-                            disabled={
-                              day.status === 'TRAIN DEPARTED' ||
-                              day.status === 'REGRET'
-                            }
-                          >
-                            {day.status === 'AVAILABLE' ? 'BOOK NOW' : 'BOOK'}{' '}
-                            {day.price}
-                            {/* {coachData[coachKey].name} */}
-                          </button>
-                          {/* ))} */}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div
-                    onClick={() => {
-                      setExpandedTrain(null)
-                      setShowAllDays(false)
-                    }}
-                    className='hide-option'
-                  >
-                    Hide 6 days availability
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
+            ))}
+          </ScrollFadeIn>
         </div>
       </div>
     </div>

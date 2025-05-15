@@ -176,18 +176,75 @@
 
 .car-card-center {
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    gap: 10px;
+    /* optional spacing between items */
+    flex-wrap: nowrap;
+    /* no wrap on desktop */
 }
 
+.car-card-center-first,
+.car-card-center-second,
+.car-card-center-third {
+    /* On desktop, distribute widths */
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+/* You can adjust widths as per design */
 .car-card-center-first {
-    width: 20%;
+    flex: 0 0 20%;
 }
 
 .car-card-center-second {
-    width: 35%;
+    flex: 0 0 45%;
 }
 
 .car-card-center-third {
-    width: 35%;
+    flex: 0 0 30%;
+}
+
+
+@media (max-width: 768px) {
+    .filter-section {
+        display: none;
+    }
+
+    .cab-filter-container {
+        flex-direction: column;
+        padding: 10px 10px;
+    }
+
+    .cab-listings {
+        /* flex: 1; */
+        padding-left: 0px;
+    }
+
+    .cab-card {
+        padding: 0px;
+    }
+
+    .car-card-center {
+        flex-wrap: wrap;
+        /* justify-content: space-around; */
+        /* margin-top: 10px; */
+        /* allow wrapping */
+        align-items: center;
+        padding: 5px;
+    }
+
+    /* First and second side-by-side, 50% width each */
+    .car-card-center-first {
+        flex: 0 0 30%;
+    }
+
+    .car-card-center-second {
+        flex: 0 0 60%;
+    }
+
+
+    /* Third takes full width on new line */
+    .car-card-center-third {
+        flex: 0 0 100%;
+    }
+
 }

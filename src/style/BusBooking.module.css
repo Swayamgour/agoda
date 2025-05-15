@@ -1,158 +1,175 @@
 .container {
   max-width: 1200px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
+  margin: 80px auto 10px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
-  /* font-size: 0; */
+  padding: 0 15px;
 }
 
 .header {
-  padding: 20px;
-  /* border-bottom: 1px solid #e0e0e0; */
+  background: linear-gradient(135deg, #008dfe 0%, #0066cc 100%);
+  color: white;
+  padding: 25px 30px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 28px;
   margin: 0;
-  color: #000;
+  font-weight: 600;
+  color: white;
+
 }
 
 .depart {
-  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 15px;
+  border-radius: 6px;
 }
 
 .depart h2 {
-  font-size: 16px;
-  margin: 0;
-  color: #666;
+  font-size: 14px;
+  margin: 0 0 5px 0;
+  font-weight: 500;
+  opacity: 0.9;
+  color: white;
+
 }
 
 .depart p {
-  margin: 5px 0 0 0;
-  font-size: 14px;
-}
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
 
-.BusBooking_main {
-  display: flex;
-  gap: 15px;
-  margin-top: 20px;
-  /* margin: 10px 0; */
-}
-
-.searchSection,
-.busList {
-  display: inline-block;
-  vertical-align: top;
-}
-
-.searchSection {
-  width: 30%;
-}
-
-.busList {
-  width: 70%;
-}
-
-.searchSection {
-  padding: 20px;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  /* margin: 20px 0; */
 }
 
 .searchHeader {
   display: flex;
-  border: 1px solid rgb(195, 192, 192);
-  padding: 0px 20px;
-  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+  padding: 0;
+  border-radius: 10px;
   align-items: center;
-
+  margin-bottom: 30px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
 }
 
 .searchInputs {
   display: flex;
-  gap: 20px;
-  width: 100%;
-  /* justify-content: space-around; */
-}
-
-.firstBox {
+  flex-grow: 1;
   position: relative;
-  /* width: 30%; */
 }
 
-.searchInputs div {
-  /* flex: 1; */
-  /* border: 1px solid rgb(212, 212, 212); */
-  /* width: 30%;
-  padding: 5px;
-  border-radius: 5px; */
-  border-right: 1px solid rgb(195, 192, 192);
-  padding: 10px 20px;
-  width: 30%;
+.locationBox,
+.dateBox {
+  padding: 15px 20px;
+  flex: 1;
+  position: relative;
 }
 
-.searchInputs {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  /* or appropriate spacing */
-}
-
-.reverseIcon {
+.locationBox:not(:last-child)::after {
+  content: '';
   position: absolute;
+  right: 0;
   top: 50%;
-  right: -21px;
-  /* positions it on the right edge */
   transform: translateY(-50%);
-  /* centers it vertically */
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  z-index: 1;
+  height: 60%;
+  width: 1px;
+  background: #e0e0e0;
 }
 
-
-
-/* .reverseIcon:hover {
-  transform: rotate(180deg);
-} */
-
-
-.searchInputs label {
+.locationBox label,
+.dateBox label {
   display: block;
   font-size: 12px;
   color: #666;
   margin-bottom: 5px;
+  font-weight: 500;
 }
 
-.searchInputs p {
+.locationBox p,
+.dateBox p {
   margin: 0;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 16px;
+  color: #222;
+}
+
+.reverseButton {
+  background: #f5f5f5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  left: calc(33.33% - 20px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.reverseButton:hover {
+  background: #e0e0e0;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.reverseButton svg {
+  color: #666;
+  font-size: 14px;
 }
 
 .searchButton {
-  background-color: rgb(0,141,254);
+  background: linear-gradient(135deg, #008dfe 0%, #0066cc 100%);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 0 25px;
+  font-weight: 600;
+  height: 60px;
   cursor: pointer;
-  font-weight: bold;
-  height: 50px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
-.filters {
+.searchButton:hover {
+  background: linear-gradient(135deg, #0066cc 0%, #008dfe 100%);
+}
+
+.mainContent {
+  display: flex;
+  gap: 20px;
+}
+
+.filtersSection {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.filtersContainer {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.filterSection {
-  background-color: white;
-  padding: 15px;
-  border-radius: 8px;
+.filterCard {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .filterHeader {
@@ -165,20 +182,30 @@
 .filterHeader h3 {
   margin: 0;
   font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .clearButton {
   background: none;
   border: none;
-  color: rgb(0,141,254);
+  color: #008dfe;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 0;
+}
+
+.clearButton:hover {
+  text-decoration: underline;
 }
 
 .operatorList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .operatorItem {
@@ -187,18 +214,211 @@
   gap: 10px;
 }
 
+.operatorItem input {
+  accent-color: #008dfe;
+}
+
+.operatorItem label {
+  font-size: 14px;
+  cursor: pointer;
+}
+
 .showAll {
   background: none;
   border: none;
-  color: rgb(0,141,254);
+  color: #008dfe;
   cursor: pointer;
   text-align: left;
   padding: 0;
   margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.showAll:hover {
+  text-decoration: underline;
+}
+
+.amenitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.amenityItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.amenityItem svg {
+  font-size: 18px;
+  color: #008dfe;
+}
+
+.resultsSection {
+  flex-grow: 1;
+}
+
+.resultsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.resultsHeader h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #222;
+}
+
+.sortOptions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sortOptions span {
+  font-size: 14px;
+  color: #666;
+}
+
+.sortOptions select {
+  border: 1px solid #e0e0e0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
 }
 
 .busList {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.paginationButton {
+  border: 1px solid #e0e0e0;
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paginationButton:hover {
+  border-color: #008dfe;
+  color: #008dfe;
+}
+
+.paginationButton.active {
+  background: #008dfe;
+  color: white;
+  border-color: #008dfe;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .mainContent {
+    flex-direction: column;
+  }
+
+  .filtersSection {
+    width: 100%;
+  }
+
+  .searchInputs {
+    flex-wrap: wrap;
+  }
+
+  .locationBox,
+  .dateBox {
+    width: 50%;
+    padding: 12px 15px;
+  }
+
+  .reverseButton {
+    position: static;
+    transform: none;
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .searchHeader {
+    flex-direction: column;
+  }
+
+  .searchButton {
+    width: 100%;
+    height: 50px;
+  }
+
+  .locationBox,
+  .dateBox {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .reverseButton {
+    margin: 10px 0;
+    order: 1;
+  }
+
+  .amenitiesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+
+  .container {
+    /* max-width: 1200px; */
+    margin: 90px auto 10px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    padding: 0 10px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .resultsHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .sortOptions {
+    width: 100%;
+  }
+
+  .sortOptions select {
+    flex-grow: 1;
+    width: 100%;
+  }
 }

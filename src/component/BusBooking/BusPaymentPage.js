@@ -1,14 +1,22 @@
+// import React from "react";
+
+// function BusPaymentPage() {
+//   return <div>BusPaymentPage</div>;
+// }
+
+// export default BusPaymentPage;
+
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styles from '../../style/CarBookingReview.module.css'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
-// import FlightPaymentPage from './FlightPaymentPage'
+// import BusPaymentPage from './BusPaymentPage'
 import '../../style/BookingConfirmation.css'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
-import FlightIcon from '@mui/icons-material/Flight'
-import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import DirectionsBusIcon from '@mui/icons-material/DirectionsBus'
+import ChairOutlinedIcon from '@mui/icons-material/ChairOutlined'
 
-function FlightPaymentPage () {
+function BusPaymentPage () {
   const navigate = useNavigate()
 
   const location = useLocation()
@@ -42,29 +50,28 @@ function FlightPaymentPage () {
       <section className='flight-summary'>
         <div className='detail-section-of-flight'>
           <h3 className='fs-18'>
-            <FlightTakeoffIcon /> {flightDetails.route}
+            {' '}
+            <DirectionsBusIcon sx={{ fontSize: '14px' }} /> InterCity SmartBus{' '}
           </h3>
-          <p className='fs-14'>
-            {flightDetails.date} · {flightDetails.passengers} Passenger ·{' '}
-            {flightDetails.cabinClass}
-          </p>
+
+          <p className='fs-14'>{` (Bharat Benz A/C Seater /Sleeper (2+1))`}</p>
         </div>
 
         <div className='flight-details'>
+          {/* <p className='fs-14 airports'>
+            <DirectionsBusIcon sx={{ fontSize: '14px' }} /> InterCity SmartBus{' '}
+            <br />
+            (Bharat Benz A/C Seater /Sleeper (2+1))
+          </p> */}
           <div className='airports '>{flightDetails.airports}</div>
 
-          <div className='flight-info'>
-            <span className='airline fs-12'>
-              {/* <div> */}
-              <img src='/images/JL_v1.png' width={20} height={20} />
-              {/* </div>  */}
-              {flightDetails.airline}
-            </span>
+          {/* <div className='flight-info'>
+            <span className='airline fs-12'>InterCity SmartBus</span>
 
             <button style={{ marginTop: '5px' }} className='details-btn fs-12 '>
               Details
             </button>
-          </div>
+          </div> */}
 
           <span className='timing fs-12 aic'>
             {flightDetails.date} · {flightDetails.departureTime} -{' '}
@@ -78,7 +85,7 @@ function FlightPaymentPage () {
       {location?.pathname === '/PaymentDetail' && (
         <section className='flight-summary'>
           <div className='passenger_Contact_Detail '>
-            <div className='passenger_Contact_Detail_first'>
+            {/* <div className='passenger_Contact_Detail_first'>
               <div className='fs-16'>Contact Detail</div>
               <p className='fs-14'>
                 {' '}
@@ -90,16 +97,23 @@ function FlightPaymentPage () {
               </p>
               <p className='fs-12 timing'>gour9876@gmail.com</p>
               <p className='fs-12 timing'>6392601692</p>
-            </div>
+            </div> */}
 
             <div style={{ marginTop: '10px' }} className='fs-16'>
               <div>Passenger Detail</div>
-              <p className='fs-14'>
+              <p className='fs-14 timing'>
                 <PermIdentityIcon
                   sx={{ fontSize: '16px' }}
                   className='timing'
-                />
+                />{' '}
                 Swayam Gaur
+              </p>
+              <p className='fs-12 timing'>
+                <ChairOutlinedIcon
+                  sx={{ fontSize: '16px' }}
+                  className='timing'
+                />{' '}
+                : 5LU
               </p>
             </div>
           </div>
@@ -143,4 +157,4 @@ function FlightPaymentPage () {
   )
 }
 
-export default FlightPaymentPage
+export default BusPaymentPage

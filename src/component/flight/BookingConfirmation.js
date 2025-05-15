@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../style/BookingConfirmation.css'
 import UpgradeSupport from './UpgradeSupport'
 import { useNavigate } from 'react-router-dom'
@@ -7,8 +7,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import FlightPaymentPage from './FlightPaymentPage'
 
 const BookingConfirmation = () => {
-
-
   const [contactInfo, setContactInfo] = useState({
     firstName: 'Swayam',
     lastName: 'Gaur',
@@ -28,8 +26,6 @@ const BookingConfirmation = () => {
     nationality: ''
   })
 
-
-
   const handleContactChange = e => {
     const { name, value } = e.target
     setContactInfo(prev => ({ ...prev, [name]: value }))
@@ -45,6 +41,10 @@ const BookingConfirmation = () => {
     console.log('Booking submitted:', { contactInfo, passengerInfo })
     // Proceed to next step
   }
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
 
   return (
     <div style={{ marginTop: '70px' }} className='passenger-details'>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../style/CarBookingReview.module.css'
 import EvStationIcon from '@mui/icons-material/EvStation'
 import HistoryIcon from '@mui/icons-material/History'
@@ -11,6 +11,10 @@ const CarBookingReview = () => {
   const [value, setValue] = useState('part')
 
   const navigate = useNavigate()
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
 
   return (
     <div className={styles.container}>

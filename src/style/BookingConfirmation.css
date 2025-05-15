@@ -363,7 +363,7 @@ h4 {
     .passenger-details {
         flex-direction: column;
         /* margin: 0; */
-        padding: 10px;
+        padding: 20px 10px;
     }
 
     .passenger-details-container {

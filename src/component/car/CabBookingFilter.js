@@ -5,6 +5,8 @@ import HistoryIcon from '@mui/icons-material/History'
 import GpsFixedIcon from '@mui/icons-material/GpsFixed'
 import FlightSearch from '../flight/FlightSearch'
 import { useNavigate } from 'react-router-dom'
+import CarFilterWithBottomDrawer from './CarFilterWithBottomDrawer'
+import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 
 const CabBookingFilter = () => {
   const navigate = useNavigate()
@@ -68,7 +70,7 @@ const CabBookingFilter = () => {
     <>
       <div style={{ marginTop: '60px' }} className='cab-filter-container_sec'>
         {' '}
-        <FlightSearch />
+        {/* <FlightSearch /> */}
       </div>
       <div className='cab-filter-container'>
         <div className='filter-section'>
@@ -126,100 +128,110 @@ const CabBookingFilter = () => {
           </div>
         </div>
 
+        <CarFilterWithBottomDrawer />
+
         <div className='cab-listings'>
-          {cabs.map((cab, index) => (
-            <div key={index} className='cab-card'>
-              <div className='car-card-center'>
-                <div className='car-card-center-first'>
-                  <img src='/hatchback.png' />
-                </div>
-                <div className='car-card-center-second'>
-                  <div className='cab-header'>
-                    <h3>{cab.name}</h3>
-                    <span className='rating'>{cab.rating}</span>
+          <ScrollFadeIn>
+            {cabs.map((cab, index) => (
+              <div key={index} className='cab-card'>
+                <div className='car-card-center'>
+                  <div className='car-card-center-first'>
+                    <img src='/hatchback.png' />
                   </div>
-
-                  <div className='cab-details'>
-                    <p className='type-features'>
-                      {cab.type} • {cab.features}
-                    </p>
-
-                    {cab.description && (
-                      <p className='description'>{cab.description}</p>
-                    )}
-
-                    <div className='specs'>
-                      <p>
-                        <strong>
-                          <span style={{ fontSize: '12px', color: '#008DFE' }}>
-                            {cab?.icon}
-                          </span>{' '}
-                          Extra km fare
-                        </strong>{' '}
-                        {cab.extraKmFare}
-                      </p>
-                      <p>
-                        <strong>
-                          <span style={{ fontSize: '12px', color: '#008DFE' }}>
-                            {cab?.icon2}
-                          </span>
-                          Fuel Type
-                        </strong>{' '}
-                        {cab.fuelType}
-                      </p>
-                      <p>
-                        <strong>
-                          <span style={{ fontSize: '12px', color: '#008DFE' }}>
-                            {' '}
-                            {cab?.icon3}
-                          </span>
-                          Cancellation
-                        </strong>{' '}
-                        {cab.cancellation}
-                      </p>
+                  <div className='car-card-center-second'>
+                    <div className='cab-header'>
+                      <h3>{cab.name}</h3>
+                      <span className='rating'>{cab.rating}</span>
                     </div>
-                  </div>
-                </div>
-                <div className='car-card-center-third'>
-                  {cab.specialOffer && (
-                    <div className='special-offer'>
-                      <span className='offer-tag'>{cab.specialOffer}</span>
-                      {cab.discount && (
-                        <span className='discount'>{cab.discount}</span>
+
+                    <div className='cab-details'>
+                      <p className='type-features'>
+                        {cab.type} • {cab.features}
+                      </p>
+
+                      {cab.description && (
+                        <p className='description'>{cab.description}</p>
                       )}
+
+                      <div className='specs'>
+                        <p>
+                          <strong>
+                            <span
+                              style={{ fontSize: '12px', color: '#008DFE' }}
+                            >
+                              {cab?.icon}
+                            </span>{' '}
+                            Extra km fare
+                          </strong>{' '}
+                          {cab.extraKmFare}
+                        </p>
+                        <p>
+                          <strong>
+                            <span
+                              style={{ fontSize: '12px', color: '#008DFE' }}
+                            >
+                              {cab?.icon2}
+                            </span>
+                            Fuel Type
+                          </strong>{' '}
+                          {cab.fuelType}
+                        </p>
+                        <p>
+                          <strong>
+                            <span
+                              style={{ fontSize: '12px', color: '#008DFE' }}
+                            >
+                              {' '}
+                              {cab?.icon3}
+                            </span>
+                            Cancellation
+                          </strong>{' '}
+                          {cab.cancellation}
+                        </p>
+                      </div>
                     </div>
-                  )}
-
-                  <div className='CabPrice-section'>
-                    {cab.discountedPrice ? (
-                      <>
-                        <span className='original-price'>
-                          ₹ {cab.originalPrice}
-                        </span>
-                        <span className='discounted-price'>
-                          ₹ {cab.discountedPrice}
-                        </span>
-                      </>
-                    ) : (
-                      <span className='price'>₹ {cab.price}</span>
-                    )}
-                    <span className='taxes'>{cab.taxes}</span>
                   </div>
+                  <div className='car-card-center-third'>
+                    {cab.specialOffer && (
+                      <div className='special-offer'>
+                        <span className='offer-tag'>{cab.specialOffer}</span>
+                        {cab.discount && (
+                          <span className='discount'>{cab.discount}</span>
+                        )}
+                      </div>
+                    )}
 
-                  <button
-                    className='book-now'
-                    onClick={() => navigate('/CarBooking')}
-                  >
-                    BOOK NOW
-                  </button>
+                    <div className='CabPrice-section'>
+                      {cab.discountedPrice ? (
+                        <>
+                          <span className='original-price'>
+                            ₹ {cab.originalPrice}
+                          </span>
+                          <span className='discounted-price'>
+                            ₹ {cab.discountedPrice}
+                          </span>
+                        </>
+                      ) : (
+                        <span className='price'>₹ {cab.price}</span>
+                      )}
+                      <span className='taxes'>{cab.taxes}</span>
+                    </div>
 
-                  {cab.roofCarrier && (
-                    <p className='roof-carrier'>{cab.roofCarrier}</p>
-                  )}
+                    <button
+                      className='book-now'
+                      onClick={() => navigate('/CarBooking')}
+                    >
+                      BOOK NOW
+                    </button>
+
+                    {cab.roofCarrier && (
+                      <p className='roof-carrier'>{cab.roofCarrier}</p>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </ScrollFadeIn>
         </div>
       </div>
     </>

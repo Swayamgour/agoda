@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../style/PassengerDetails.module.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,9 +12,15 @@ const PassengerDetails = () => {
 
   const navigate = useNavigate()
 
+  // useEffect
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
+
   return (
     <div style={{ marginTop: '70px' }} className={styles.container}>
-      <h1 className={styles.mainHeading}>Passenger Details</h1>
+     
 
       <div className={styles.childDivSec}>
         <div className={styles.section}>

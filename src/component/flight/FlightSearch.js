@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../../style/FlightBookingPage.css'
+import '../../style/FlightBookingPage.module.css'
 
 const FlightSearch = () => {
   const [fromAirport, setFromAirport] = useState('Delhi (DEL)')
