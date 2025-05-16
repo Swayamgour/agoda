@@ -22,31 +22,41 @@ import BookingDetails from './component/car/BookingDetails'
 import PassengerDetails from './component/Train/PassengerDetails'
 import BusBooking from './component/BusBooking/BusBooking'
 import BusBookingDetail from './component/BusBooking/BusBookingDetail'
+import ScrollToTop from './component/ScrollToTop'
 // import FlightBookingPage from './component/pages/FlightBookingPage'
 
 function App () {
   return (
-    <Layout>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/AllHotel' element={<AllHotel />} />
-        <Route path='/HotelDetail' element={<HotelDetail />} />
-        <Route path='/ContactUS' element={<ContactPage />} />
-        <Route path='/About' element={<AboutPage />} />
-        <Route path='/FlightBooking' element={<FlightBookingPage />} />
-        <Route path='/BookingConfirmation' element={<BookingConfirmation />} />
-        <Route path='/CabBookingFilter' element={<CabBookingFilter />} />
-        <Route path='/TrainDashboard' element={<TrainDashboard />} />
-        <Route path='/Profile' element={<ProfilePage />} />
-        <Route path='/BookingReview' element={<BookingReview />} />
-        <Route path='/PaymentDetail' element={<HotelBookingPaymentPage />} />
-        <Route path='/CarBooking' element={<CarBookingReview />} />
-        <Route path='/CarBookingDetail' element={<BookingDetails />} />
-        <Route path='/PassengerDetails' element={<PassengerDetails />} />
-        <Route path='/BusBooking' element={<BusBooking />} />
-        <Route path='/BusBookingDetail' element={<BusBookingDetail />} />
-      </Routes>
-    </Layout>
+    //
+
+    <>
+      <ScrollToTop />
+      <Layout>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/AllHotel' element={<AllHotel />} />
+          <Route path='/HotelDetail' element={<HotelDetail />} />
+          <Route path='/contact' element={<ContactPage />} />
+          <Route path='/About' element={<AboutPage />} />
+          <Route path='/FlightBooking' element={<FlightBookingPage />} />
+          <Route
+            path='/BookingConfirmation'
+            element={<BookingConfirmation />}
+          />
+          <Route path='/CabBookingFilter' element={<CabBookingFilter />} />
+          <Route path='/TrainDashboard' element={<TrainDashboard />} />
+          <Route path='/Profile' element={<ProfilePage />} />
+          <Route path='/BookingReview' element={<BookingReview />} />
+          <Route path='/PaymentDetail' element={<HotelBookingPaymentPage />} />
+          <Route path='/CarBooking' element={<CarBookingReview />} />
+          <Route path='/CarBookingDetail' element={<BookingDetails />} />
+          <Route path='/PassengerDetails' element={<PassengerDetails />} />
+          <Route path='/BusBooking' element={<BusBooking />} />
+          <Route path='/BusBookingDetail' element={<BusBookingDetail />} />
+        </Routes>
+      </Layout>
+    </>
+    // </Layout>
   )
 }
 

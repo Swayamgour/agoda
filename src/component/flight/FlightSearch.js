@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../style/FlightBookingPage.module.css'
 
 const FlightSearch = () => {
@@ -22,6 +22,10 @@ const FlightSearch = () => {
     })
     // Add your search logic here
   }
+
+  useEffect(() => {
+    window.scroll(0, 0)
+  }, [])
 
   const handleResetAirport = field => {
     if (field === 'from') {

@@ -1,138 +1,240 @@
 import React, { useState, useEffect } from 'react'
-import { DateRange } from 'react-date-range'
-import { format } from 'date-fns'
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css' // theme css file
-// import { addYears } from 'date-fns'
-import { enUS } from 'date-fns/locale'
+import { useNavigate } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { styled } from '@mui/material/styles'
+import {
+  Flight as FlightIcon,
+  KingBed as HotelIcon,
+  DirectionsCar as CarIcon,
+  Train as TrainIcon,
+  AirportShuttle as BusIcon
+} from '@mui/icons-material'
 import BookHotel from './Hotel/BookHotelFrom'
 import FlightBookingForm from './flight/FlightBookingForm'
 import CabBookingForm from './car/CabBookingForm'
-import { useNavigate } from 'react-router-dom'
-import TrainIcon from '@mui/icons-material/Train'
-import AirportShuttleIcon from '@mui/icons-material/AirportShuttle'
-import FlightIcon from '@mui/icons-material/Flight'
-import KingBedIcon from '@mui/icons-material/KingBed'
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
-import { motion } from 'framer-motion'
-import ScrollFadeIn from './scrollview/ScrollFadeIn'
 import TrainFrom from './Train/TrainFrom'
 import BusBookingForm from './BusBooking/BusBookingForm'
+import ScrollFadeIn from './scrollview/ScrollFadeIn'
+
+// Styled Components
+const MastheadContainer = styled('section')({
+  position: 'relative',
+  overflow: 'hidden',
+  // background: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5))',
+  paddingBottom: '80px',
+  '& img': {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    zIndex: -1
+  }
+})
+
+const TabsContainer = styled('div')({
+  position: 'sticky',
+  top: 0,
+  zIndex: 100,
+  background: 'rgba(0, 0, 0, 0.7)',
+  backdropFilter: 'blur(10px)',
+  padding: '10px 0',
+  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
+})
+
+const TabsWrapper = styled('div')({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '10px',
+  overflowX: 'auto',
+  padding: '0 10px',
+  scrollbarWidth: 'none',
+  '&::-webkit-scrollbar': {
+    display: 'none'
+  },
+  '@media (max-width: 768px)': {
+    justifyContent: 'flex-start'
+  }
+})
+
+const TabButton = styled('button')(({ active }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '12px 24px',
+  borderRadius: '30px',
+  fontWeight: 600,
+  fontSize: '16px',
+  border: 'none',
+  cursor: 'pointer',
+  transition: 'all 0.3s ease',
+  whiteSpace: 'nowrap',
+  background: active ? 'rgba(255, 193, 7, 0.9)' : 'rgba(255, 255, 255, 0.1)',
+  color: active ? '#000' : '#fff',
+  '&:hover': {
+    background: active ? 'rgba(255, 193, 7, 1)' : 'rgba(255, 255, 255, 0.2)'
+  },
+  '& svg': {
+    marginRight: '8px',
+    fontSize: '20px'
+  }
+}))
+
+const ContentContainer = styled('div')({
+  display: 'flex',
+  flexDirection: 'column-reverse',
+  alignItems: 'center',
+  padding: '40px 20px',
+  '@media (min-width: 992px)': {
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
+    // alignItems: 'flex-start',
+    padding: '80px 20px'
+  }
+})
+
+const TextContent = styled('div')({
+  maxWidth: '600px',
+  marginBottom: '40px',
+  '@media (min-width: 992px)': {
+    marginBottom: 0,
+    paddingRight: '40px'
+  }
+})
+
+const Title = styled('h1')({
+  fontSize: '3.5rem',
+  fontWeight: 700,
+  color: '#fff',
+  lineHeight: 1.2,
+  marginBottom: '20px',
+  '@media (max-width: 768px)': {
+    fontSize: '2.5rem'
+  }
+})
+
+const Highlight = styled('span')({
+  color: '#FFC107',
+  display: 'inline-block'
+})
+
+const Subtitle = styled('p')({
+  fontSize: '1.2rem',
+  color: 'rgba(255, 255, 255, 0.9)',
+  lineHeight: 1.6
+})
+
+const FormContainer = styled('div')({
+  width: '100%',
+  // maxWidth: '600px',
+  // background: 'rgba(255, 255, 255, 0.95)',
+  borderRadius: '12px',
+  padding: '10px 20px',
+  // boxShadow: '0 15px 30px rgba(0, 0, 0, 0.2)',
+  minHeight: '300px',
+  '@media (max-width: 768px)': {
+    padding: '20px'
+  }
+})
 
 const Masthead = () => {
-  const [selectTab, setSelectTab] = useState(1)
-  const navigate = useNavigate()
+  const [selectTab, setSelectTab] = useState(7) // Default to Flights
   const [isFirstLoad, setIsFirstLoad] = useState(true)
+  const navigate = useNavigate()
 
   const tabs = [
     { id: 7, label: 'Flights', icon: <FlightIcon /> },
-    { id: 1, label: 'Hotel', icon: <KingBedIcon /> },
-    { id: 5, label: 'Car rental', icon: <DirectionsCarIcon /> },
-    { id: 8, label: 'Train', icon: <TrainIcon /> },
-    { id: 9, label: 'Bus', icon: <AirportShuttleIcon /> }
-
-    // { id: 2, label: 'Contact', icon: 'icon-contact' },
-    // { id: 3, label: 'About', icon: 'icon-about' }
+    { id: 1, label: 'Hotels', icon: <HotelIcon /> },
+    { id: 5, label: 'Car Rentals', icon: <CarIcon /> },
+    { id: 8, label: 'Trains', icon: <TrainIcon /> },
+    { id: 9, label: 'Buses', icon: <BusIcon /> }
   ]
 
-  const handelSelectTab = tab => {
+  const handleSelectTab = tab => {
     if (tab.id === 2) {
       navigate('/ContactUS')
-      setSelectTab(tab.id)
     } else if (tab.id === 3) {
       navigate('/About')
-      setSelectTab(tab.id)
     } else {
       setSelectTab(tab.id)
     }
   }
 
   useEffect(() => {
-    // Once shown, set first load to false after mount
     const timer = setTimeout(() => {
       setIsFirstLoad(false)
-    }, 500) // Let the animation play before disabling it
-
+    }, 500)
     return () => clearTimeout(timer)
   }, [])
 
-  const animationProps = {
-    initial: { opacity: 0, y: 30 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
-  }
-
   const renderComponent = () => {
-    if (selectTab === 1) return <BookHotel />
-    if (selectTab === 7) return <FlightBookingForm />
-    if (selectTab === 5) return <CabBookingForm />
-    if (selectTab === 8) return <TrainFrom />
-    if (selectTab === 9) return <BusBookingForm />
-    return null
+    switch (selectTab) {
+      case 1:
+        return <BookHotel />
+      case 7:
+        return <FlightBookingForm />
+      case 5:
+        return <CabBookingForm />
+      case 8:
+        return <TrainFrom />
+      case 9:
+        return <BusBookingForm />
+      default:
+        return null
+    }
   }
 
   return (
-    <section className='masthead -type-2 js-mouse-move-container'>
-      <div className='masthead__bg bg-dark-3'>
-        <img src='/images/download.webp' alt='image' />
-      </div>
-      <div
-        // style={{ position: 'sticky', top: '0px', zIndex: '990000099' }}
-        className='container'
-      >
-        <div className='masthead__tabs'>
-          <div className='tabs__controls d-flex items-center'>
-            {tabs.map(tab => (
-              <div key={tab.id}>
-                <button
-                  onClick={() => handelSelectTab(tab)}
-                  className={`tabs__button px-20 py-10 sm:px-20 sm:py-15 rounded-4 fw-600 text-white  ${
-                    selectTab === tab.id ? 'isActive' : ''
-                  }`}
-                >
-                  <i className={`${tab.icon} text-20 mr-10 sm:mr-5`}>
-                    {' '}
-                    {tab.icon}
-                  </i>
-                  {tab.label}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+    <MastheadContainer style={{ marginTop: '70px' }} className='masthead'>
+      <img src='/images/download.webp' alt='Travel background' />
 
-      <div className='container'>
-        <div className='masthead__content'>
-          <div className='row y-gap-40'>
-            <div className='col-xl-5'>
-              <h1 className='z-2 text-60 lg:text-40 md:text-30 text-white pt-80 xl:pt-0'>
-                <span className='text-yellow-1'>Where Would</span>
-                <br />
-                You Like To Go?
-              </h1>
+      <TabsContainer>
+        <TabsWrapper>
+          {tabs.map(tab => (
+            <TabButton
+              key={tab.id}
+              active={selectTab === tab.id}
+              onClick={() => handleSelectTab(tab)}
+            >
+              {tab.icon}
+              {tab.label}
+            </TabButton>
+          ))}
+        </TabsWrapper>
+      </TabsContainer>
 
-              <p className='z-2 text-white mt-20'>
-                Checkout Beautiful Places Arround the World.
-              </p>
+      <ContentContainer>
+        {/* <TextContent>
+          <Title>
+            <Highlight>Where Would</Highlight>
+            <br />
+            You Like To Go?
+          </Title>
+          <Subtitle>
+            Discover and book amazing travel experiences around the world with
+            just a few clicks.
+          </Subtitle>
+        </TextContent> */}
 
-              {/* {selectTab === 1 && <BookHotel />}
-              {selectTab === 7 && <FlightBookingForm />}
-              {selectTab === 5 && <CabBookingForm />} */}
-            </div>
-
-            <div className='col-xl-7'>
+        <FormContainer>
+          <AnimatePresence mode='wait'>
+            <motion.div
+              key={selectTab}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
               {isFirstLoad ? (
-                // <motion.div {...animationProps}></motion.div>
-                <ScrollFadeIn>{renderComponent()} </ScrollFadeIn>
+                <ScrollFadeIn>{renderComponent()}</ScrollFadeIn>
               ) : (
                 renderComponent()
               )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+            </motion.div>
+          </AnimatePresence>
+        </FormContainer>
+      </ContentContainer>
+    </MastheadContainer>
   )
 }
 
