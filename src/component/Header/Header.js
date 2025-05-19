@@ -209,7 +209,7 @@ const Header = () => {
       <HeaderContent>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <SideBar />
-          <LogoContainer onClick={() => navigate('/')}>
+          <LogoContainer onClick={() => navigate('/Agota')}>
             <PublicImage src='/img/general/logo-light-2.svg' alt='Logo' />
           </LogoContainer>
         </div>

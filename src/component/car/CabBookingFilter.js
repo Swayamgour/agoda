@@ -7,6 +7,7 @@ import FlightSearch from '../flight/FlightSearch'
 import { useNavigate } from 'react-router-dom'
 import CarFilterWithBottomDrawer from './CarFilterWithBottomDrawer'
 import ScrollFadeIn from '../scrollview/ScrollFadeIn'
+import PublicImage from '../../utils/PublicImage'
 
 const CabBookingFilter = () => {
   const navigate = useNavigate()
@@ -136,7 +137,7 @@ const CabBookingFilter = () => {
               <div key={index} className='cab-card'>
                 <div className='car-card-center'>
                   <div className='car-card-center-first'>
-                    <img src='/hatchback.png' />
+                    <PublicImage src='/hatchback.png' />
                   </div>
                   <div className='car-card-center-second'>
                     <div className='cab-header'>

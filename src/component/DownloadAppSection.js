@@ -1,5 +1,6 @@
 import React from 'react'
 import ScrollFadeIn from './scrollview/ScrollFadeIn'
+import PublicImage from '../utils/PublicImage'
 
 const DownloadAppSection = () => {
   return (
@@ -38,7 +39,7 @@ const DownloadAppSection = () => {
             </div>
 
             <div data-anim-child='slide-up delay-3' className='col-lg-6'>
-              <img src='/img/app/1.png' alt='app download preview' />
+              <PublicImage src='/img/app/1.png' alt='app download preview' />
             </div>
           </div>
         </div>

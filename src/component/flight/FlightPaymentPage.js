@@ -7,6 +7,7 @@ import '../../style/BookingConfirmation.css'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 import FlightIcon from '@mui/icons-material/Flight'
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import PublicImage from '../../utils/PublicImage'
 
 function FlightPaymentPage () {
   const navigate = useNavigate()
@@ -56,7 +57,7 @@ function FlightPaymentPage () {
           <div className='flight-info'>
             <span className='airline fs-12'>
               {/* <div> */}
-              <img src='/images/JL_v1.png' width={20} height={20} />
+              <PublicImage src='/images/JL_v1.png' width={20} height={20} />
               {/* </div>  */}
               {flightDetails.airline}
             </span>

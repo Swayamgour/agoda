@@ -19,6 +19,7 @@ import TicketSummary from '../Train/TicketSummary'
 import { useLocation } from 'react-router-dom'
 import FlightPaymentPage from '../flight/FlightPaymentPage'
 import BusPaymentPage from '../BusBooking/BusPaymentPage'
+import PublicImage from '../../utils/PublicImage'
 
 const HotelBookingPaymentPage = () => {
   const [paymentMethod, setPaymentMethod] = useState('credit')
@@ -145,12 +146,12 @@ const HotelBookingPaymentPage = () => {
             </div>
 
             <div style={{ display: 'flex', height: '25px', gap: '5px' }}>
-              <img src='/images/ic_visa@2x_v3.png' alt='logo' />
-              <img src='/images/ic_master_2.png' alt='logo' />
-              <img src='/images/rupay_debit.png' alt='logo' />
-              {/* <img src='/images/ic_americanexpress.png' alt='logo' /> */}
-              {/* <img src='/images/ic_jcb.png' /> */}
-              <img src='/images/ic_card_unionpay.png' alt='logo' />
+              <PublicImage src='/images/ic_visa@2x_v3.png' alt='logo' />
+              <PublicImage src='/images/ic_master_2.png' alt='logo' />
+              <PublicImage src='/images/rupay_debit.png' alt='logo' />
+              {/* <PublicImage src='/images/ic_americanexpress.png' alt='logo' /> */}
+              {/* <PublicImage src='/images/ic_jcb.png' /> */}
+              <PublicImage src='/images/ic_card_unionpay.png' alt='logo' />
             </div>
           </div>
 
@@ -180,7 +181,7 @@ const HotelBookingPaymentPage = () => {
                               height: '25px'
                             }}
                           >
-                            <img
+                            <PublicImage
                               src='/images/ic_visa@2x_v3.png'
                               alt='upi'
                               // height={20}
@@ -200,7 +201,7 @@ const HotelBookingPaymentPage = () => {
                               height: '25px'
                             }}
                           >
-                            <img
+                            <PublicImage
                               src='/images/rupay_debit.png'
                               alt='upi'
                               // height={20}
@@ -219,7 +220,7 @@ const HotelBookingPaymentPage = () => {
                               height: '25px'
                             }}
                           >
-                            <img
+                            <PublicImage
                               src='/images/ic_americanexpress.png'
                               alt='upi'
                               // height={20}
@@ -297,7 +298,7 @@ const HotelBookingPaymentPage = () => {
                         </div>
 
                         {/* <div style={{ height: '20px' }}>
-                    <img src='/images/cvv-icon@2x.png' />
+                    <PublicImage src='/images/cvv-icon@2x.png' />
                   </div> */}
                       </div>
                     </ScrollFadeIn>
@@ -334,8 +335,8 @@ const HotelBookingPaymentPage = () => {
                   </div>
 
                   <div style={{ display: 'flex', height: '25px', gap: '5px' }}>
-                    <img src='/images/ic_UPI_2.png' />
-                    <img src='/images/ic_paypal_3.png' alt='logo' />
+                    <PublicImage src='/images/ic_UPI_2.png' />
+                    <PublicImage src='/images/ic_paypal_3.png' alt='logo' />
                   </div>
                 </div>
 
@@ -370,7 +371,7 @@ const HotelBookingPaymentPage = () => {
                                       height: '25px'
                                     }}
                                   >
-                                    <img
+                                    <PublicImage
                                       src='/images/ic_UPI_2.png'
                                       alt='upi'
                                       // height={20}
@@ -389,7 +390,7 @@ const HotelBookingPaymentPage = () => {
                                       height: '25px'
                                     }}
                                   >
-                                    <img
+                                    <PublicImage
                                       src='/images/ic_paypal_3.png'
                                       alt='paypal'
                                       height={40}
@@ -464,9 +465,9 @@ const HotelBookingPaymentPage = () => {
                     ONLINE BANKING
                   </div>
                   <div style={{ display: 'flex', height: '25px', gap: '5px' }}>
-                    <img src='/images/ic_HDFC_2.png' alt='logo' />
-                    <img src='/images/ic_icici_2.png' alt='logo' />
-                    <img src='/images/ic_sbi_2.png' alt='logo' />
+                    <PublicImage src='/images/ic_HDFC_2.png' alt='logo' />
+                    <PublicImage src='/images/ic_icici_2.png' alt='logo' />
+                    <PublicImage src='/images/ic_sbi_2.png' alt='logo' />
                   </div>
                 </div>
 
@@ -501,7 +502,7 @@ const HotelBookingPaymentPage = () => {
                                         gap: '10px'
                                       }}
                                     >
-                                      <img
+                                      <PublicImage
                                         src='/images/ic_HDFC_2.png'
                                         alt='logo'
                                       />
@@ -516,7 +517,7 @@ const HotelBookingPaymentPage = () => {
                                         gap: '10px'
                                       }}
                                     >
-                                      <img
+                                      <PublicImage
                                         src='/images/ic_icici_2.png'
                                         alt='logo'
                                       />
@@ -532,7 +533,7 @@ const HotelBookingPaymentPage = () => {
                                         gap: '10px'
                                       }}
                                     >
-                                      <img
+                                      <PublicImage
                                         src='/images/ic_sbi_2.png'
                                         alt='logo'
                                       />

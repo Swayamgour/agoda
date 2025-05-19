@@ -24,6 +24,7 @@ import {
   ConfirmationNumber
 } from '@mui/icons-material';
 import styles from '../style/Login.module.css';
+import PublicImage from '../utils/PublicImage';
 
 const Login = ({ open, setOpen }) => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -234,7 +235,7 @@ const Login = ({ open, setOpen }) => {
             fullWidth
             className={styles.socialButton}
             startIcon={
-              <img
+              <PublicImage
                 src='/images/Google_Icons-09-512.webp'
                 alt='Google'
                 className={styles.socialIcon}

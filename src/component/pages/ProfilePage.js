@@ -11,6 +11,7 @@
 
 import React from 'react'
 import '../../style/Profile.css' // We'll create this CSS file next
+import PublicImage from '../../utils/PublicImage'
 
 const ProfilePage = () => {
   return (
@@ -20,7 +21,7 @@ const ProfilePage = () => {
       <div className='detail-row'>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <div style={{ width: '12%', minWidth: '50px' }}>
-            <img
+            <PublicImage
               src={
                 'https://imgs.search.brave.com/On1jUTlYXU0nMnY-dqmpNg0PIqUoPv_J_lcSWebc9bY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTE3/OTQyMDM0My9waG90/by9zbWlsaW5nLW1h/bi1vdXRkb29ycy1p/bi10aGUtY2l0eS5q/cGc_cz02MTJ4NjEy/Jnc9MCZrPTIwJmM9/OGwtZ09ib0dFRlN5/Q0ZYcjA5RWd1RG1W/MEUwYkZUNXVzQW1z/MXd5RkJoOD0'
               }

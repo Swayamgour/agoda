@@ -6,6 +6,7 @@ import 'swiper/css/navigation'
 import { Pagination, Navigation } from 'swiper/modules'
 import { useNavigate } from 'react-router-dom'
 import ScrollFadeIn from './scrollview/ScrollFadeIn'
+import PublicImage from '../utils/PublicImage'
 
 const destinations = [
   {
@@ -132,7 +133,7 @@ const TravellersSliderSection = () => {
                     className='citiesCard -type-2'
                   >
                     <div className='citiesCard__image rounded-4 ratio ratio-3:4'>
-                      <img
+                      <PublicImage
                         className='img-ratio rounded-4 js-lazy'
                         src={item.img}
                         alt={item.country}

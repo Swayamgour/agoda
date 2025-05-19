@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { keyframes } from '@emotion/react';
 import '../../style/AboutPage.css';
+import PublicImage from '../../utils/PublicImage';
 
 // Animations
 const fadeIn = keyframes`
@@ -384,7 +385,7 @@ const AboutPage = () => {
     <AboutContainer className='about-page'>
       {/* Hero Section */}
       <HeroSection className='about-hero'>
-        <img
+        <PublicImage
           src='https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1685&q=80'
           alt='Travel experiences'
         />
@@ -447,7 +448,7 @@ const AboutPage = () => {
             {teamMembers.map(member => (
               <TeamCard key={member.id} className='team-card'>
                 <TeamImage className='team-image'>
-                  <img src={member.image} alt={member.name} />
+                  <PublicImage src={member.image} alt={member.name} />
                 </TeamImage>
                 <TeamInfo className='team-info'>
                   <TeamName>{member.name}</TeamName>

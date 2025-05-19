@@ -4,6 +4,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import PublicImage from "../utils/PublicImage";
 // import "./TestimonialSection.css"; // your custom CSS
 
 const testimonials = [
@@ -70,7 +71,7 @@ const TestimonialSection = () => {
                     <div className="pt-20 mt-28 border-top-light">
                       <div className="row x-gap-20 y-gap-20 items-center">
                         <div className="col-auto">
-                          <img src={testimonial.image} alt={testimonial.name} />
+                          <PublicImage src={testimonial.image} alt={testimonial.name} />
                         </div>
                         <div className="col-auto">
                           <div className="text-15 fw-500 lh-14">{testimonial.name}</div>
@@ -112,7 +113,7 @@ const TestimonialSection = () => {
             {clients.map((client, idx) => (
               <div key={idx} className="col-md-auto col-sm-6">
                 <div className="d-flex justify-center">
-                  <img src={client} alt="client logo" />
+                  <PublicImage src={client} alt="client logo" />
                 </div>
               </div>
             ))}

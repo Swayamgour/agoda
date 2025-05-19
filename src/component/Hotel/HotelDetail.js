@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import '../../style/HotelPhotos.css'
 import { useNavigate } from 'react-router-dom'
+import PublicImage from '../../utils/PublicImage'
 
 const HotelPage = () => {
   const cleanList = [
@@ -79,7 +80,7 @@ const HotelPage = () => {
             className='grid-item'
             // onClick={() => handleImageClick(index)}
           >
-            <img src={image.url} alt={`Property ${image.id}`} />
+            <PublicImage src={image.url} alt={`Property ${image.id}`} />
             {/* {index === 5 && images[activeTab].length > 6 && (
               <div className='more-overlay'>
                 <span>+{images[activeTab].length - 6} more</span>
@@ -157,7 +158,7 @@ const HotelPage = () => {
                   }}
                 >
                   <div>
-                    <img src={e?.image} />
+                    <PublicImage src={e?.image} />
                   </div>
                   <div style={{ fontSize: '12px' }}>{e?.title}</div>
                 </div>

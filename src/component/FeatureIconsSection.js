@@ -1,4 +1,5 @@
 import React from 'react';
+import PublicImage from '../utils/PublicImage';
 
 const features = [
   {
@@ -37,7 +38,7 @@ const FeatureIconsSection = () => {
             >
               <div className="featureIcon -type-1 -hover-shadow px-50 py-50 lg:px-24 lg:py-15">
                 <div className="d-flex justify-center">
-                  <img
+                  <PublicImage
                     src={imgSrc}
                     alt="feature"
                     className="js-lazy"

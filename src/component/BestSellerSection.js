@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import ScrollFadeIn from './scrollview/ScrollFadeIn'
+import PublicImage from '../utils/PublicImage'
 
 const BestSellerSection = () => {
   const navigate = useNavigate()
@@ -123,21 +124,21 @@ const BestSellerSection = () => {
                                   <div className='cardImage-slider rounded-4 overflow-hidden js-cardImage-slider'>
                                     <div className='swiper-wrapper'>
                                       <div className='swiper-slide'>
-                                        <img
+                                        <PublicImage
                                           className='col-12'
                                           src={hotel.image}
                                           alt='image'
                                         />
                                       </div>
                                       <div className='swiper-slide'>
-                                        <img
+                                        <PublicImage
                                           className='col-12'
                                           src='/img/hotels/1.png'
                                           alt='image'
                                         />
                                       </div>
                                       <div className='swiper-slide'>
-                                        <img
+                                        <PublicImage
                                           className='col-12'
                                           src='/img/hotels/3.png'
                                           alt='image'
@@ -157,7 +158,7 @@ const BestSellerSection = () => {
                                     </div>
                                   </div>
                                 ) : (
-                                  <img
+                                  <PublicImage
                                     className='rounded-4 col-12'
                                     src={hotel.image}
                                     alt='image'

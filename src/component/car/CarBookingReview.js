@@ -6,6 +6,7 @@ import GpsFixedIcon from '@mui/icons-material/GpsFixed'
 import InclusionsExclusions from './InclusionsExclusions'
 import TripDetails from './TripDetails'
 import { useNavigate } from 'react-router-dom'
+import PublicImage from '../../utils/PublicImage'
 
 const CarBookingReview = () => {
   const [value, setValue] = useState('part')
@@ -28,7 +29,7 @@ const CarBookingReview = () => {
         </div>
         <div className={styles.vehicleHeaderCard}>
           <div className='car-card-center-first'>
-            <img src='/hatchback.png' />
+            <PublicImage src='/hatchback.png' />
           </div>
           <div>
             <div className={styles.vehicleHeader}>

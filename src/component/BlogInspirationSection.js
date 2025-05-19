@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import ScrollFadeIn from './scrollview/ScrollFadeIn'
+import PublicImage from '../utils/PublicImage'
 
 const blogPosts = [
   {
@@ -62,7 +63,7 @@ const BlogInspirationSection = () => {
                 <div className='blogCard -type-1 d-block'>
                   <div className='blogCard__image'>
                     <div className='ratio ratio-1:1 rounded-4 rounded-8'>
-                      <img
+                      <PublicImage
                         className='img-ratio js-lazy'
                         src={post.image}
                         alt={post.title}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../../style/HotelCard.css'
 import { useNavigate } from 'react-router-dom'
 import PropertyOverview from './PropertyOverview '
+import PublicImage from '../../utils/PublicImage'
 
 const HotelCard = ({ hotel }) => {
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ const HotelCard = ({ hotel }) => {
           {hotel.images && hotel.images.length > 0 ? (
             <div className='image-carousel'>
               {hotel.images.map((img, idx) => (
-                <img
+                <PublicImage
                   key={idx}
                   src={img}
                   alt={`${hotel.name} - Image ${idx + 1}`}

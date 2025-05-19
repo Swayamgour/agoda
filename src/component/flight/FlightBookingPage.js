@@ -9,6 +9,7 @@ import FlightSearch from './FlightSearch'
 import styles from '../../style/FlightBookingPage.module.css'
 import FlightFilterWithBottomDrawer from './FlightFilterWithBottomDrawer'
 import ScrollFadeIn from '../scrollview/ScrollFadeIn'
+import PublicImage from '../../utils/PublicImage'
 
 const FlightBookingPage = () => {
   const [selectedAirlines, setSelectedAirlines] = useState([])
@@ -300,7 +301,7 @@ const FlightBookingPage = () => {
                     onClick={() => handleToggleFlightDetails(flight.id)}
                   >
                     <div className={styles.flightAirline}>
-                      <img
+                      <PublicImage
                         src='/images/JL_v1.png'
                         alt={flight.airline}
                         className={styles.airlineLogo}

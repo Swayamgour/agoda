@@ -10,6 +10,7 @@ import AcUnitIcon from '@mui/icons-material/AcUnit'
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices'
 import FilterBAndWIcon from '@mui/icons-material/FilterBAndW'
 import { useNavigate } from 'react-router-dom'
+import PublicImage from '../../utils/PublicImage'
 // import './PropertyOverview.css';
 
 const PropertyOverview = ({ open, setOpen }) => {
@@ -153,7 +154,7 @@ const PropertyOverview = ({ open, setOpen }) => {
                 className='grid-item'
                 onClick={() => handleImageClick(index)}
               >
-                <img src={image.url} alt={`Property ${image.id}`} />
+                <PublicImage src={image.url} alt={`Property ${image.id}`} />
                 {index === 5 && images[activeTab].length > 6 && (
                   <div className='more-overlay'>
                     <span>+{images[activeTab].length - 6} more</span>
@@ -219,7 +220,7 @@ const PropertyOverview = ({ open, setOpen }) => {
               >
                 {images[activeTab]?.map(image => (
                   <SwiperSlide key={image.id}>
-                    <img src={image.url} alt={`Property ${image.id}`} />
+                    <PublicImage src={image.url} alt={`Property ${image.id}`} />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -235,7 +236,7 @@ const PropertyOverview = ({ open, setOpen }) => {
               >
                 {images[activeTab].map(image => (
                   <SwiperSlide key={image.id}>
-                    <img src={image.url} alt={`Thumbnail ${image.id}`} />
+                    <PublicImage src={image.url} alt={`Thumbnail ${image.id}`} />
                   </SwiperSlide>
                 ))}
               </Swiper>

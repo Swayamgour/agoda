@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from '../../style/PassengerDetails.module.css'
 import { useNavigate } from 'react-router-dom'
+import PublicImage from '../../utils/PublicImage'
 
 const PassengerDetails = () => {
   const [gender, setGender] = useState('')
@@ -274,7 +275,7 @@ const PassengerDetails = () => {
 
         <div className={styles.section}>
           <h2 className={styles.sectionHeading}>
-            FREE CANCELLATION <img src='/images/banner_fcf.png' width={150} />
+            FREE CANCELLATION <PublicImage src='/images/banner_fcf.png' width={150} />
           </h2>
 
           <div className='ds-f gp-10  mb-10 aic'>
