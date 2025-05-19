@@ -21,7 +21,7 @@ const MastheadContainer = styled('section')({
   position: 'relative',
   overflow: 'hidden',
   // background: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5))',
-  paddingBottom: '80px',
+  // paddingBottom: '80px',
   '& img': {
     position: 'absolute',
     top: 0,
@@ -84,12 +84,12 @@ const ContentContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column-reverse',
   alignItems: 'center',
-  padding: '40px 20px',
+  // padding: '40px 20px',
   '@media (min-width: 992px)': {
     // flexDirection: 'row',
     // justifyContent: 'space-between',
     // alignItems: 'flex-start',
-    padding: '80px 20px'
+    // padding: '80px 20px'
   }
 })
 
