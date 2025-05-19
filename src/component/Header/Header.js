@@ -23,6 +23,7 @@ import {
 } from '@mui/material'
 import SideBar from '../../component/SideBar/Sidebar'
 import Login from '../Login'
+import PublicImage from '../../utils/PublicImage'
 
 // Styled Components
 const HeaderContainer = styled('header')({
@@ -209,7 +210,7 @@ const Header = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <SideBar />
           <LogoContainer onClick={() => navigate('/')}>
-            <img src='/img/general/logo-light-2.svg' alt='TravelEase Logo' />
+            <PublicImage src='/img/general/logo-light-2.svg' alt='Logo' />
           </LogoContainer>
         </div>
 

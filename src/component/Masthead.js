@@ -15,6 +15,7 @@ import CabBookingForm from './car/CabBookingForm'
 import TrainFrom from './Train/TrainFrom'
 import BusBookingForm from './BusBooking/BusBookingForm'
 import ScrollFadeIn from './scrollview/ScrollFadeIn'
+import PublicImage from '../utils/PublicImage'
 
 // Styled Components
 const MastheadContainer = styled('section')({
@@ -186,7 +187,8 @@ const Masthead = () => {
 
   return (
     <MastheadContainer style={{ marginTop: '70px' }} className='masthead'>
-      <img src='/images/download.webp' alt='Travel background' />
+      {/* <img /> */}
+      <PublicImage src='/images/download.webp' alt='Travel background' />
 
       <TabsContainer>
         <TabsWrapper>
