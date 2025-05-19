@@ -1,6 +1,6 @@
 {
   "name": "agoda",
-  "homepage": "https://demo.amaxjobs.com",
+  "homepage": "/",
   "version": "0.1.3",
   "private": true,
   "dependencies": {
