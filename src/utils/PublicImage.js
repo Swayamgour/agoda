@@ -1,7 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-const PublicImage = ({ src, alt, ...rest }) => (
-  <img src={`${process.env.PUBLIC_URL}${src}`} alt={alt} {...rest} />
-);
+const PublicImage = ({ src, alt, ...rest }) => {
+  const isExternal = src?.startsWith('http') || src?.startsWith('https')
 
-export default PublicImage;
+  const finalSrc = isExternal ? src : `${process.env.PUBLIC_URL}${src}`
+
+//   console.log('Image src:', finalSrc)
+
+  return <img src={finalSrc} alt={alt} {...rest} />
+}
+
+export default PublicImage

@@ -126,7 +126,7 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    /* gap: 30px; */
+    gap: 20px;
 }
 
 .filters-sidebar {
@@ -245,6 +245,7 @@
 @media (max-width: 768px) {
     .hotel-listing-container {
         flex-direction: column;
+        gap: 5px;
     }
 
     .filters-sidebar {

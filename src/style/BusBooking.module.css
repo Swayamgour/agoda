@@ -68,6 +68,8 @@
   display: flex;
   flex-grow: 1;
   position: relative;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .locationBox,
@@ -119,7 +121,7 @@
   left: calc(33.33% - 20px);
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2;
+  z-index: 0;
   transition: all 0.3s ease;
 }
 
@@ -354,9 +356,10 @@
   }
 
   .reverseButton {
-    position: static;
+    /* position: static; */
     transform: none;
     margin: 0 10px;
+    top: 22%;
   }
 }
 
@@ -381,6 +384,11 @@
     width: 100%;
     border-right: none;
     border-bottom: 1px solid #e0e0e0;
+  }
+
+  .locationBox p,
+  .dateBox p {
+    font-size: 12px;
   }
 
   .reverseButton {

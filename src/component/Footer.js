@@ -40,9 +40,9 @@ const Footer = () => {
                 <div className='d-flex y-gap-10 flex-column'>
                   <a>Contact</a>
                   <a>Legal Notice</a>
-                  <a>Privacy Policy</a>
-                  <a>Terms and Conditions</a>
-                  <a>Sitemap</a>
+                  {/* <a>Privacy Policy</a> */}
+                  {/* <a>Terms and Conditions</a> */}
+                  {/* <a>Sitemap</a> */}
                 </div>
               </div>
 

@@ -169,7 +169,11 @@ function AllHotel () {
 
   return (
     <>
-      <HotelSectionFrom />
+      {/* <HotelSectionFrom /> */}
+
+      <div style={{ marginTop: '70px' }}>
+        <BookHotelFrom />
+      </div>
 
       <div className='AllHotel-card-container'>
         <h2 className='allhotel-heading-second'>

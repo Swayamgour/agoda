@@ -10,6 +10,7 @@ import styles from '../../style/FlightBookingPage.module.css'
 import FlightFilterWithBottomDrawer from './FlightFilterWithBottomDrawer'
 import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 import PublicImage from '../../utils/PublicImage'
+import FlightBookingForm from './FlightBookingForm'
 
 const FlightBookingPage = () => {
   const [selectedAirlines, setSelectedAirlines] = useState([])
@@ -138,6 +139,7 @@ const FlightBookingPage = () => {
   return (
     <div className={styles.container}>
       {/* <FlightSearch /> */}
+      {/* <FlightBookingForm /> */}
 
       <div className={styles.bookingContainer}>
         <aside className={styles.filtersSidebar}>

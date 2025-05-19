@@ -3,6 +3,8 @@ import '../../style/TrainDashboard.css'
 import { useNavigate } from 'react-router-dom'
 import TrainFilterWithBottomDrawer from './TrainFilterWithBottomDrawer'
 import ScrollFadeIn from '../scrollview/ScrollFadeIn'
+import TrainSearchForm from '../Hotel/BookHotelFrom'
+import TrainFrom from './TrainFrom'
 
 const TrainDashboard = () => {
   const [expandedTrain, setExpandedTrain] = useState(null)
@@ -220,6 +222,9 @@ const TrainDashboard = () => {
 
   return (
     <div className='train-dashboard'>
+      {/* <TrainSearchForm /> */}
+      {/* <TrainFrom /> */}
+
       <div className='Train_header'>
         <div className='train_header_div'>
           <div>

@@ -154,7 +154,10 @@ const PropertyOverview = ({ open, setOpen }) => {
                 className='grid-item'
                 onClick={() => handleImageClick(index)}
               >
-                <PublicImage src={image.url} alt={`Property ${image.id}`} />
+                <PublicImage
+                  src={image.url}
+                  alt={`Property ${image.id}`}
+                />
                 {index === 5 && images[activeTab].length > 6 && (
                   <div className='more-overlay'>
                     <span>+{images[activeTab].length - 6} more</span>
@@ -236,7 +239,10 @@ const PropertyOverview = ({ open, setOpen }) => {
               >
                 {images[activeTab].map(image => (
                   <SwiperSlide key={image.id}>
-                    <PublicImage src={image.url} alt={`Thumbnail ${image.id}`} />
+                    <PublicImage
+                      src={image.url}
+                      alt={`Thumbnail ${image.id}`}
+                    />
                   </SwiperSlide>
                 ))}
               </Swiper>

@@ -318,7 +318,7 @@ const InsideFrom = styled.div`
   }
 `
 
-const CabBookingForm = () => {
+const TrainFrom = () => {
   const [tripType, setTripType] = useState('one-way')
   const [pickupLocation, setPickupLocation] = useState('')
   const [dropLocation, setDropLocation] = useState('')
@@ -518,4 +518,4 @@ const CabBookingForm = () => {
   )
 }
 
-export default CabBookingForm
+export default TrainFrom

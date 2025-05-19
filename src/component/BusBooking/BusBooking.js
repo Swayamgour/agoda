@@ -161,7 +161,7 @@ const BusBooking = () => {
   return (
     <ScrollFadeIn>
       <div className={styles.container}>
-        <div className={styles.header}>
+        {/* <div className={styles.header}>
           <div className={styles.headerContent}>
             <h1 className={styles.title}>{toLocation}</h1>
             <div className={styles.depart}>
@@ -169,7 +169,7 @@ const BusBooking = () => {
               <p>{departDate}</p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className={styles.searchHeader}>
           <div className={styles.searchInputs}>
@@ -291,7 +291,7 @@ const BusBooking = () => {
               ))}
             </div>
 
-            <div className={styles.pagination}>
+            {/* <div className={styles.pagination}>
               <button className={styles.paginationButton}>Previous</button>
               <button className={`${styles.paginationButton} ${styles.active}`}>
                 1
@@ -299,7 +299,7 @@ const BusBooking = () => {
               <button className={styles.paginationButton}>2</button>
               <button className={styles.paginationButton}>3</button>
               <button className={styles.paginationButton}>Next</button>
-            </div>
+            </div> */}
           </main>
         </div>
       </div>

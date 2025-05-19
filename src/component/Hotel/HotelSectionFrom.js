@@ -1,265 +1,247 @@
-import React, { useState } from 'react'
-import { DateRange } from 'react-date-range'
-import { format } from 'date-fns'
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css' // theme css file
-import { enUS } from 'date-fns/locale'
+import React, { useState, useRef, useEffect } from 'react';
+import { DateRange } from 'react-date-range';
+import { format } from 'date-fns';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import { enUS } from 'date-fns/locale';
+import styles from '../../style/HotelSection.module.css';
 
-function HotelSectionFrom () {
-  const [open, setOpen] = useState(false)
+const GuestRow = ({ label, subtext, value, onIncrease, onDecrease }) => (
+  <div className={styles.guestRow}>
+    <div>
+      <div className={styles.guestLabel}>{label}</div>
+      {subtext && <div className={styles.guestSubtext}>{subtext}</div>}
+    </div>
+    <div className={styles.counter}>
+      <button className={styles.counterButton} onClick={onDecrease}>
+        <svg className={styles.icon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+        </svg>
+      </button>
+      <div className={styles.counterValue}>{value}</div>
+      <button className={styles.counterButton} onClick={onIncrease}>
+        <svg className={styles.icon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+        </svg>
+      </button>
+    </div>
+  </div>
+);
+
+function HotelSection() {
+  const [openDate, setOpenDate] = useState(false);
+  const [openGuest, setOpenGuest] = useState(false);
   const [state, setState] = useState([
     {
       startDate: new Date(),
       endDate: new Date(),
       key: 'selection'
     }
-  ])
-
-  const [isOpen, setIsOpen] = useState(false) // dropdown visibility
+  ]);
 
   const [guests, setGuests] = useState({
     adults: 2,
     children: 1,
     rooms: 1
-  })
+  });
 
-  const handleSelect = ranges => {
-    setState([ranges.selection])
-    console.log('Start:', ranges.selection.startDate)
-    console.log('End:', ranges.selection.endDate)
-  }
+  const [location, setLocation] = useState('');
+  const [showLocationDropdown, setShowLocationDropdown] = useState(false);
+
+  const dateRef = useRef();
+  const guestRef = useRef();
+  const locationRef = useRef();
+
+  const locations = [
+    { name: 'London', description: 'Greater London, United Kingdom' },
+    { name: 'New York', description: 'New York State, United States' },
+    { name: 'Paris', description: 'France' },
+    { name: 'Madrid', description: 'Spain' },
+    { name: 'Santorini', description: 'Greece' },
+    { name: 'Tokyo', description: 'Japan' },
+    { name: 'Sydney', description: 'Australia' },
+    { name: 'Dubai', description: 'United Arab Emirates' }
+  ];
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dateRef.current && !dateRef.current.contains(event.target)) {
+        setOpenDate(false);
+      }
+      if (guestRef.current && !guestRef.current.contains(event.target)) {
+        setOpenGuest(false);
+      }
+      if (locationRef.current && !locationRef.current.contains(event.target)) {
+        setShowLocationDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleSelect = (ranges) => {
+    setState([ranges.selection]);
+  };
 
   const updateCount = (type, direction) => {
     setGuests(prev => {
-      const newValue =
-        direction === 'up' ? prev[type] + 1 : Math.max(0, prev[type] - 1) // prevent negative values
-      return { ...prev, [type]: newValue }
-    })
-  }
+      const newValue = direction === 'up' ? prev[type] + 1 : Math.max(0, prev[type] - 1);
+      return { ...prev, [type]: newValue };
+    });
+  };
+
+  const selectLocation = (loc) => {
+    setLocation(loc.name);
+    setShowLocationDropdown(false);
+  };
+
   return (
-    <div
-      style={{ marginTop: '70px' }}
-      className='mainSearch  z-2 bg-white-tran  py-10 lg:px-20 lg:pt-5 lg:pb-20 rounded-4 shadow-1 '
-    >
-      <div className='hotelBookingFrom'>
-        <div className='searchMenu-loc   lg:px-0 js-form-dd js-liverSearch'>
-          <div data-x-dd-click='searchMenu-loc'>
-            <h4 className='text-15 fw-500 ls-2 lh-16'>Location</h4>
-            <div className='text-15 text-light-1 ls-2 lh-16'>
-              <input
-                autoComplete='off'
-                type='search'
-                placeholder='Where are you going?'
-                className='js-search js-dd-focus inputSearch'
-              />
-            </div>
-          </div>
-
-          <div className='searchMenu-loc__field shadow-2 js-popup-window'>
-            <div className='bg-white  py-30 sm:px-0 sm:py-15 rounded-4'>
-              <div className='y-gap-5 js-results'>
-                <div>
-                  <button className='-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option'>
-                    <div className='d-flex'>
-                      <div className='icon-location-2 text-light-1 text-20 pt-4'></div>
-                      <div className='ml-10'>
-                        <div className='text-15 lh-12 fw-500 js-search-option-target'>
-                          London
-                        </div>
-                        <div className='text-14 lh-12 text-light-1 mt-5'>
-                          Greater London, United Kingdom
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-
-                <div>
-                  <button className='-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option'>
-                    <div className='d-flex'>
-                      <div className='icon-location-2 text-light-1 text-20 pt-4'></div>
-                      <div className='ml-10'>
-                        <div className='text-15 lh-12 fw-500 js-search-option-target'>
-                          New York
-                        </div>
-                        <div className='text-14 lh-12 text-light-1 mt-5'>
-                          New York State, United States
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-
-                <div>
-                  <button className='-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option'>
-                    <div className='d-flex'>
-                      <div className='icon-location-2 text-light-1 text-20 pt-4'></div>
-                      <div className='ml-10'>
-                        <div className='text-15 lh-12 fw-500 js-search-option-target'>
-                          Paris
-                        </div>
-                        <div className='text-14 lh-12 text-light-1 mt-5'>
-                          France
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-
-                <div>
-                  <button className='-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option'>
-                    <div className='d-flex'>
-                      <div className='icon-location-2 text-light-1 text-20 pt-4'></div>
-                      <div className='ml-10'>
-                        <div className='text-15 lh-12 fw-500 js-search-option-target'>
-                          Madrid
-                        </div>
-                        <div className='text-14 lh-12 text-light-1 mt-5'>
-                          Spain
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                </div>
-
-                <div>
-                  <button className='-link d-block col-12 text-left rounded-4 px-20 py-15 js-search-option'>
-                    <div className='d-flex'>
-                      <div className='icon-location-2 text-light-1 text-20 pt-4'></div>
-                      <div className='ml-10'>
-                        <div className='text-15 lh-12 fw-500 js-search-option-target'>
-                          Santorini
-                        </div>
-                        <div className='text-14 lh-12 text-light-1 mt-5'>
-                          Greece
-                        </div>
-                      </div>
-                    </div>
-                  </button>
+    <div className={styles.container}>
+      <div className={styles.formContainer}>
+        <div className={styles.formContent}>
+          {/* <h2 className={styles.title}>Discover Your Perfect Escape</h2> */}
+          
+          <div className={styles.grid}>
+            {/* Location Field */}
+            <div className={styles.fieldContainer} ref={locationRef}>
+              <div 
+                className={`${styles.field} ${showLocationDropdown ? styles.fieldActive : ''} ${location ? 'fieldWithValue' : ''}`}
+                onClick={() => setShowLocationDropdown(!showLocationDropdown)}
+              >
+                <label className={styles.label}>Destination</label>
+                <div className="flex items-center">
+                  <input
+                    type="text"
+                    className={styles.input}
+                    placeholder="Where to?"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    autoComplete="off"
+                  />
+                  <svg className={styles.icon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </div>
+              
+              {showLocationDropdown && (
+                <div className={styles.dropdown} style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                  {locations.filter(loc => 
+                    loc.name.toLowerCase().includes(location.toLowerCase())
+                  ).map((loc, index) => (
+                    <div
+                      key={index}
+                      className={styles.locationItem}
+                      onClick={() => selectLocation(loc)}
+                    >
+                      <div className={styles.locationName}>{loc.name}</div>
+                      <div className={styles.locationDescription}>{loc.description}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-          </div>
-        </div>
 
-        <div className='searchMenu-date px-6 lg:py-5 lg:px-0 relative'>
-          <div
-            onClick={() => {
-              // setIsOpen(!isOpen)
-              setOpen(!open)
-            }}
-            style={{ cursor: 'pointer' }}
-            // className='cursor-pointer'
-          >
-            <h4 className='text-15 fw-500 ls-2 lh-16'>Check in - Check out</h4>
-            <div className='capitalize text-15 text-light-1 ls-2 lh-16'>
-              <span className='js-first-date'>
-                {format(state[0].startDate, 'EEE d MMM')}
-              </span>
-              {' - '}
-              <span className='js-last-date'>
-                {format(state[0].endDate, 'EEE d MMM')}
-              </span>
-            </div>
-          </div>
-
-          {open && (
-            <div className='absolute z-50 bg-white shadow-lg mt-4 rounded-lg'>
-              <DateRange
-                editableDateInputs={true}
-                onChange={handleSelect}
-                moveRangeOnFirstSelection={false}
-                ranges={state}
-                locale={enUS}
-              />
-            </div>
-          )}
-        </div>
-
-        <div className='searchMenu-guests  lg:px-0'>
-          <div
-            onClick={() => {
-              setIsOpen(!isOpen)
-              // setOpen(!open)/
-            }}
-            style={{ cursor: 'pointer' }}
-          >
-            <h4 className='text-15 fw-500 ls-2 lh-16'>Guest & Rooms</h4>
-            <div className='text-15 text-light-1 ls-2 lh-16'>
-              <span>{guests.adults}</span> adults -
-              <span>{guests.children}</span> children -
-              <span>{guests.rooms}</span> room
-            </div>
-          </div>
-
-          {isOpen && (
-            <div className='searchMenu-guests__field shadow-2'>
-              <div className='bg-white  py-10 px-20 rounded-4'>
-                <GuestRow
-                  label='Adults'
-                  value={guests.adults}
-                  onDecrease={() => updateCount('adults', 'down')}
-                  onIncrease={() => updateCount('adults', 'up')}
-                />
-
-                <div className='border-top-light mt-24 mb-24'></div>
-
-                <GuestRow
-                  label='Children'
-                  subtext='Ages 0 - 17'
-                  value={guests.children}
-                  onDecrease={() => updateCount('children', 'down')}
-                  onIncrease={() => updateCount('children', 'up')}
-                />
-
-                <div className='border-top-light mt-24 mb-24'></div>
-
-                <GuestRow
-                  label='Rooms'
-                  value={guests.rooms}
-                  onDecrease={() => updateCount('rooms', 'down')}
-                  onIncrease={() => updateCount('rooms', 'up')}
-                />
+            {/* Date Range Field */}
+            <div className={styles.fieldContainer} ref={dateRef}>
+              <div 
+                className={`${styles.field} ${openDate ? styles.fieldActive : ''}`}
+                onClick={() => {
+                  setOpenDate(!openDate);
+                  setOpenGuest(false);
+                }}
+              >
+                <label className={styles.label}>Check in - Check out</label>
+                <div className="flex items-center">
+                  <span>{format(state[0].startDate, 'MMM d')}</span>
+                  <span className="mx-1">—</span>
+                  <span>{format(state[0].endDate, 'MMM d')}</span>
+                </div>
               </div>
+              
+              {openDate && (
+                <div className={styles.dropdown} style={{ width: 'auto', right: 0 }}>
+                  <div className={styles.dateRangeWrapper}>
+                    <DateRange
+                      editableDateInputs={true}
+                      onChange={handleSelect}
+                      moveRangeOnFirstSelection={false}
+                      ranges={state}
+                      locale={enUS}
+                      minDate={new Date()}
+                      rangeColors={['#3B82F6']}
+                      className="border-0"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        <div className='button-item'>
-          <button className='mainSearch__submit button -dark-1 py-15 px-35 h-60 col-12 rounded-4 bg-yellow-1 text-dark-1'>
-            <i className='icon-search text-20 mr-10'></i>
-            Search
-          </button>
+
+            {/* Guests Field */}
+            <div className={styles.fieldContainer} ref={guestRef}>
+              <div 
+                className={`${styles.field} ${openGuest ? styles.fieldActive : ''}`}
+                onClick={() => {
+                  setOpenGuest(!openGuest);
+                  setOpenDate(false);
+                }}
+              >
+                <label className={styles.label}>Guests & Rooms</label>
+                <div>
+                  {guests.adults} {guests.adults === 1 ? 'Adult' : 'Adults'}, {guests.children} {guests.children === 1 ? 'Child' : 'Children'}, {guests.rooms} {guests.rooms === 1 ? 'Room' : 'Rooms'}
+                </div>
+              </div>
+              
+              {openGuest && (
+                <div className={styles.dropdown}>
+                  <div style={{ padding: '1rem 1.5rem' }}>
+                    <GuestRow
+                      label="Adults"
+                      value={guests.adults}
+                      onDecrease={() => updateCount('adults', 'down')}
+                      onIncrease={() => updateCount('adults', 'up')}
+                    />
+
+                    <div className={styles.divider}></div>
+
+                    <GuestRow
+                      label="Children"
+                      subtext="Ages 0 - 17"
+                      value={guests.children}
+                      onDecrease={() => updateCount('children', 'down')}
+                      onIncrease={() => updateCount('children', 'up')}
+                    />
+
+                    <div className={styles.divider}></div>
+
+                    <GuestRow
+                      label="Rooms"
+                      value={guests.rooms}
+                      onDecrease={() => updateCount('rooms', 'down')}
+                      onIncrease={() => updateCount('rooms', 'up')}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Search Button */}
+            <div className={styles.buttonContainer}>
+              <button className={styles.searchButton}>
+                <svg className={styles.icon} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+                Find Hotels
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-const GuestRow = ({ label, subtext, value, onIncrease, onDecrease }) => (
-  <div className='row y-gap-10 justify-between items-center'>
-    <div className='col-auto'>
-      <div className='text-15 fw-500'>{label}</div>
-      {subtext && <div className='text-14 text-light-1 mt-5'>{subtext}</div>}
-    </div>
-    <div className='col-auto'>
-      <div className='d-flex items-center'>
-        <button
-          className='button -outline-blue-1 text-blue-1 size-38 rounded-4'
-          onClick={onDecrease}
-        >
-          <i className='icon-minus text-12'></i>
-        </button>
-        <div className='flex-center size-20 ml-15 mr-15'>
-          <div className='text-15'>{value}</div>
-        </div>
-        <button
-          className='button -outline-blue-1 text-blue-1 size-38 rounded-4'
-          onClick={onIncrease}
-        >
-          <i className='icon-plus text-12'></i>
-        </button>
-      </div>
-    </div>
-  </div>
-)
-export default HotelSectionFrom
+export default HotelSection;

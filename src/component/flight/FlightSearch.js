@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../../style/FlightBookingPage.module.css'
+import FlightBookingForm from './FlightBookingForm'
 
 const FlightSearch = () => {
   const [fromAirport, setFromAirport] = useState('Delhi (DEL)')
