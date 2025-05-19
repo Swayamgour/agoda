@@ -10,6 +10,7 @@ import DownloadAppSection from '../DownloadAppSection'
 import JoinSection from '../JoinSection'
 import Footer from '../Footer'
 
+
 function Home () {
   return (
     <>
