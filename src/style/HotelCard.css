@@ -172,8 +172,8 @@
 
 .hotels-list {
     flex: 1;
-    overflow-y: scroll;
-    height: 80vh;
+    /* overflow-y: scroll; */
+    /* height: 80vh; */
 }
 
 .hotel-list-sort-options {

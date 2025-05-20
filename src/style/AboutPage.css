@@ -84,7 +84,7 @@ h3 {
     position: relative;
     /* min-height: 400px; */
     min-height: 400px;
-    min-width: 400px;
+    min-width: 200px;
 }
 
 .image-frame {
@@ -301,11 +301,11 @@ h3 {
 
     .team-card {
         width: 100%;
-        max-width: 350px;
+        max-width: 200px;
     }
 
     .value-card {
         width: 100%;
-        max-width: 350px;
+        max-width: 200px;
     }
 }

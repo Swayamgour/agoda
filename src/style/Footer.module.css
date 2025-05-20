@@ -1,0 +1,372 @@
+.footer {
+  position: relative;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: #ffffff;
+  padding: 5rem 0 2rem;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Floating decorative elements */
+.floatingCircle1,
+.floatingCircle2 {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(76, 201, 240, 0.1);
+  filter: blur(60px);
+  z-index: 1;
+}
+
+.floatingCircle1 {
+  width: 300px;
+  height: 300px;
+  top: -100px;
+  left: -100px;
+  animation: float 15s infinite ease-in-out;
+}
+
+.floatingCircle2 {
+  width: 400px;
+  height: 400px;
+  bottom: -150px;
+  right: -100px;
+  animation: float 20s infinite ease-in-out reverse;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(50px, 50px);
+  }
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* Sections */
+.section {
+  padding: 1.5rem;
+  position: relative;
+}
+
+.contactSection {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contactSection:hover {
+  border-color: rgba(76, 201, 240, 0.5);
+  box-shadow: 0 10px 30px rgba(76, 201, 240, 0.1);
+}
+
+.sectionInner {
+  position: relative;
+  z-index: 2;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #4cc9f0, #3a86ff);
+  border-radius: 3px;
+}
+
+/* Contact items */
+.contactItems {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contactIcon {
+  font-size: 1.25rem;
+  color: #4cc9f0;
+  margin-top: 3px;
+}
+
+.contactLabel {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.25rem;
+}
+
+.contactValue {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* Link lists */
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.link {
+  position: relative;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+  overflow: hidden;
+}
+
+.linkHover {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #4cc9f0, #3a86ff);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.link:hover {
+  color: #ffffff;
+}
+
+.link:hover .linkHover {
+  transform: translateX(0);
+}
+
+/* Newsletter */
+.newsletter {
+  margin-bottom: 2rem;
+}
+
+.newsletterText {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+}
+
+.newsletterForm {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.newsletterInput {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+}
+
+.newsletterInput:focus {
+  outline: none;
+  background: #ffffff;
+}
+
+.newsletterButton {
+  background: linear-gradient(135deg, #4cc9f0, #3a86ff);
+  color: white;
+  border: none;
+  padding: 0 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.newsletterButton:hover {
+  background: linear-gradient(135deg, #3a86ff, #4cc9f0);
+}
+
+.buttonIcon {
+  font-size: 1.25rem;
+}
+
+/* App download */
+.appDownload {
+  margin-top: 1.5rem;
+}
+
+.downloadText {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+}
+
+.appButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.appButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.appButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.appIcon {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.downloadLabel {
+  display: block;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.appStore {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* Bottom section */
+.bottomSection {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .bottomSection {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.socialMedia {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLink {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.socialLink:hover {
+  background: linear-gradient(135deg, #4cc9f0, #3a86ff);
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.utilityLinks {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.languageSelector,
+.currencySelector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.utilityIcon {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+}
+
+.utilitySelect {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.utilitySelect:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.utilitySelect:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.legalLink {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.legalLink:hover {
+  color: #4cc9f0;
+}

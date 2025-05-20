@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CloseIcon from '@mui/icons-material/Close';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import { useNavigate } from 'react-router-dom';
-import { FaHotel, FaCar, FaBusAlt } from 'react-icons/fa';
-import { MdFlight, MdInfo, MdContactPage } from 'react-icons/md';
-import { IoMdTrain } from "react-icons/io";
-import { styled } from '@mui/material/styles';
-import { keyframes } from '@emotion/react';
+import React, { useState } from 'react'
+import Box from '@mui/material/Box'
+import Drawer from '@mui/material/Drawer'
+import CloseIcon from '@mui/icons-material/Close'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import { useNavigate } from 'react-router-dom'
+import { FaHotel, FaCar, FaBusAlt } from 'react-icons/fa'
+import { MdFlight, MdInfo, MdContactPage } from 'react-icons/md'
+import { IoMdTrain } from 'react-icons/io'
+import { styled } from '@mui/material/styles'
+import { keyframes } from '@emotion/react'
+import { MdGavel } from 'react-icons/md'
+import { MdPrivacyTip } from 'react-icons/md'
+
 // import {Verson} from '../../../package.json'
 
 // Animation for menu items
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateX(-10px); }
   to { opacity: 1; transform: translateX(0); }
-`;
+`
 
 // Styled components
 const MenuSection = styled('div')({
@@ -29,7 +32,7 @@ const MenuSection = styled('div')({
   color: '#2c3e50',
   borderBottom: '1px solid #f0f0f0',
   marginBottom: '10px'
-});
+})
 
 const SidebarOption = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -52,12 +55,12 @@ const SidebarOption = styled('div')(({ theme }) => ({
     color: '#3498db',
     fontSize: '18px'
   }
-}));
+}))
 
 const DropdownContainer = styled('div')({
   paddingLeft: '20px',
   animation: `${fadeIn} 0.3s ease-out forwards`
-});
+})
 
 const IconButton = styled('button')({
   // background: 'linear-gradient(135deg, #3498db, #2c3e50)',
@@ -74,7 +77,7 @@ const IconButton = styled('button')({
     transform: 'scale(1.1)',
     boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
   }
-});
+})
 
 const CloseButton = styled(CloseIcon)({
   color: '#7f8c8d',
@@ -84,38 +87,48 @@ const CloseButton = styled(CloseIcon)({
     color: '#e74c3c',
     transform: 'rotate(90deg)'
   }
-});
+})
 
-export default function Sidebar() {
-  const [open, setOpen] = React.useState(false);
-  const [openOrderMenu, setOpenOrderMenu] = useState(false);
-  const navigate = useNavigate();
+export default function Sidebar () {
+  const [open, setOpen] = React.useState(false)
+  const [openOrderMenu, setOpenOrderMenu] = useState(false)
+  const navigate = useNavigate()
 
   const handleToggleOrderMenu = () => {
-    setOpenOrderMenu(!openOrderMenu);
-  };
+    setOpenOrderMenu(!openOrderMenu)
+  }
 
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
+  const toggleDrawer = newOpen => () => {
+    setOpen(newOpen)
+  }
 
-  const handleNavigation = (path) => {
-    navigate(path);
-    setOpen(false);
-  };
+  const handleNavigation = path => {
+    navigate(path)
+    setOpen(false)
+  }
 
   const DrawerList = (
-    <Box sx={{ width: 280 }} role="presentation">
-      <div style={{ padding: '10px', height: '100vh', background: 'linear-gradient(to bottom, #ffffff, #f8f9fa)' }}>
+    <Box sx={{ width: 280 }} role='presentation'>
+      <div
+        style={{
+          padding: '10px',
+          height: '100vh',
+          background: 'linear-gradient(to bottom, #ffffff, #f8f9fa)'
+        }}
+      >
         <MenuSection onClick={toggleDrawer(false)}>
           <div>Travel Menu</div>
-          <CloseButton fontSize="medium" />
+          <CloseButton fontSize='medium' />
         </MenuSection>
-        
+
         <div>
-          <SidebarOption onClick={handleToggleOrderMenu} className="jcsb">
+          <SidebarOption onClick={handleToggleOrderMenu} className='jcsb'>
             <span>My Orders</span>
-            {openOrderMenu ? <ExpandLess sx={{ color: '#7f8c8d' }} /> : <ExpandMore sx={{ color: '#7f8c8d' }} />}
+            {openOrderMenu ? (
+              <ExpandLess sx={{ color: '#7f8c8d' }} />
+            ) : (
+              <ExpandMore sx={{ color: '#7f8c8d' }} />
+            )}
           </SidebarOption>
 
           {/* Dropdown items */}
@@ -124,13 +137,17 @@ export default function Sidebar() {
               <SidebarOption onClick={() => handleNavigation('/MyOrderHotel')}>
                 <FaHotel /> Hotel Bookings
               </SidebarOption>
-              <SidebarOption onClick={() => handleNavigation('/FlightMyBooking')}>
+              <SidebarOption
+                onClick={() => handleNavigation('/FlightMyBooking')}
+              >
                 <MdFlight /> Flight Bookings
               </SidebarOption>
               <SidebarOption onClick={() => handleNavigation('/CarOrderPage')}>
                 <FaCar /> Car Rentals
               </SidebarOption>
-              <SidebarOption onClick={() => handleNavigation('/TrainOrderPage')}>
+              <SidebarOption
+                onClick={() => handleNavigation('/TrainOrderPage')}
+              >
                 <IoMdTrain /> Train Tickets
               </SidebarOption>
               <SidebarOption onClick={() => handleNavigation('/BusMyBookings')}>
@@ -145,21 +162,24 @@ export default function Sidebar() {
           <SidebarOption onClick={() => handleNavigation('/contact')}>
             <MdContactPage /> Contact Us
           </SidebarOption>
+          <SidebarOption onClick={() => handleNavigation('/TermsAndConditions')}>
+            <MdGavel /> Terms & Conditions
+          </SidebarOption>
+          <SidebarOption onClick={() => handleNavigation('/PrivacyPolicy')}>
+            <MdPrivacyTip /> Privacy Policy
+          </SidebarOption>
         </div>
       </div>
     </Box>
-  );
+  )
 
   return (
     <div>
-      <IconButton
-        onClick={toggleDrawer(true)}
-        aria-label="Open menu"
-      >
+      <IconButton onClick={toggleDrawer(true)} aria-label='Open menu'>
         <span style={{ color: 'white', fontSize: '20px' }}>☰</span>
       </IconButton>
-      <Drawer 
-        open={open} 
+      <Drawer
+        open={open}
         onClose={toggleDrawer(false)}
         PaperProps={{
           sx: {
@@ -170,5 +190,5 @@ export default function Sidebar() {
         {DrawerList}
       </Drawer>
     </div>
-  );
+  )
 }

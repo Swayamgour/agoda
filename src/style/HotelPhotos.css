@@ -413,6 +413,41 @@
   cursor: pointer;
 }
 
+.custom-grid-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 -10px;
+}
+
+.custom-grid-item {
+  width: 50%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.custom-image-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.custom-title-text {
+  font-size: 12px;
+  text-align: center;
+  color: #333;
+}
+
+@media (min-width: 640px) {
+  .custom-grid-item {
+    width: 25%;
+  }
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .date-selection {

@@ -28,6 +28,8 @@ import CarOrderPage from './component/car/CarOrderPage'
 import TrainOrderPage from './component/Train/TrainOrderPage'
 import BusMyBookings from './component/BusBooking/BusMyBookings'
 import FlightMyBooking from './component/flight/FlightMyBooking'
+import TermsAndConditions from './component/pages/TermsAndConditions'
+import PrivacyPolicy from './component/pages/PrivacyPolicy'
 // import FlightBookingPage from './component/pages/FlightBookingPage'
 
 function App () {
@@ -63,6 +65,8 @@ function App () {
           <Route path='/TrainOrderPage' element={<TrainOrderPage />} />
           <Route path='/BusMyBookings' element={<BusMyBookings />} />
           <Route path='/FlightMyBooking' element={<FlightMyBooking />} />
+          <Route path='/TermsAndConditions' element={<TermsAndConditions />} />
+          <Route path='/PrivacyPolicy' element={<PrivacyPolicy />} />
         </Routes>
       </Layout>
     </>

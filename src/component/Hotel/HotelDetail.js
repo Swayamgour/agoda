@@ -146,24 +146,17 @@ const HotelPage = () => {
 
           <div className='hotel-header-box'>
             <h2 className='hotel-header'>Highlights</h2>
-            <div style={{ alignItems: 'center' }} className='form-radio'>
-              {cleanList?.map(e => (
-                <div
-                  style={{
-                    width: '25%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                  }}
-                >
-                  <div>
-                    <PublicImage src={e?.image} />
-                  </div>
-                  <div style={{ fontSize: '12px' }}>{e?.title}</div>
-                </div>
-              ))}
-            </div>
+           <div className="custom-grid-wrapper">
+  {cleanList?.map((e, i) => (
+    <div key={i} className="custom-grid-item">
+      <div className="custom-image-box">
+        <PublicImage src={e?.image} />
+      </div>
+      <div className="custom-title-text">{e?.title}</div>
+    </div>
+  ))}
+</div>
+
           </div>
 
           <div className='hotel-header-box'>

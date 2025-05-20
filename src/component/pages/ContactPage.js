@@ -16,7 +16,10 @@ const ContactContainer = styled('div')({
   margin: '70px auto 0',
   padding: '40px 20px',
   fontFamily: "'Poppins', sans-serif",
-  animation: `${fadeIn} 0.5s ease-out`
+  animation: `${fadeIn} 0.5s ease-out`,
+  '@media (max-width: 768px)': {
+    padding: '5px'
+  }
 })
 
 const ContactHeader = styled('div')({
