@@ -1,0 +1,168 @@
+.dialogContainer {
+    position: absolute;
+    background-color: white;
+    border-radius: 12px;
+    width: 400px;
+    max-height: 60vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    animation: CurrencyDialog_fadeIn__81jOy 0.3s ease;
+    border: 1px solid #e0e0e0;
+    right: 4%;
+    top: 108%;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dialogHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dialogHeader h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeButton:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.priceInfo {
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.priceRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.priceRow:last-child {
+    margin-bottom: 0;
+}
+
+.priceValue {
+    font-weight: 500;
+}
+
+.currencySections {
+    padding: 0 20px 20px;
+}
+
+.currencySection {
+    margin-top: 20px;
+}
+
+.currencySection h4 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+}
+
+.currencyGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.currencyList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.currencyItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.currencyItem:hover {
+    background-color: #f0f0f0;
+}
+
+.currencyItem.selected {
+    background-color: #e6f2ff;
+    color: #0066cc;
+}
+
+.searchContainer {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px 16px 10px 36px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+@media (max-width: 480px) {
+    .dialogContainer {
+        width: 95vw;
+        left: 2.5vw !important;
+        right: 2.5vw !important;
+    }
+
+    .currencyGrid {
+        grid-template-columns: 1fr;
+    }
+}

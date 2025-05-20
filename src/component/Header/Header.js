@@ -24,6 +24,7 @@ import {
 import SideBar from '../../component/SideBar/Sidebar'
 import Login from '../Login'
 import PublicImage from '../../utils/PublicImage'
+import CurrencyDialog from '../CurrencyDialog'
 
 // Styled Components
 const HeaderContainer = styled('header')({
@@ -129,7 +130,7 @@ const ControlButton = styled('button')({
     background: 'rgba(255, 255, 255, 0.1)'
   },
   '@media (max-width: 768px)': {
-    display: 'none'
+    // display: 'none'
   }
 })
 
@@ -179,7 +180,12 @@ const Header = () => {
   const [openLogin, setOpenLogin] = useState(false)
   const [openUserMenu, setOpenUserMenu] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
+  const [openUsd, setOpenUsd] = useState(null)
+  const [openUsdMenu, setOpenUsdMenu] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
+
+  const [showDialog, setShowDialog] = useState(false)
+  const [selectedCurrency, setSelectedCurrency] = useState('Rs. Indian Rupee')
 
   const user = {
     name: 'John Doe',
@@ -195,6 +201,10 @@ const Header = () => {
   const handleUserMenuClose = () => {
     setAnchorEl(null)
     setOpenUserMenu(false)
+  }
+  const handleUserUsdClose = () => {
+    setOpenUsd(null)
+    setOpenUsdMenu(false)
   }
 
   const handleSearch = e => {
@@ -228,16 +238,17 @@ const Header = () => {
         </SearchContainer>
 
         <NavControls>
-          {/* <ControlButton>
-            <LanguageIcon sx={{ fontSize: 20, mr: 1 }} />
-            <span>EN</span>
-            <ChevronRightIcon sx={{ fontSize: 16, ml: 0.5 }} />
-          </ControlButton> */}
-
-          <ControlButton>
+          <ControlButton onClick={() => setShowDialog(true)}>
             <span>USD</span>
             <ChevronRightIcon sx={{ fontSize: 16, ml: 0.5 }} />
           </ControlButton>
+
+          {showDialog && (
+            <CurrencyDialog
+              onClose={() => setShowDialog(false)}
+              onCurrencySelect={currency => setSelectedCurrency(currency)}
+            />
+          )}
 
           <IconButton sx={{ color: 'white' }}>
             <Badge badgeContent={1} color='error'>
@@ -277,34 +288,14 @@ const Header = () => {
             anchorEl={anchorEl}
             open={openUserMenu}
             onClose={handleUserMenuClose}
-            PaperProps={{
-              elevation: 0,
-              sx: {
-                overflow: 'visible',
-                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                mt: 1.5,
-                '& .MuiAvatar-root': {
-                  width: 32,
-                  height: 32,
-                  ml: -0.5,
-                  mr: 1
-                },
-                '&:before': {
-                  content: '""',
-                  display: 'block',
-                  position: 'absolute',
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: 'background.paper',
-                  transform: 'translateY(-50%) rotate(45deg)',
-                  zIndex: 0
-                }
-              }
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center'
             }}
-            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center'
+            }}
           >
             <MenuItem
               onClick={() => {
