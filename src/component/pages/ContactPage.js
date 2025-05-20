@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { styled } from '@mui/material/styles';
-import { keyframes } from '@emotion/react';
-import '../../style/ContactPage.css';
+import React, { useState } from 'react'
+import { styled } from '@mui/material/styles'
+import { keyframes } from '@emotion/react'
+import '../../style/ContactPage.css'
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from 'react-icons/fa';
 
 // Animation for form elements
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
-`;
+`
 
 // Styled components
 const ContactContainer = styled('div')({
@@ -16,7 +17,7 @@ const ContactContainer = styled('div')({
   padding: '40px 20px',
   fontFamily: "'Poppins', sans-serif",
   animation: `${fadeIn} 0.5s ease-out`
-});
+})
 
 const ContactHeader = styled('div')({
   textAlign: 'center',
@@ -37,7 +38,7 @@ const ContactHeader = styled('div')({
     margin: '0 auto',
     lineHeight: '1.6'
   }
-});
+})
 
 const FormSection = styled('div')({
   flex: 1,
@@ -55,7 +56,7 @@ const FormSection = styled('div')({
     marginBottom: '25px',
     fontWeight: '600'
   }
-});
+})
 
 const FormGroup = styled('div')({
   marginBottom: '25px',
@@ -84,7 +85,7 @@ const FormGroup = styled('div')({
     resize: 'vertical',
     minHeight: '120px'
   }
-});
+})
 
 const SubmitButton = styled('button')({
   background: 'linear-gradient(135deg, #3498db, #2c3e50)',
@@ -101,14 +102,14 @@ const SubmitButton = styled('button')({
     transform: 'translateY(-2px)',
     boxShadow: '0 5px 15px rgba(52, 152, 219, 0.4)'
   }
-});
+})
 
 const InfoSection = styled('div')({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
   gap: '30px'
-});
+})
 
 const InfoCard = styled('div')({
   background: '#fff',
@@ -125,7 +126,7 @@ const InfoCard = styled('div')({
     marginBottom: '25px',
     fontWeight: '600'
   }
-});
+})
 
 const InfoItem = styled('div')({
   display: 'flex',
@@ -155,7 +156,7 @@ const InfoItem = styled('div')({
     margin: '5px 0',
     lineHeight: '1.6'
   }
-});
+})
 
 const MapContainer = styled('div')({
   background: '#fff',
@@ -167,7 +168,7 @@ const MapContainer = styled('div')({
     border: 'none',
     borderRadius: '8px'
   }
-});
+})
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -176,37 +177,43 @@ const ContactPage = () => {
     phone: '',
     subject: '',
     message: ''
-  });
+  })
 
   const handleChange = e => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData(prev => ({
       ...prev,
       [name]: value
-    }));
-  };
+    }))
+  }
 
   const handleSubmit = e => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
+    e.preventDefault()
+    console.log('Form submitted:', formData)
+    alert('Thank you for your message! We will get back to you soon.')
     setFormData({
       name: '',
       email: '',
       phone: '',
       subject: '',
       message: ''
-    });
-  };
+    })
+  }
 
   return (
     <ContactContainer className='contact-page'>
       <ContactHeader className='contact-header'>
         <h1>Get In Touch</h1>
-        <p>Have questions or need assistance? Our team is ready to help you with any inquiries about our travel services.</p>
+        <p>
+          Have questions or need assistance? Our team is ready to help you with
+          any inquiries about our travel services.
+        </p>
       </ContactHeader>
 
-      <div className='contact-container' style={{ display: 'flex', gap: '40px' }}>
+      <div
+        className='contact-container'
+        style={{ display: 'flex', gap: '40px' }}
+      >
         <FormSection className='contact-form-section'>
           <h2>Send us a message</h2>
           <form onSubmit={handleSubmit} className='contact-form'>
@@ -291,7 +298,7 @@ const ContactPage = () => {
 
             <InfoItem className='info-item'>
               <div className='info-icon'>
-                <i className='fas fa-map-marker-alt'></i>
+                <FaMapMarkerAlt />
               </div>
               <div className='info-content'>
                 <h3>Address</h3>
@@ -302,7 +309,7 @@ const ContactPage = () => {
 
             <InfoItem className='info-item'>
               <div className='info-icon'>
-                <i className='fas fa-phone-alt'></i>
+                <FaPhoneAlt />
               </div>
               <div className='info-content'>
                 <h3>Phone</h3>
@@ -313,7 +320,7 @@ const ContactPage = () => {
 
             <InfoItem className='info-item'>
               <div className='info-icon'>
-                <i className='fas fa-envelope'></i>
+                <FaEnvelope />
               </div>
               <div className='info-content'>
                 <h3>Email</h3>
@@ -324,7 +331,7 @@ const ContactPage = () => {
 
             <InfoItem className='info-item'>
               <div className='info-icon'>
-                <i className='fas fa-clock'></i>
+                <FaClock />
               </div>
               <div className='info-content'>
                 <h3>Working Hours</h3>
@@ -347,7 +354,7 @@ const ContactPage = () => {
         </InfoSection>
       </div>
     </ContactContainer>
-  );
-};
+  )
+}
 
-export default ContactPage;
+export default ContactPage

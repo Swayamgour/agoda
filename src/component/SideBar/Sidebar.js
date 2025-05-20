@@ -121,19 +121,19 @@ export default function Sidebar() {
           {/* Dropdown items */}
           {openOrderMenu && (
             <DropdownContainer>
-              <SidebarOption onClick={() => handleNavigation('/hotels')}>
+              <SidebarOption onClick={() => handleNavigation('/MyOrderHotel')}>
                 <FaHotel /> Hotel Bookings
               </SidebarOption>
-              <SidebarOption onClick={() => handleNavigation('/flights')}>
+              <SidebarOption onClick={() => handleNavigation('/FlightMyBooking')}>
                 <MdFlight /> Flight Bookings
               </SidebarOption>
-              <SidebarOption onClick={() => handleNavigation('/cars')}>
+              <SidebarOption onClick={() => handleNavigation('/CarOrderPage')}>
                 <FaCar /> Car Rentals
               </SidebarOption>
-              <SidebarOption onClick={() => handleNavigation('/trains')}>
+              <SidebarOption onClick={() => handleNavigation('/TrainOrderPage')}>
                 <IoMdTrain /> Train Tickets
               </SidebarOption>
-              <SidebarOption onClick={() => handleNavigation('/buses')}>
+              <SidebarOption onClick={() => handleNavigation('/BusMyBookings')}>
                 <FaBusAlt /> Bus Tickets
               </SidebarOption>
             </DropdownContainer>

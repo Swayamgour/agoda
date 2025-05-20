@@ -23,6 +23,11 @@ import PassengerDetails from './component/Train/PassengerDetails'
 import BusBooking from './component/BusBooking/BusBooking'
 import BusBookingDetail from './component/BusBooking/BusBookingDetail'
 import ScrollToTop from './component/ScrollToTop'
+import MyOrderHotel from './component/Hotel/MyOrderHotel'
+import CarOrderPage from './component/car/CarOrderPage'
+import TrainOrderPage from './component/Train/TrainOrderPage'
+import BusMyBookings from './component/BusBooking/BusMyBookings'
+import FlightMyBooking from './component/flight/FlightMyBooking'
 // import FlightBookingPage from './component/pages/FlightBookingPage'
 
 function App () {
@@ -53,6 +58,11 @@ function App () {
           <Route path='/PassengerDetails' element={<PassengerDetails />} />
           <Route path='/BusBooking' element={<BusBooking />} />
           <Route path='/BusBookingDetail' element={<BusBookingDetail />} />
+          <Route path='/MyOrderHotel' element={<MyOrderHotel />} />
+          <Route path='/CarOrderPage' element={<CarOrderPage />} />
+          <Route path='/TrainOrderPage' element={<TrainOrderPage />} />
+          <Route path='/BusMyBookings' element={<BusMyBookings />} />
+          <Route path='/FlightMyBooking' element={<FlightMyBooking />} />
         </Routes>
       </Layout>
     </>

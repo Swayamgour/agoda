@@ -1,0 +1,38 @@
+.myBookingsContainer {
+    max-width: 1200px;
+    margin: 70px auto auto auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 28px;
+}
+
+.header p {
+    color: #7f8c8d;
+    margin: 0;
+}
+
+.bookingsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .myBookingsContainer {
+        padding: 15px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+}

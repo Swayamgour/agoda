@@ -210,7 +210,7 @@ const Header = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <SideBar />
           <LogoContainer onClick={() => navigate('/Agota')}>
-            <PublicImage src='/img/general/logo-light-2.svg' alt='Logo' />
+            <PublicImage src='/images/logo_of_tajde.png' alt='Logo' />
           </LogoContainer>
         </div>
 
@@ -228,11 +228,11 @@ const Header = () => {
         </SearchContainer>
 
         <NavControls>
-          <ControlButton>
+          {/* <ControlButton>
             <LanguageIcon sx={{ fontSize: 20, mr: 1 }} />
             <span>EN</span>
             <ChevronRightIcon sx={{ fontSize: 16, ml: 0.5 }} />
-          </ControlButton>
+          </ControlButton> */}
 
           <ControlButton>
             <span>USD</span>

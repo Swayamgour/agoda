@@ -5,7 +5,7 @@ const PublicImage = ({ src, alt, ...rest }) => {
 
   const finalSrc = isExternal ? src : `${process.env.PUBLIC_URL}${src}`
 
-//   console.log('Image src:', finalSrc)
+  // console.log('Image src:', finalSrc)
 
   return <img src={finalSrc} alt={alt} {...rest} />
 }
