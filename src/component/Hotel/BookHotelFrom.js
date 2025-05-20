@@ -8,6 +8,7 @@ import { styled } from '@mui/material/styles'
 import { keyframes } from '@emotion/react'
 import { useNavigate } from 'react-router-dom'
 
+
 // Animations
 const fadeIn = keyframes`
   from { opacity: 0; transform: translateY(10px); }

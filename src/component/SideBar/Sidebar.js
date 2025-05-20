@@ -10,6 +10,7 @@ import { MdFlight, MdInfo, MdContactPage } from 'react-icons/md';
 import { IoMdTrain } from "react-icons/io";
 import { styled } from '@mui/material/styles';
 import { keyframes } from '@emotion/react';
+// import {Verson} from '../../../package.json'
 
 // Animation for menu items
 const fadeIn = keyframes`
