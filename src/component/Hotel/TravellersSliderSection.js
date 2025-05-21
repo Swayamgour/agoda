@@ -5,8 +5,9 @@ import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import { Pagination, Navigation } from 'swiper/modules'
 import { useNavigate } from 'react-router-dom'
-import ScrollFadeIn from './scrollview/ScrollFadeIn'
-import PublicImage from '../utils/PublicImage'
+// import ScrollFadeIn from '../../scrollview/ScrollFadeIn'
+import PublicImage from '../../utils/PublicImage'
+import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 
 const destinations = [
   {

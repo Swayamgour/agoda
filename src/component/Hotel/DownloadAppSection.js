@@ -1,6 +1,6 @@
 import React from 'react'
-import ScrollFadeIn from './scrollview/ScrollFadeIn'
-import PublicImage from '../utils/PublicImage'
+import ScrollFadeIn from '../scrollview/ScrollFadeIn'
+import PublicImage from '../../utils/PublicImage'
 
 const DownloadAppSection = () => {
   return (

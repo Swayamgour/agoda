@@ -20,7 +20,7 @@ import {
   FaRegHeart,
   FaHeart
 } from 'react-icons/fa'
-import styles from '../../style/UserProfile.module.css'
+import styles from './UserProfile.module.css';
 
 const WishlistTab = () => {
   const [activeFilter, setActiveFilter] = useState('all')

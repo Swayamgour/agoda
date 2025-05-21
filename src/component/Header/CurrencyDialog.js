@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react'
-import styles from '../style/CurrencyDialog.module.css'
+import styles from '../../style/CurrencyDialog.module.css'
 import { FiCheck, FiX, FiSearch } from 'react-icons/fi'
 
 // import React, { useState, useRef, useEffect } from 'react'
@@ -11,9 +11,8 @@ const RelativePositionDialog = ({ onClose, onCurrencySelect, triggerRef }) => {
   const [selectedCurrency, setSelectedCurrency] = useState('Rs. Indian Rupee')
   const dialogRef = useRef(null)
 
-  // Position the dialog relative to the trigger element
   useEffect(() => {
-    if (!triggerRef || !triggerRef.current || !dialogRef.current) return
+    if (!triggerRef?.current || !dialogRef?.current) return
 
     const triggerRect = triggerRef.current.getBoundingClientRect()
     const dialogRect = dialogRef.current.getBoundingClientRect()
@@ -22,7 +21,25 @@ const RelativePositionDialog = ({ onClose, onCurrencySelect, triggerRef }) => {
     dialogRef.current.style.left = `${
       triggerRect.left + (triggerRect.width - dialogRect.width) / 2
     }px`
-  }, []) // Run once on mount
+
+    // 👇 Outside click handler
+    const handleOutsideClick = e => {
+      if (
+        dialogRef.current &&
+        !dialogRef.current.contains(e.target) &&
+        triggerRef.current &&
+        !triggerRef.current.contains(e.target)
+      ) {
+        onClose()
+      }
+    }
+
+    document.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [])
 
   const currencies = [
     { code: 'Rs.', name: 'Indian Rupee', popular: true, suggested: true },

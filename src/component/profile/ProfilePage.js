@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from '../../style/UserProfile.module.css'
+import styles from './UserProfile.module.css'
 import {
   FaBell,
   FaChevronDown,
@@ -27,8 +27,9 @@ import {
 import WishlistTab from './WishlistTab'
 import BookingHistoryTab from './BookingHistoryTab'
 import PaymentMethodsTab from './PaymentMethodsTab'
+import SettingsTab from './SettingsTab'
 
-const UserProfile = () => {
+const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState('dashboard')
   const [notificationsOpen, setNotificationsOpen] = useState(false)
 
@@ -119,6 +120,9 @@ const UserProfile = () => {
         return <WishlistTab />
       case 'payments':
         return <PaymentMethodsTab />
+      case 'settings':
+        return <SettingsTab />
+
       // Add other tabs as needed
       default:
         return (
@@ -409,4 +413,4 @@ const TravelPreferences = ({ preferences }) => (
   </div>
 )
 
-export default UserProfile
+export default ProfilePage

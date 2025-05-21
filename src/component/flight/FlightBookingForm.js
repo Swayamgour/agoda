@@ -15,6 +15,7 @@ import { styled, keyframes, width, fontSize } from '@mui/system'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { enUS } from 'date-fns/locale'
+import PassengerDropdownForm from '../smallBox/PassengerDropdownForm'
 
 // Animations
 const fadeIn = keyframes`
@@ -241,156 +242,6 @@ const PassengerDisplay = styled('div')({
   }
 })
 
-const PassengerDropdown = styled('div')({
-  position: 'absolute',
-  top: '100%',
-  left: '0',
-  zIndex: '1000',
-  width: '300px',
-  marginTop: '8px',
-  background: 'white',
-  borderRadius: '12px',
-  boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)',
-  padding: '20px',
-  animation: `${fadeIn} 0.3s ease-out`,
-  border: '1px solid #e2e8f0'
-})
-
-const PassengerRow = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  marginBottom: '20px',
-  '&:last-child': {
-    marginBottom: '0'
-  }
-})
-
-const PassengerLabel = styled('div')({
-  '& h4': {
-    fontSize: '15px',
-    fontWeight: '500',
-    marginBottom: '4px',
-    color: '#1e293b'
-  },
-  '& p': {
-    fontSize: '13px',
-    color: '#64748b'
-  }
-})
-
-const PassengerControls = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '15px'
-})
-
-const CountButton = styled('button')({
-  width: '34px',
-  height: '34px',
-  borderRadius: '50%',
-  border: '1px solid #3b82f6',
-  background: 'transparent',
-  color: '#3b82f6',
-  fontSize: '16px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  cursor: 'pointer',
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    background: '#3b82f6',
-    color: 'white'
-  },
-  '&:disabled': {
-    opacity: '0.5',
-    cursor: 'not-allowed',
-    borderColor: '#cbd5e1',
-    color: '#cbd5e1',
-    '&:hover': {
-      background: 'transparent',
-      color: '#cbd5e1'
-    }
-  }
-})
-
-const PassengerCount = styled('div')({
-  minWidth: '24px',
-  textAlign: 'center',
-  fontSize: '16px',
-  fontWeight: '500',
-  color: '#1e293b'
-})
-
-const Divider = styled('div')({
-  height: '1px',
-  background: '#e2e8f0',
-  margin: '15px 0'
-})
-
-const BundleOption = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  padding: '16px',
-  background: 'rgba(239, 246, 255, 0.7)',
-  borderRadius: '10px',
-  border: '1px solid #dbeafe'
-})
-
-const BundleCheckbox = styled('label')({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '12px',
-  cursor: 'pointer',
-  '& input': {
-    position: 'absolute',
-    opacity: '0'
-  }
-})
-
-const Checkmark = styled('span')({
-  width: '20px',
-  height: '20px',
-  border: '1px solid #3b82f6',
-  borderRadius: '4px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  transition: 'all 0.2s ease',
-  '&:after': {
-    content: '""',
-    display: 'none',
-    width: '12px',
-    height: '12px',
-    background: '#3b82f6',
-    borderRadius: '2px'
-  },
-  'input:checked + &': {
-    background: '#3b82f6',
-    '&:after': {
-      display: 'block'
-    }
-  }
-})
-
-const BundleText = styled('span')({
-  fontSize: '15px',
-  fontWeight: '500',
-  color: '#1e293b',
-  '& strong': {
-    color: '#3b82f6'
-  }
-})
-
-const BundleBadge = styled('span')({
-  background: '#3b82f6',
-  color: 'white',
-  padding: '6px 12px',
-  borderRadius: '20px',
-  fontSize: '13px',
-  fontWeight: '600'
-})
 const InsideFrom = styled('div')({
   display: 'flex',
   // flexDirection:'column',
@@ -420,7 +271,7 @@ const SearchButton = styled('button')({
   bottom: '-25px',
   left: '50%',
   transform: 'translateX(-50%)', // ✅ Needed to center horizontally
-  background: 'linear-gradient(135deg, #3498db, #2c3e50)',
+  background: 'linear-gradient(135deg, #3498db, #2c3e50)'
   // transition: 'all 0.3s ease',
   // '&:hover': {
   //   // transform: 'translateY(-2px)',
@@ -632,136 +483,10 @@ const FlightBookingForm = () => {
                       totalPassengers === 1 ? 'Passenger' : 'Passengers'
                     }, ${cabinClass}`}
                   </PassengerDisplay>
-                  {openPassengerPicker && (
-                    <PassengerDropdown>
-                      <PassengerRow>
-                        <PassengerLabel>
-                          <h4>Adults</h4>
-                          <p>12+ years</p>
-                        </PassengerLabel>
-                        <PassengerControls>
-                          <CountButton
-                            onClick={() =>
-                              updatePassengerCount('adults', 'decrease')
-                            }
-                            disabled={passengers.adults <= 1}
-                          >
-                            -
-                          </CountButton>
-                          <PassengerCount>{passengers.adults}</PassengerCount>
-                          <CountButton
-                            onClick={() =>
-                              updatePassengerCount('adults', 'increase')
-                            }
-                          >
-                            +
-                          </CountButton>
-                        </PassengerControls>
-                      </PassengerRow>
-
-                      <Divider />
-
-                      <PassengerRow>
-                        <PassengerLabel>
-                          <h4>Children</h4>
-                          <p>2-11 years</p>
-                        </PassengerLabel>
-                        <PassengerControls>
-                          <CountButton
-                            onClick={() =>
-                              updatePassengerCount('children', 'decrease')
-                            }
-                            disabled={passengers.children <= 0}
-                          >
-                            -
-                          </CountButton>
-                          <PassengerCount>{passengers.children}</PassengerCount>
-                          <CountButton
-                            onClick={() =>
-                              updatePassengerCount('children', 'increase')
-                            }
-                          >
-                            +
-                          </CountButton>
-                        </PassengerControls>
-                      </PassengerRow>
-
-                      <Divider />
-
-                      <PassengerRow>
-                        <PassengerLabel>
-                          <h4>Infants</h4>
-                          <p>Under 2 years</p>
-                        </PassengerLabel>
-                        <PassengerControls>
-                          <CountButton
-                            onClick={() =>
-                              updatePassengerCount('infants', 'decrease')
-                            }
-                            disabled={passengers.infants <= 0}
-                          >
-                            -
-                          </CountButton>
-                          <PassengerCount>{passengers.infants}</PassengerCount>
-                          <CountButton
-                            onClick={() =>
-                              updatePassengerCount('infants', 'increase')
-                            }
-                            disabled={passengers.infants >= passengers.adults}
-                          >
-                            +
-                          </CountButton>
-                        </PassengerControls>
-                      </PassengerRow>
-
-                      <Divider />
-
-                      <PassengerRow>
-                        <PassengerLabel>
-                          <h4>Cabin Class</h4>
-                        </PassengerLabel>
-                        <PassengerControls>
-                          <select
-                            value={cabinClass}
-                            onChange={e => setCabinClass(e.target.value)}
-                            style={{
-                              padding: '8px 12px',
-                              borderRadius: '6px',
-                              border: '1px solid #e2e8f0',
-                              background: 'white',
-                              fontSize: '14px',
-                              color: '#1e293b'
-                            }}
-                          >
-                            <option value='Economy'>Economy</option>
-                            <option value='Premium Economy'>
-                              Premium Economy
-                            </option>
-                            <option value='Business'>Business</option>
-                            <option value='First Class'>First Class</option>
-                          </select>
-                        </PassengerControls>
-                      </PassengerRow>
-                    </PassengerDropdown>
-                  )}
+                  {openPassengerPicker && <PassengerDropdownForm />}
                 </PassengerSelector>
               </InputGroup>
             </InputRow>
-
-            {/* <BundleOption>
-              <BundleCheckbox>
-                <input
-                  type='checkbox'
-                  checked={includeHotel}
-                  onChange={e => setIncludeHotel(e.target.checked)}
-                />
-                <Checkmark />
-                <BundleText>
-                  <strong>Add hotel</strong> and save up to 30%
-                </BundleText>
-              </BundleCheckbox> */}
-            {/* <BundleBadge>Bundle Deal</BundleBadge> */}
-            {/* </BundleOption> */}
           </InsideFrom>
 
           <SearchButton type='submit'>

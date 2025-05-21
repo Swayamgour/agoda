@@ -1,20 +1,33 @@
 // BookingsTab.jsx
-import React, { useState } from 'react';
-import { 
-  FiSearch, FiCalendar, FiClock, FiMapPin, 
-  FiUser, FiDollarSign, FiDownload, FiPrinter,
-  FiShare2, FiChevronDown, FiChevronUp
-} from 'react-icons/fi';
-import { 
-  FaPlane, FaTrain, FaBus, FaCar, FaHotel,
-  FaStar, FaRegStar
-} from 'react-icons/fa';
-import styles from '../../style/UserProfile.module.css';
+import React, { useState } from 'react'
+import {
+  FiSearch,
+  FiCalendar,
+  FiClock,
+  FiMapPin,
+  FiUser,
+  FiDollarSign,
+  FiDownload,
+  FiPrinter,
+  FiShare2,
+  FiChevronDown,
+  FiChevronUp
+} from 'react-icons/fi'
+import {
+  FaPlane,
+  FaTrain,
+  FaBus,
+  FaCar,
+  FaHotel,
+  FaStar,
+  FaRegStar
+} from 'react-icons/fa'
+import styles from './UserProfile.module.css'
 
 const BookingHistoryTab = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [expandedBooking, setExpandedBooking] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('all')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [expandedBooking, setExpandedBooking] = useState(null)
 
   // Sample bookings data
   const bookings = [
@@ -91,15 +104,15 @@ const BookingHistoryTab = () => {
         mileage: '10Km/day limit'
       }
     }
-  ];
+  ]
 
   const filteredBookings = bookings.filter(booking => {
     // Filter by status
-    if (activeFilter !== 'all' && booking.status !== activeFilter) return false;
-    
+    if (activeFilter !== 'all' && booking.status !== activeFilter) return false
+
     // Filter by search query
     if (searchQuery) {
-      const searchLower = searchQuery.toLowerCase();
+      const searchLower = searchQuery.toLowerCase()
       const bookingText = [
         booking.id,
         booking.type,
@@ -110,58 +123,58 @@ const BookingHistoryTab = () => {
         booking.airline || '',
         booking.trainName || '',
         booking.model || ''
-      ].join(' ').toLowerCase();
-      
-      return bookingText.includes(searchLower);
+      ]
+        .join(' ')
+        .toLowerCase()
+
+      return bookingText.includes(searchLower)
     }
-    
-    return true;
-  });
 
-  const toggleBookingExpansion = (id) => {
-    setExpandedBooking(expandedBooking === id ? null : id);
-  };
+    return true
+  })
 
-  const formatDate = (dateString) => {
-    const options = { 
-      weekday: 'short', 
-      year: 'numeric', 
-      month: 'short', 
+  const toggleBookingExpansion = id => {
+    setExpandedBooking(expandedBooking === id ? null : id)
+  }
+
+  const formatDate = dateString => {
+    const options = {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
       day: 'numeric',
       hour: '2-digit',
       minute: '2-digit'
-    };
-    return new Date(dateString).toLocaleDateString('en-US', options);
-  };
-
-  const getStatusBadge = (status) => {
-    switch(status) {
-      case 'upcoming':
-        return { text: 'Upcoming', class: styles.upcoming };
-      case 'completed':
-        return { text: 'Completed', class: styles.completed };
-      case 'cancelled':
-        return { text: 'Cancelled', class: styles.cancelled };
-      default:
-        return { text: 'Confirmed', class: styles.confirmed };
     }
-  };
+    return new Date(dateString).toLocaleDateString('en-US', options)
+  }
+
+  const getStatusBadge = status => {
+    switch (status) {
+      case 'upcoming':
+        return { text: 'Upcoming', class: styles.upcoming }
+      case 'completed':
+        return { text: 'Completed', class: styles.completed }
+      case 'cancelled':
+        return { text: 'Cancelled', class: styles.cancelled }
+      default:
+        return { text: 'Confirmed', class: styles.confirmed }
+    }
+  }
 
   return (
     <div className={styles.bookingsTab}>
       {/* Bookings Header */}
       <div className={styles.bookingsHeader}>
-        <h2>
-          My Bookings
-        </h2>
+        <h2>My Bookings</h2>
         <div className={styles.bookingsControls}>
           <div className={styles.searchBox}>
             <FiSearch className={styles.searchIcon} />
             <input
-              type="text"
-              placeholder="Search bookings..."
+              type='text'
+              placeholder='Search bookings...'
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
             />
           </div>
           <div className={styles.filterButtons}>
@@ -197,19 +210,32 @@ const BookingHistoryTab = () => {
       {filteredBookings.length > 0 ? (
         <div className={styles.bookingsList}>
           {filteredBookings.map(booking => (
-            <div key={booking.id} className={`${styles.bookingItem} ${expandedBooking === booking.id ? styles.expanded : ''}`}>
-              <div 
+            <div
+              key={booking.id}
+              className={`${styles.bookingItem} ${
+                expandedBooking === booking.id ? styles.expanded : ''
+              }`}
+            >
+              <div
                 className={styles.bookingHeader}
                 onClick={() => toggleBookingExpansion(booking.id)}
               >
                 <div className={styles.bookingType}>
-                  {booking.type === 'flight' && <FaPlane className={styles.typeIcon} />}
-                  {booking.type === 'train' && <FaTrain className={styles.typeIcon} />}
-                  {booking.type === 'hotel' && <FaHotel className={styles.typeIcon} />}
-                  {booking.type === 'car' && <FaCar className={styles.typeIcon} />}
+                  {booking.type === 'flight' && (
+                    <FaPlane className={styles.typeIcon} />
+                  )}
+                  {booking.type === 'train' && (
+                    <FaTrain className={styles.typeIcon} />
+                  )}
+                  {booking.type === 'hotel' && (
+                    <FaHotel className={styles.typeIcon} />
+                  )}
+                  {booking.type === 'car' && (
+                    <FaCar className={styles.typeIcon} />
+                  )}
                   <span className={styles.bookingId}>{booking.id}</span>
                 </div>
-                
+
                 <div className={styles.bookingMainInfo}>
                   {booking.type !== 'hotel' ? (
                     <>
@@ -224,27 +250,34 @@ const BookingHistoryTab = () => {
                     <>
                       <span className={styles.hotelName}>{booking.name}</span>
                       <span className={styles.dateTime}>
-                        <FiCalendar /> {formatDate(booking.checkIn)} - {formatDate(booking.checkOut)}
+                        <FiCalendar /> {formatDate(booking.checkIn)} -{' '}
+                        {formatDate(booking.checkOut)}
                       </span>
                     </>
                   )}
                 </div>
-                
+
                 <div className={styles.bookingStatus}>
-                  <span className={`${styles.statusBadge} ${getStatusBadge(booking.status).class}`}>
+                  <span
+                    className={`${styles.statusBadge} ${
+                      getStatusBadge(booking.status).class
+                    }`}
+                  >
                     {getStatusBadge(booking.status).text}
                   </span>
                 </div>
-                
-                <div className={styles.bookingPrice}>
-                  {booking.price}
-                </div>
-                
+
+                <div className={styles.bookingPrice}>{booking.price}</div>
+
                 <div className={styles.expandIcon}>
-                  {expandedBooking === booking.id ? <FiChevronUp /> : <FiChevronDown />}
+                  {expandedBooking === booking.id ? (
+                    <FiChevronUp />
+                  ) : (
+                    <FiChevronDown />
+                  )}
                 </div>
               </div>
-              
+
               {/* Expanded Booking Details */}
               {expandedBooking === booking.id && (
                 <div className={styles.bookingDetails}>
@@ -252,14 +285,16 @@ const BookingHistoryTab = () => {
                     <div className={styles.detailsColumn}>
                       <h4>Booking Information</h4>
                       <div className={styles.detailRow}>
-                        <span className={styles.detailLabel}>Booking Date:</span>
+                        <span className={styles.detailLabel}>
+                          Booking Date:
+                        </span>
                         <span>{formatDate(booking.bookingDate)}</span>
                       </div>
                       <div className={styles.detailRow}>
                         <span className={styles.detailLabel}>Passengers:</span>
                         <span>{booking.passengers}</span>
                       </div>
-                      
+
                       {booking.type === 'flight' && (
                         <>
                           <div className={styles.detailRow}>
@@ -267,45 +302,57 @@ const BookingHistoryTab = () => {
                             <span>{booking.airline}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Flight Number:</span>
+                            <span className={styles.detailLabel}>
+                              Flight Number:
+                            </span>
                             <span>{booking.flightNo}</span>
                           </div>
                         </>
                       )}
-                      
+
                       {booking.type === 'train' && (
                         <>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Train Name:</span>
+                            <span className={styles.detailLabel}>
+                              Train Name:
+                            </span>
                             <span>{booking.trainName}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Train Number:</span>
+                            <span className={styles.detailLabel}>
+                              Train Number:
+                            </span>
                             <span>{booking.trainNo}</span>
                           </div>
                         </>
                       )}
-                      
+
                       {booking.type === 'car' && (
                         <>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Rental Company:</span>
+                            <span className={styles.detailLabel}>
+                              Rental Company:
+                            </span>
                             <span>{booking.rentalCompany}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Pickup Location:</span>
+                            <span className={styles.detailLabel}>
+                              Pickup Location:
+                            </span>
                             <span>{booking.pickup}</span>
                           </div>
                         </>
                       )}
                     </div>
-                    
+
                     <div className={styles.detailsColumn}>
                       <h4>Trip Details</h4>
                       {booking.type === 'flight' && (
                         <>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Departure:</span>
+                            <span className={styles.detailLabel}>
+                              Departure:
+                            </span>
                             <span>{formatDate(booking.departure)}</span>
                           </div>
                           <div className={styles.detailRow}>
@@ -322,11 +369,13 @@ const BookingHistoryTab = () => {
                           </div>
                         </>
                       )}
-                      
+
                       {booking.type === 'train' && (
                         <>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Departure:</span>
+                            <span className={styles.detailLabel}>
+                              Departure:
+                            </span>
                             <span>{formatDate(booking.departure)}</span>
                           </div>
                           <div className={styles.detailRow}>
@@ -343,19 +392,25 @@ const BookingHistoryTab = () => {
                           </div>
                         </>
                       )}
-                      
+
                       {booking.type === 'hotel' && (
                         <>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Check-in:</span>
+                            <span className={styles.detailLabel}>
+                              Check-in:
+                            </span>
                             <span>{formatDate(booking.checkIn)}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Check-out:</span>
+                            <span className={styles.detailLabel}>
+                              Check-out:
+                            </span>
                             <span>{formatDate(booking.checkOut)}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Room Type:</span>
+                            <span className={styles.detailLabel}>
+                              Room Type:
+                            </span>
                             <span>{booking.roomType}</span>
                           </div>
                           <div className={styles.detailRow}>
@@ -364,70 +419,86 @@ const BookingHistoryTab = () => {
                           </div>
                         </>
                       )}
-                      
+
                       {booking.type === 'car' && (
                         <>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Pickup Date:</span>
+                            <span className={styles.detailLabel}>
+                              Pickup Date:
+                            </span>
                             <span>{formatDate(booking.pickupDate)}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Dropoff Date:</span>
+                            <span className={styles.detailLabel}>
+                              Dropoff Date:
+                            </span>
                             <span>{formatDate(booking.dropoffDate)}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Car Model:</span>
+                            <span className={styles.detailLabel}>
+                              Car Model:
+                            </span>
                             <span>{booking.model}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Insurance:</span>
+                            <span className={styles.detailLabel}>
+                              Insurance:
+                            </span>
                             <span>{booking.details.insurance}</span>
                           </div>
                         </>
                       )}
                     </div>
-                    
+
                     <div className={styles.detailsColumn}>
                       <h4>Additional Information</h4>
                       {booking.type === 'flight' && (
                         <>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Baggage Allowance:</span>
+                            <span className={styles.detailLabel}>
+                              Baggage Allowance:
+                            </span>
                             <span>{booking.details.baggage}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Meal Preference:</span>
+                            <span className={styles.detailLabel}>
+                              Meal Preference:
+                            </span>
                             <span>{booking.details.meal}</span>
                           </div>
                         </>
                       )}
-                      
+
                       {booking.type === 'hotel' && (
                         <>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Amenities:</span>
+                            <span className={styles.detailLabel}>
+                              Amenities:
+                            </span>
                             <span>{booking.details.amenities}</span>
                           </div>
                           <div className={styles.detailRow}>
-                            <span className={styles.detailLabel}>Cancellation Policy:</span>
+                            <span className={styles.detailLabel}>
+                              Cancellation Policy:
+                            </span>
                             <span>{booking.details.cancellation}</span>
                           </div>
                         </>
                       )}
-                      
+
                       {booking.type === 'car' && (
                         <div className={styles.detailRow}>
                           <span className={styles.detailLabel}>Mileage:</span>
                           <span>{booking.details.mileage}</span>
                         </div>
                       )}
-                      
+
                       <div className={styles.ratingSection}>
                         {booking.status === 'completed' && (
                           <>
                             <h4>Rate Your Experience</h4>
                             <div className={styles.starRating}>
-                              {[1, 2, 3, 4, 5].map((star) => (
+                              {[1, 2, 3, 4, 5].map(star => (
                                 <span key={star} className={styles.star}>
                                   {star <= 4 ? <FaStar /> : <FaRegStar />}
                                 </span>
@@ -438,7 +509,7 @@ const BookingHistoryTab = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className={styles.bookingActions}>
                     <button className={styles.actionButton}>
                       <FiDownload /> Download Ticket
@@ -465,8 +536,8 @@ const BookingHistoryTab = () => {
           <div className={styles.emptyContent}>
             <h3>No bookings found</h3>
             <p>
-              {activeFilter === 'all' 
-                ? "You don't have any bookings yet. Start planning your next trip!" 
+              {activeFilter === 'all'
+                ? "You don't have any bookings yet. Start planning your next trip!"
                 : `You don't have any ${activeFilter} bookings.`}
             </p>
             <button className={styles.exploreButton}>
@@ -476,7 +547,7 @@ const BookingHistoryTab = () => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default BookingHistoryTab;
+export default BookingHistoryTab

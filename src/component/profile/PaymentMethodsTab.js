@@ -8,7 +8,7 @@ import {
   FaCcVisa, FaCcMastercard, FaCcApplePay, 
   FaCcPaypal, FaCcAmazonPay, FaCcAmex 
 } from 'react-icons/fa';
-import styles from '../../style/UserProfile.module.css';
+import styles from './UserProfile.module.css';
 
 const PaymentMethodsTab = () => {
   const [activeTab, setActiveTab] = useState('cards');

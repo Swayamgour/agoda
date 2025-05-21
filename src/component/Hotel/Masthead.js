@@ -9,13 +9,13 @@ import {
   Train as TrainIcon,
   AirportShuttle as BusIcon
 } from '@mui/icons-material'
-import BookHotel from './Hotel/BookHotelFrom'
-import FlightBookingForm from './flight/FlightBookingForm'
-import CabBookingForm from './car/CabBookingForm'
-import TrainFrom from './Train/TrainFrom'
-import BusBookingForm from './BusBooking/BusBookingForm'
-import ScrollFadeIn from './scrollview/ScrollFadeIn'
-import PublicImage from '../utils/PublicImage'
+import BookHotel from '../Hotel/BookHotelFrom'
+import FlightBookingForm from '../flight/FlightBookingForm'
+import CabBookingForm from '../car/CabBookingForm'
+import TrainFrom from '../Train/TrainFrom'
+import BusBookingForm from '../BusBooking/BusBookingForm'
+import ScrollFadeIn from '../scrollview/ScrollFadeIn'
+import PublicImage from '../../utils/PublicImage'
 
 // Styled Components
 const MastheadContainer = styled('section')({

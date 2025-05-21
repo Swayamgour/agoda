@@ -1,5 +1,5 @@
 import React from 'react'
-import ScrollFadeIn from './scrollview/ScrollFadeIn'
+import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 
 const JoinSection = () => {
   return (

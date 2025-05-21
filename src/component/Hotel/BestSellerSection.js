@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import ScrollFadeIn from './scrollview/ScrollFadeIn'
-import PublicImage from '../utils/PublicImage'
+import ScrollFadeIn from '../scrollview/ScrollFadeIn'
+import PublicImage from '../../utils/PublicImage'
 
 const BestSellerSection = () => {
   const navigate = useNavigate()

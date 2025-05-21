@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { styled } from '@mui/material/styles'
 import {
@@ -24,7 +24,7 @@ import {
 import SideBar from '../../component/SideBar/Sidebar'
 import Login from '../Login'
 import PublicImage from '../../utils/PublicImage'
-import CurrencyDialog from '../CurrencyDialog'
+import CurrencyDialog from './CurrencyDialog'
 
 // Styled Components
 const HeaderContainer = styled('header')({
@@ -214,6 +214,10 @@ const Header = () => {
     }
   }
 
+  const triggerRef = useRef(null);
+
+
+
   return (
     <HeaderContainer>
       <HeaderContent>
@@ -238,7 +242,7 @@ const Header = () => {
         </SearchContainer>
 
         <NavControls>
-          <ControlButton onClick={() => setShowDialog(true)}>
+          <ControlButton ref={triggerRef} onClick={() => setShowDialog(true)}>
             <span>USD</span>
             <ChevronRightIcon sx={{ fontSize: 16, ml: 0.5 }} />
           </ControlButton>
@@ -247,6 +251,7 @@ const Header = () => {
             <CurrencyDialog
               onClose={() => setShowDialog(false)}
               onCurrencySelect={currency => setSelectedCurrency(currency)}
+               triggerRef={triggerRef}
             />
           )}
 
