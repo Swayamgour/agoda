@@ -20,14 +20,20 @@ const JoinSection = () => {
             <div className='col-auto'>
               <div className='row x-gap-20 y-gap-20'>
                 <div className='col-auto'>
-                  <button className='button px-40 h-60 -blue-1 text-blue-1 border-blue-1'>
+                  <button
+                    style={{ padding: '20px 40px' }}
+                    className='button px-40 h-60 -blue-1 text-blue-1 border-blue-1'
+                  >
                     Sign In
                     <i className='icon-arrow-top-right ml-10'></i>
                   </button>
                 </div>
 
                 <div className='col-auto'>
-                  <button className='button px-40 h-60 -blue-1 bg-yellow-1 text-dark-1'>
+                  <button
+                    style={{ padding: '20px 40px' }}
+                    className='button px-40 h-60 -blue-1 bg-yellow-1 text-dark-1'
+                  >
                     Register
                     <i className='icon-arrow-top-right ml-10'></i>
                   </button>

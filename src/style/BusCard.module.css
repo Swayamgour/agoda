@@ -1,169 +1,325 @@
 .card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .cardHeader {
   display: flex;
-  padding: 20px;
-  border-bottom: 1px solid #e0e0e0;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #F0F0F0;
 }
 
-.operatorInfo {
-  flex: 2;
+.operator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.operatorInfo h3 {
-  margin: 0 0 5px 0;
+.operatorLogo {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
   font-size: 18px;
 }
 
-.operatorInfo p {
-  margin: 0 0 10px 0;
-  color: #666;
+.operatorInfo h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: #6B7280;
+  margin-top: 4px;
+}
+
+.starIcon {
+  color: #F59E0B;
   font-size: 14px;
+}
+
+.reviews {
+  color: #9CA3AF;
+}
+
+.busType {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.typeBadge {
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.acBadge {
+  background: #EFF6FF;
+  color: #1D4ED8;
+}
+
+.nonAcBadge {
+  background: #ECFDF5;
+  color: #047857;
+}
+
+.seatsLeft {
+  font-size: 12px;
+  color: #6B7280;
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.timeGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.time {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1F2937;
+  margin-bottom: 4px;
+}
+
+.location {
+  font-size: 14px;
+  color: #6B7280;
+  text-align: center;
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.duration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  max-width: 120px;
+}
+
+.durationLine {
+  height: 1px;
+  width: 100%;
+  background: #E5E7EB;
+  position: relative;
+}
+
+.durationLine:before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3B82F6;
+  top: -4px;
+  left: 0;
+}
+
+.durationLine:after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3B82F6;
+  top: -4px;
+  right: 0;
+}
+
+.duration span {
+  font-size: 12px;
+  color: #6B7280;
+  margin: 8px 0;
+  padding: 4px 8px;
+  background: #F9FAFB;
+  border-radius: 20px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-top: 1px solid #F0F0F0;
 }
 
 .amenities {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 10px 0;
+  gap: 12px;
 }
 
-.amenities span {
-  background-color: #f0f0f0;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-.reviews {
-  font-size: 12px;
-  color: #666;
-}
-
-.timingInfo {
-  flex: 2;
+.amenity {
+  width: 48px;
+  height: 32px;
+  border-radius: 8px;
+  background: #F9FAFB;
   display: flex;
-  justify-content: space-around;
-}
-
-.departure, .arrival {
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  color: #6B7280;
+  white-space: nowrap;
 }
 
-.departure strong, .arrival strong {
-  font-size: 16px;
+.amenityIcon {
+  font-size: 14px;
 }
 
-.departure span, .arrival span {
-  font-size: 12px;
-  color: #666;
-  margin-top: 5px;
+.amenityText {
+  font-size: 10px;
+  font-weight: 600;
 }
 
 .priceSection {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
 .price {
-  font-size: 22px;
-  font-weight: bold;
-  color: rgb(0,141,254);
+  font-size: 20px;
+  font-weight: 700;
+  color: #1E40AF;
+  margin-bottom: 4px;
 }
 
 .selectButton {
-  background-color: rgb(0,141,254);
+  background: linear-gradient(90deg, #3B82F6, #2563EB);
   color: white;
   border: none;
+  border-radius: 8px;
   padding: 8px 16px;
-  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  margin-top: 10px;
-  font-weight: bold;
-  transition: background-color 0.2s;
+  transition: all 0.2s;
 }
 
 .selectButton:hover {
-  background-color: rgb(0,141,254);
+  background: linear-gradient(90deg, #2563EB, #1D4ED8);
+  transform: translateY(-1px);
 }
 
-.seatSelectionWrapper {
-  padding: 10px 20px;
-}
-
-.selectionSummary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #e0e0e0;
-}
-
-.selectedSeats {
+.detailsToggle {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.seatTags {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
-.seatTag {
-  background-color: #4CAF50;
-  color: white;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-}
-
-.proceedButton {
-  background-color: rgb(0,141,254);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  background: #F9FAFB;
+  color: #3B82F6;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s;
+  border-top: 1px solid #F0F0F0;
 }
 
-.proceedButton:hover {
-  background-color: rgb(0,141,254);
+.details {
+  padding: 16px 20px;
+  background: #F9FAFB;
+  border-top: 1px solid #F0F0F0;
+}
+
+.detailRow {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.detailItem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #4B5563;
+}
+
+.detailIcon {
+  color: #6B7280;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
   .cardHeader {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 
-  .timingInfo {
-    margin: 15px 0;
+  .busType {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
     justify-content: space-between;
   }
 
-  .priceSection {
-    align-items: flex-start;
-    margin-top: 15px;
+  .timeline {
+    padding: 14px;
   }
 
-  .selectionSummary {
+  .time {
+    font-size: 12px;
+  }
+
+  .location {
+    font-size: 13px;
+    max-width: 80px;
+  }
+
+  .footer {
     flex-direction: column;
+    gap: 16px;
     align-items: flex-start;
-    gap: 15px;
+  }
+
+  .priceSection {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .selectButton {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .detailRow {
+    flex-direction: column;
+    gap: 8px;
   }
 }

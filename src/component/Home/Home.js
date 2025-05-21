@@ -23,7 +23,7 @@ function Home () {
       <BlogInspirationSection />
       <DownloadAppSection />
       <JoinSection />
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

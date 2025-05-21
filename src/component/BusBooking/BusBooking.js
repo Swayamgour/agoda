@@ -43,34 +43,97 @@ const BusBooking = () => {
       discountPrice: 399,
       seatLayout: {
         type: 'sleeper',
-        lowerBerths: 13,
-        upperBerths: 13,
-        rows: 13,
         columns: 2,
-        seatMap: [
-          ['L1', 'lower', 'male', 'sleeper', true],
-          ['U1', 'upper', 'male', 'sleeper', true],
-          ['L2', 'lower', 'female', 'sleeper', true],
-          ['U2', 'upper', 'female', 'sleeper', true],
-          ['L3', 'lower', 'male', 'sleeper', false], // Occupied
-          ['U3', 'upper', 'male', 'sleeper', true],
-          ['L4', 'lower', 'male', 'sleeper', true],
-          ['U4', 'upper', 'male', 'sleeper', true],
-          ['L5', 'lower', 'female', 'sleeper', true],
-          ['U5', 'upper', 'female', 'sleeper', true],
-          ['L6', 'lower', 'male', 'sleeper', true],
-          ['U6', 'upper', 'male', 'sleeper', true],
-          ['L7', 'lower', 'male', 'sleeper', true],
-          ['S1', 'window', 'male', 'seater', true],
-          ['S2', 'aisle', 'female', 'seater', true],
-          ['S3', 'window', 'male', 'seater', false], // Occupied
-          ['S4', 'middle', 'female', 'seater', true],
-          ['S5', 'aisle', 'male', 'seater', true],
-          ['S6', 'window', 'female', 'seater', true],
-          ['S7', 'aisle', 'male', 'seater', true]
+        lowerDeck: [
+          {
+            number: 'L1',
+            position: 'lower',
+            type: 'sleeper',
+            gender: 'male',
+            available: true
+          },
+          {
+            number: 'L2',
+            position: 'lower',
+            type: 'sleeper',
+            gender: 'female',
+            available: true
+          },
+          {
+            number: 'L3',
+            position: 'lower',
+            type: 'sleeper',
+            gender: 'male',
+            available: false
+          },
+          {
+            number: 'L4',
+            position: 'lower',
+            type: 'wheelchair',
+            gender: 'male',
+            available: true
+          },
+          {
+            number: 'L5',
+            position: 'lower',
+            type: 'sleeper',
+            gender: 'male',
+            available: true
+          },
+          {
+            number: 'L6',
+            position: 'lower',
+            type: 'sleeper',
+            gender: 'female',
+            available: true
+          },
         ],
-        singleSeats: 0
+        upperDeck: [
+          {
+            number: 'U1',
+            position: 'upper',
+            type: 'sleeper',
+            gender: 'male',
+            available: true
+          },
+          {
+            number: 'U2',
+            position: 'upper',
+            type: 'sleeper',
+            gender: 'male',
+            available: true
+          },
+          {
+            number: 'U3',
+            position: 'upper',
+            type: 'sleeper',
+            gender: 'female',
+            available: false
+          },
+          {
+            number: 'U4',
+            position: 'upper',
+            type: 'sleeper',
+            gender: 'male',
+            available: true
+          },
+          {
+            number: 'U5',
+            position: 'upper',
+            type: 'sleeper',
+            gender: 'male',
+            available: false
+          },
+          {
+            number: 'U6',
+            position: 'upper',
+            type: 'sleeper',
+            gender: 'female',
+            available: true
+          }
+        ]
       },
+
       pickupPoints: [
         {
           time: '22:15, 15 MAY',

@@ -172,7 +172,7 @@ const BestSellerSection = () => {
                                 </button>
                               </div>
 
-                              {hotel.badge && (
+                              {/* {hotel.badge && (
                                 <div className='cardImage__leftBadge'>
                                   <div
                                     className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${hotel.badgeColor}`}
@@ -180,7 +180,7 @@ const BestSellerSection = () => {
                                     {hotel.badge}
                                   </div>
                                 </div>
-                              )}
+                              )} */}
                             </div>
                           </div>
 

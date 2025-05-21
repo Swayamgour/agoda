@@ -6,14 +6,11 @@ import styles from '../style/Footer.module.css';
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      {/* Floating decorative elements */}
       <div className={styles.floatingCircle1}></div>
       <div className={styles.floatingCircle2}></div>
-      
+
       <div className={styles.container}>
-        {/* Main content grid */}
         <div className={styles.grid}>
-          {/* Contact section with animated border */}
           <div className={`${styles.section} ${styles.contactSection}`}>
             <div className={styles.sectionInner}>
               <h3 className={styles.sectionTitle}>Let's Connect</h3>
@@ -43,31 +40,28 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick links with hover effects */}
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>Explore</h3>
             <ul className={styles.linkList}>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>Destinations</a></li>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>Tour Packages</a></li>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>Adventure Tours</a></li>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>Luxury Getaways</a></li>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>Travel Guides</a></li>
+              {['Destinations', 'Tour Packages', 'Adventure Tours', 'Luxury Getaways', 'Travel Guides'].map(item => (
+                <li key={item}>
+                  <button className={styles.link}><span className={styles.linkHover}></span>{item}</button>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Company links */}
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>Company</h3>
             <ul className={styles.linkList}>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>About Us</a></li>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>Careers</a></li>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>Blog</a></li>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>Press</a></li>
-              <li><a href="#" className={styles.link}><span className={styles.linkHover}></span>Partners</a></li>
+              {['About Us', 'Careers', 'Blog', 'Press', 'Partners'].map(item => (
+                <li key={item}>
+                  <button className={styles.link}><span className={styles.linkHover}></span>{item}</button>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Newsletter and apps */}
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>Stay Updated</h3>
             <div className={styles.newsletter}>
@@ -83,69 +77,46 @@ const Footer = () => {
                 </button>
               </div>
             </div>
-            
+
             <div className={styles.appDownload}>
               <p className={styles.downloadText}>Get our mobile app</p>
               <div className={styles.appButtons}>
-                <a href="#" className={styles.appButton}>
+                <button className={styles.appButton}>
                   <FaApple className={styles.appIcon} />
                   <div>
                     <span className={styles.downloadLabel}>Download on the</span>
                     <span className={styles.appStore}>App Store</span>
                   </div>
-                </a>
-                <a href="#" className={styles.appButton}>
+                </button>
+                <button className={styles.appButton}>
                   <FaGooglePlay className={styles.appIcon} />
                   <div>
                     <span className={styles.downloadLabel}>Get it on</span>
                     <span className={styles.appStore}>Google Play</span>
                   </div>
-                </a>
+                </button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom section with social media */}
         <div className={styles.bottomSection}>
           <div className={styles.copyright}>
             © 2025 GoTrip LLC. All rights reserved.
           </div>
-          
+
           <div className={styles.socialMedia}>
-            <a href="#" className={styles.socialLink} aria-label="Facebook">
-              <FaFacebookF />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="Twitter">
-              <FaTwitter />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="Instagram">
-              <FaInstagram />
-            </a>
-            <a href="#" className={styles.socialLink} aria-label="LinkedIn">
-              <FaLinkedinIn />
-            </a>
+            {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map((Icon, index) => (
+              <button key={index} className={styles.socialLink} aria-label={`Social ${index}`}>
+                <Icon />
+              </button>
+            ))}
           </div>
-          
+
           <div className={styles.utilityLinks}>
-            {/* <div className={styles.languageSelector}>
-              <FiGlobe className={styles.utilityIcon} />
-              <select className={styles.utilitySelect}>
-                <option>English</option>
-                <option>Español</option>
-                <option>Français</option>
-              </select>
-            </div> */}
-            {/* <div className={styles.currencySelector}>
-              <FiDollarSign className={styles.utilityIcon} />
-              <select className={styles.utilitySelect}>
-                <option>USD</option>
-                <option>EUR</option>
-                <option>GBP</option>
-              </select>
-            </div> */}
-            <a href="#" className={styles.legalLink}>Privacy Policy</a>
-            <a href="#" className={styles.legalLink}>Terms of Service</a>
+            {/* Language & currency selectors were commented out */}
+            <button className={styles.legalLink}>Privacy Policy</button>
+            <button className={styles.legalLink}>Terms of Service</button>
           </div>
         </div>
       </div>
