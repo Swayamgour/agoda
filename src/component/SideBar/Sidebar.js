@@ -134,23 +134,19 @@ export default function Sidebar () {
           {/* Dropdown items */}
           {openOrderMenu && (
             <DropdownContainer>
-              <SidebarOption onClick={() => handleNavigation('/MyOrderHotel')}>
+              <SidebarOption onClick={() => handleNavigation('/profile')}>
                 <FaHotel /> Hotel Bookings
               </SidebarOption>
-              <SidebarOption
-                onClick={() => handleNavigation('/FlightMyBooking')}
-              >
+              <SidebarOption onClick={() => handleNavigation('/profile')}>
                 <MdFlight /> Flight Bookings
               </SidebarOption>
-              <SidebarOption onClick={() => handleNavigation('/CarOrderPage')}>
+              <SidebarOption onClick={() => handleNavigation('/profile')}>
                 <FaCar /> Car Rentals
               </SidebarOption>
-              <SidebarOption
-                onClick={() => handleNavigation('/TrainOrderPage')}
-              >
+              <SidebarOption onClick={() => handleNavigation('/profile')}>
                 <IoMdTrain /> Train Tickets
               </SidebarOption>
-              <SidebarOption onClick={() => handleNavigation('/BusMyBookings')}>
+              <SidebarOption onClick={() => handleNavigation('/profile')}>
                 <FaBusAlt /> Bus Tickets
               </SidebarOption>
             </DropdownContainer>
@@ -162,7 +158,9 @@ export default function Sidebar () {
           <SidebarOption onClick={() => handleNavigation('/contact')}>
             <MdContactPage /> Contact Us
           </SidebarOption>
-          <SidebarOption onClick={() => handleNavigation('/TermsAndConditions')}>
+          <SidebarOption
+            onClick={() => handleNavigation('/TermsAndConditions')}
+          >
             <MdGavel /> Terms & Conditions
           </SidebarOption>
           <SidebarOption onClick={() => handleNavigation('/PrivacyPolicy')}>
