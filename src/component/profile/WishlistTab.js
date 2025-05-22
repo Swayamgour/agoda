@@ -69,6 +69,7 @@ const WishlistTab = () => {
       id: 4,
       type: 'car',
       model: 'Premium Sedan',
+      name: 'Grand Marina Hotel',
       location: 'Los Angeles, CA',
       date: '2023-08-05',
       price: '₹75/day',
@@ -179,7 +180,7 @@ const WishlistTab = () => {
                   )}
                 </button>
                 <div className={styles.savedBadge}>
-                  <FiDollarSign /> Saved ${item.saved}
+                  Saved ₹ {item.saved}
                 </div>
               </div>
 

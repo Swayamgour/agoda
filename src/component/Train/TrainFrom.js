@@ -15,8 +15,9 @@ import {
 import { FaCar } from 'react-icons/fa'
 import { MdOutlineSwapHoriz } from 'react-icons/md'
 // import { styled, keyframes, width, fontSize } from '@mui/system'
-import { styled, keyframes } from 'styled-components'
-
+import { styled, keyframes } from '@mui/system'
+import Box from '@mui/material/Box'
+import { enUS } from 'date-fns/locale'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
@@ -33,290 +34,288 @@ const pulse = keyframes`
 `
 
 // Styled Components
-const SearchContainer = styled.div`
-  margin: 20px auto;
-  padding: 30px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.98) 0%,
-    rgba(248, 250, 252, 0.98) 100%
-  );
-  border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-  font-family: 'Poppins', sans-serif;
-  backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
-  @media (max-width: 768px) {
-    padding: 10px;
-    margin: 10px auto;
+const SearchContainer = styled('div')(({ theme }) => ({
+  maxWidth: '1200px',
+  margin: '30px auto',
+  padding: '10px',
+  background: 'white',
+  borderRadius: '12px',
+  boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
+  backdropFilter: 'blur(8px)',
+  border: '1px solid rgba(255, 255, 255, 0.3)',
+  fontFamily: "'Inter', sans-serif",
+  '@media (max-width: 768px)': {
+    padding: '20px',
+    margin: '20px auto'
   }
-`
+}))
 
-const SearchForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  @media (max-width: 768px) : {
-    gap: '5px';
+const SearchForm = styled('form')({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '25px'
+})
+
+const TripTypeSelector = styled('div')({
+  display: 'flex',
+  background: 'rgba(241, 245, 249, 0.7)',
+  borderRadius: '16px',
+  padding: '8px',
+  marginBottom: '10px',
+  maxWidth: '600px',
+  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.05)'
+})
+
+const TripTypeButton = styled('button')(({ active }) => ({
+  flex: 1,
+  padding: '7px 10px',
+  border: 'none',
+  background: active ? 'white' : 'transparent',
+  fontWeight: '600',
+  color: active ? '#2563eb' : '#64748b',
+  cursor: 'pointer',
+  borderRadius: '12px',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+  boxShadow: active ? '0 4px 20px rgba(37, 99, 235, 0.15)' : 'none',
+  fontSize: '15px',
+  '&:hover': {
+    color: active ? '#2563eb' : '#475569',
+    transform: active ? 'translateY(-2px)' : 'none'
   }
-`
+}))
 
-const TripTypeSelector = styled.div`
-  display: flex;
-  background: rgba(241, 245, 249, 0.7);
-  border-radius: 12px;
-  padding: 6px;
-  margin-bottom: 5px;
-  max-width: 1000px;
-`
-
-const TripTypeButton = styled.button`
-  flex: 1;
-  padding: 12px 16px;
-  border: none;
-  background: ${props => (props.active ? 'white' : 'transparent')};
-  font-weight: 600;
-  color: ${props => (props.active ? '#2563eb' : '#64748b')};
-  cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: ${props =>
-    props.active ? '0 4px 12px rgba(37, 99, 235, 0.15)' : 'none'};
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  &:hover {
-    color: ${props => (props.active ? '#2563eb' : '#475569')};
+const InputRow = styled('div')({
+  display: 'flex',
+  gap: '20px',
+  alignItems: 'flex-end',
+  '@media (max-width: 768px)': {
+    flexDirection: 'column',
+    gap: '15px'
   }
+})
 
-  @media (max-width: 768px) {
-    padding: 6px 8px;
-    font-size: 12px;
+const InputGroup = styled('div')({
+  flex: 1,
+  position: 'relative',
+  minWidth: '200px'
+})
+
+const InputLabel = styled('label')({
+  display: 'block',
+  marginBottom: '10px',
+  fontWeight: '600',
+  color: '#334155',
+  fontSize: '14px',
+  paddingLeft: '12px'
+})
+
+const LocationInput = styled('div')({
+  position: 'relative',
+  backgroundColor: 'rgba(248, 250, 252, 0.7)',
+  border: '1px solid #e2e8f0',
+  borderRadius: '5px',
+  '&:before': {
+    content: '""',
+    position: 'absolute',
+    left: '18px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '20px',
+    height: '20px',
+    background: '#94a3b8',
+    mask: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'%3E%3C/path%3E%3Ccircle cx='12' cy='10' r='3'%3E%3C/circle%3E%3C/svg%3E\") no-repeat center"
   }
-`
+})
 
-const InputRow = styled.div`
-  display: flex;
-  gap: 20px;
-  align-items: flex-end;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+const InputField = styled('input')({
+  width: '100%',
+  padding: '10px 9px 10px 50px',
+  border: '1px solid #e2e8f0',
+  borderRadius: '5px',
+  fontSize: '16px',
+  transition: 'all 0.3s ease',
+  background: 'rgba(248, 250, 252, 0.7)',
+  fontWeight: '500',
+  '&:focus': {
+    outline: 'none',
+    borderColor: '#3b82f6',
+    background: 'white',
+    boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.2)'
+  },
+  '&::placeholder': {
+    color: '#94a3b8',
+    fontWeight: 'normal'
   }
-`
+})
 
-const InputGroup = styled.div`
-  flex: 1;
-  position: relative;
-
-  @media (max-width: 768px) {
-    width: 100%;
+const SwapButton = styled('button')({
+  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+  color: 'white',
+  border: 'none',
+  width: '48px',
+  height: '48px',
+  borderRadius: '50%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  cursor: 'pointer',
+  transition: 'all 0.3s ease',
+  marginBottom: '8px',
+  boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
+  '&:hover': {
+    transform: 'rotate(180deg) scale(1.1)',
+    boxShadow: '0 6px 20px rgba(59, 130, 246, 0.4)'
   }
-`
+})
 
-const InputLabel = styled.label`
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #334155;
-  font-size: 14px;
-  padding-left: 8px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`
+const SwapIcon = styled(MdOutlineSwapHoriz)({
+  color: 'white',
+  fontSize: '22px'
+})
 
-const LocationInput = styled.div`
-  position: relative;
-`
-
-const InputField = styled.input`
-  width: 100%;
-  padding: 16px 16px 16px 42px;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  background: rgba(248, 250, 252, 0.7);
-
-  &:focus {
-    outline: none;
-    border-color: #3b82f6;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+const DateInput = styled('div')({
+  position: 'relative',
+  '&:before': {
+    content: '""',
+    position: 'absolute',
+    left: '18px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '20px',
+    height: '20px',
+    background: '#94a3b8',
+    mask: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E\") no-repeat center"
   }
+})
 
-  &::placeholder {
-    color: #94a3b8;
+const DateDisplay = styled('div')({
+  width: '100%',
+  padding: '9px 9px 9px 50px',
+  border: '1px solid #e2e8f0',
+  borderRadius: '5px',
+  fontSize: '16px',
+  cursor: 'pointer',
+  background: 'rgba(248, 250, 252, 0.7)',
+  transition: 'all 0.3s ease',
+  fontWeight: '500',
+  '&:hover': {
+    borderColor: '#3b82f6',
+    boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.1)'
   }
-`
+})
 
-const SwapButton = styled.button`
-  background: #f1f5f9;
-  border: none;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 8px;
+const DateRangeWrapper = styled('div')({
+  position: 'absolute',
+  top: 'calc(100% + 10px)',
+  left: '0',
+  zIndex: '1000',
+  animation: `${fadeIn} 0.3s ease-out`,
+  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+  borderRadius: '16px',
+  overflow: 'hidden',
+  border: '1px solid #e2e8f0'
+})
 
-  &:hover {
-    background: #e2e8f0;
-    transform: rotate(180deg);
+const SearchButton = styled('button')({
+  padding: '10px 32px',
+  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+  color: 'white',
+  border: 'none',
+  borderRadius: '14px',
+  fontSize: '18px',
+  fontWeight: '600',
+  cursor: 'pointer',
+  transition: 'all 0.3s ease',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '12px',
+  marginTop: '10px',
+  boxShadow: '0 10px 25px rgba(59, 130, 246, 0.3)',
+  '&:hover': {
+    transform: 'translateY(-3px)',
+    boxShadow: '0 15px 30px rgba(59, 130, 246, 0.4)',
+    animation: `${pulse} 1s infinite`
   }
-`
+})
 
-const DateInput = styled.div`
-  position: relative;
-`
+// TimeInput
+const TimeInput = styled(Box)(({ theme }) => ({
+  position: 'relative'
+}))
 
-const DateDisplay = styled.div`
-  width: 100%;
-  padding: 16px 16px 16px 16px;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  background: rgba(248, 250, 252, 0.7);
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    border-color: #3b82f6;
+// TimeDisplay
+const TimeDisplay = styled(Box)(({ theme }) => ({
+  width: '100%',
+  padding: '10px 9px 10px 42px',
+  border: '1px solid #e2e8f0',
+  borderRadius: '10px',
+  fontSize: '16px',
+  cursor: 'pointer',
+  background: 'rgba(248, 250, 252, 0.7)',
+  transition: 'all 0.3s ease',
+  display: 'flex',
+  alignItems: 'center',
+  '&:hover': {
+    borderColor: '#3b82f6'
   }
-`
+}))
 
-const TimeInput = styled.div`
-  position: relative;
-`
+// SelectInput
+const SelectInput = styled(Box)(({ theme }) => ({
+  position: 'relative'
+}))
 
-const TimeDisplay = styled.div`
-  width: 100%;
-  padding: 16px 16px 16px 42px;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  background: rgba(248, 250, 252, 0.7);
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-
-  &:hover {
-    border-color: #3b82f6;
+// SelectDisplay
+const SelectDisplay = styled(Box)(({ theme }) => ({
+  width: '100%',
+  padding: '10px 9px 10px 42px',
+  border: '1px solid #e2e8f0',
+  borderRadius: '10px',
+  fontSize: '16px',
+  cursor: 'pointer',
+  background: 'rgba(248, 250, 252, 0.7)',
+  transition: 'all 0.3s ease',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  '&:hover': {
+    borderColor: '#3b82f6'
   }
-`
+}))
 
-const DateRangeWrapper = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  margin-top: 8px;
-  animation: ${fadeIn} 0.3s ease-out;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #e2e8f0;
-`
+// Dropdown (add animation definition externally or via keyframes)
+const Dropdown = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: '100%',
+  left: 0,
+  zIndex: 1000,
+  width: '100%',
+  marginTop: '8px',
+  background: 'white',
+  borderRadius: '12px',
+  boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)',
+  padding: '10px 0',
+  border: '1px solid #e2e8f0',
+  animation: 'fadeIn 0.3s ease-out'
+}))
 
-const SelectInput = styled.div`
-  position: relative;
-`
-
-const SelectDisplay = styled.div`
-  width: 100%;
-  padding: 16px 16px 16px 42px;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
-  background: rgba(248, 250, 252, 0.7);
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &:hover {
-    border-color: #3b82f6;
+// DropdownItem
+const DropdownItem = styled(Box)(({ theme }) => ({
+  padding: '12px 16px',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  '&:hover': {
+    background: '#f8fafc'
+  },
+  '&.selected': {
+    background: '#eff6ff',
+    color: '#2563eb'
   }
-`
-
-const Dropdown = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  width: 100%;
-  margin-top: 8px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-  padding: 10px 0;
-  animation: ${fadeIn} 0.3s ease-out;
-  border: 1px solid #e2e8f0;
-`
-
-const DropdownItem = styled.div`
-  padding: 12px 16px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &:hover {
-    background: #f8fafc;
-  }
-
-  &.selected {
-    background: #eff6ff;
-    color: #2563eb;
-  }
-`
-
-const SearchButton = styled.button`
-  padding: 9px 12px;
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  position: absolute;
-  bottom: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, #3498db, #2c3e50);
-`
-
-const InsideFrom = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`
+}))
 
 const TrainFrom = () => {
   const [tripType, setTripType] = useState('one-way')
@@ -376,7 +375,7 @@ const TrainFrom = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    navigate('/TrainDashboard')
+    navigate('/CabBookingFilter')
     console.log({
       tripType,
       pickupLocation,
@@ -405,10 +404,10 @@ const TrainFrom = () => {
   ]
 
   const hourOptions = [
-    { value: '4', label: '4 hours' },
-    { value: '8', label: '8 hours' },
-    { value: '12', label: '12 hours' },
-    { value: '24', label: '24 hours' }
+    { value: '4', label: 'Sleeper' },
+    { value: '8', label: 'AC' },
+    { value: '12', label: '3AC' },
+    { value: '24', label: '2AC' }
   ]
 
   const passengerOptions = [1, 2, 3, 4, 5, 6, 7, 8]
@@ -416,103 +415,105 @@ const TrainFrom = () => {
   return (
     <SearchContainer ref={containerRef}>
       <SearchForm onSubmit={handleSubmit}>
-        <div className='ds-f flex-c gp-5'>
-          <InsideFrom>
-            <InputRow>
-              <InputGroup>
-                <InputLabel>
-                  <FiMapPin size={16} /> From
-                </InputLabel>
-                <LocationInput>
-                  <InputField
-                    type='text'
-                    placeholder='Enter Station Name'
-                    value={pickupLocation}
-                    onChange={e => setPickupLocation(e.target.value)}
-                    // required
+        <InputRow>
+          <InputGroup>
+            <InputLabel>From Station</InputLabel>
+            <LocationInput>
+              <InputField
+                type='text'
+                placeholder='Enter pickup location'
+                value={pickupLocation}
+                onChange={e => setPickupLocation(e.target.value)}
+                // required
+              />
+            </LocationInput>
+          </InputGroup>
+
+          {/* {tripType !== 'hourly' && ( */}
+          <SwapButton type='button' onClick={swapLocations}>
+            <SwapIcon />
+          </SwapButton>
+          {/* )} */}
+
+          <InputGroup>
+            <InputLabel>To Station</InputLabel>
+            <LocationInput>
+              <InputField
+                type='text'
+                placeholder='City or airport'
+                value={dropLocation}
+                onChange={e => setDropLocation(e.target.value)}
+              />
+            </LocationInput>
+          </InputGroup>
+          {/* )} */}
+        </InputRow>
+
+        <InputRow>
+          <InputGroup>
+            <InputLabel>
+              <FiCalendar size={16} /> Travel Date
+            </InputLabel>
+            <DateInput>
+              <DateDisplay onClick={() => setOpenDatePicker(!openDatePicker)}>
+                {pickupDate
+                  ? format(new Date(pickupDate), 'MMM dd, yyyy')
+                  : 'Select date'}
+              </DateDisplay>
+              {openDatePicker && (
+                <DateRangeWrapper>
+                  <DateRange
+                    editableDateInputs={true}
+                    onChange={handleDateSelect}
+                    moveRangeOnFirstSelection={false}
+                    ranges={dateRange}
+                    minDate={new Date()}
+                    rangeColors={['#3b82f6']}
+                    locale={enUS}
                   />
-                </LocationInput>
-              </InputGroup>
-
-              <SwapButton type='button' onClick={swapLocations}>
-                <MdOutlineSwapHoriz size={20} />
-              </SwapButton>
-
-              {tripType !== 'hourly' && (
-                <InputGroup>
-                  <InputLabel>
-                    <FiMapPin size={16} /> To
-                  </InputLabel>
-                  <LocationInput>
-                    <InputField
-                      type='text'
-                      placeholder='Enter Station Name'
-                      value={dropLocation}
-                      onChange={e => setDropLocation(e.target.value)}
-                      // required
-                    />
-                  </LocationInput>
-                </InputGroup>
+                </DateRangeWrapper>
               )}
-            </InputRow>
+            </DateInput>
+          </InputGroup>
 
-            <InputRow>
-              <InputGroup>
-                <InputLabel>
-                  <FiCalendar size={16} /> Travel Date
-                </InputLabel>
-                <DateInput>
-                  <DateDisplay
-                    onClick={() => setOpenDatePicker(!openDatePicker)}
-                  >
-                    {pickupDate
-                      ? format(new Date(pickupDate), 'MMM dd, yyyy')
-                      : 'Select date'}
-                  </DateDisplay>
-                  {openDatePicker && (
-                    <DateRangeWrapper>
-                      {/* <DateRange
-                        editableDateInputs={true}
-                        onChange={handleDateSelect}
-                        moveRangeOnFirstSelection={false}
-                        ranges={dateRange}
-                        minDate={new Date()}
-                        rangeColors={['#3b82f6']}
-                      /> */}
-                    </DateRangeWrapper>
-                  )}
-                </DateInput>
-              </InputGroup>
-
-              {/* <InputGroup>
-                <InputLabel>
-                  <FiClock size={16} /> Class
-                </InputLabel>
-                <TimeInput>
-                  <TimeDisplay>
-                    <input
-                      type='text'
-                      placeholder='All'
-                      value={pickupTime}
-                      onChange={e => setPickupTime(e.target.value)}
-                      style={{
-                        border: 'none',
-                        background: 'transparent',
-                        width: '100%',
-                        outline: 'none'
+          <InputGroup>
+            <InputLabel>
+              <FiClock size={16} /> Select Type
+            </InputLabel>
+            <SelectInput>
+              <SelectDisplay
+                onClick={() => setOpenRentalHoursPicker(!openRentalHoursPicker)}
+              >
+                <span>
+                  {hourOptions.find(opt => opt.value === rentalHours)?.label}
+                </span>
+                <FiChevronDown />
+              </SelectDisplay>
+              {openRentalHoursPicker && (
+                <Dropdown>
+                  {hourOptions.map(opt => (
+                    <DropdownItem
+                      key={opt.value}
+                      className={rentalHours === opt.value ? 'selected' : ''}
+                      onClick={() => {
+                        setRentalHours(opt.value)
+                        setOpenRentalHoursPicker(false)
                       }}
-                      // required
-                    />
-                  </TimeDisplay>
-                </TimeInput>
-              </InputGroup> */}
-            </InputRow>
-          </InsideFrom>
+                    >
+                      <span>{opt.label}</span>
+                      {rentalHours === opt.value && <FiCheck />}
+                    </DropdownItem>
+                  ))}
+                </Dropdown>
+              )}
+            </SelectInput>
+          </InputGroup>
+        </InputRow>
 
-          <SearchButton type='submit'>
-            <FiSearch /> Search Train
-          </SearchButton>
-        </div>
+        <SearchButton type='submit'>
+          <FiSearch /> SEARCH TRAIN
+        </SearchButton>
+        {/* </div> */}
       </SearchForm>
     </SearchContainer>
   )

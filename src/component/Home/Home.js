@@ -16,7 +16,7 @@ import Footer from '../Footer'
 function Home () {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Masthead />
       <TravellersSliderSection />
       <BestSellerSection />

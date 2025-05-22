@@ -1,13 +1,26 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { DateRange } from 'react-date-range'
 import { format } from 'date-fns'
-import 'react-date-range/dist/styles.css'
-import 'react-date-range/dist/theme/default.css'
-import { enUS } from 'date-fns/locale'
-import { styled } from '@mui/material/styles'
-import { keyframes } from '@emotion/react'
-import { useNavigate } from 'react-router-dom'
-
+import {
+  FiMapPin,
+  FiCalendar,
+  FiClock,
+  FiUsers,
+  // FaCar,
+  FiSearch,
+  FiChevronDown,
+  FiCheck
+} from 'react-icons/fi'
+import { FaCar } from 'react-icons/fa'
+import { MdOutlineSwapHoriz } from 'react-icons/md'
+// import { styled, keyframes, width, fontSize } from '@mui/system'
+import { styled, keyframes } from '@mui/system'
+import Box from '@mui/material/Box'
+// import { DateRange } from 'react-date-range';
+import { enUS } from 'date-fns/locale' // ✅ correct locale import
+import 'react-date-range/dist/styles.css' // main style
+import 'react-date-range/dist/theme/default.css' // theme css
 
 // Animations
 const fadeIn = keyframes`
@@ -15,196 +28,313 @@ const fadeIn = keyframes`
   to { opacity: 1; transform: translateY(0); }
 `
 
+const pulse = keyframes`
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+`
+
 // Styled Components
-const SearchContainer = styled('div')({
-  // maxWidth: '900px',
-  margin: '20px auto',
-  position: 'relative',
-  padding: '30px',
-  background: 'rgba(255, 255, 255, 0.95)',
+const SearchContainer = styled('div')(({ theme }) => ({
+  maxWidth: '1200px',
+  margin: '30px auto',
+  padding: '10px',
+  background: 'white',
   borderRadius: '12px',
-  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
-  fontFamily: "'Poppins', sans-serif",
+  boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
+  backdropFilter: 'blur(8px)',
+  border: '1px solid rgba(255, 255, 255, 0.3)',
+  fontFamily: "'Inter', sans-serif",
   '@media (max-width: 768px)': {
-    margin: '10px auto'
+    padding: '20px',
+    margin: '20px auto'
   }
-})
+}))
 
 const SearchForm = styled('form')({
   display: 'flex',
   flexDirection: 'column',
-  gap: '20px'
+  gap: '25px'
 })
 
-const InputGroup = styled('div')({
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-  gap: '15px',
-  // marginBottom: '20px',
+const TripTypeSelector = styled('div')({
+  display: 'flex',
+  background: 'rgba(241, 245, 249, 0.7)',
+  borderRadius: '16px',
+  padding: '8px',
+  marginBottom: '10px',
+  maxWidth: '600px',
+  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.05)'
+})
+
+const TripTypeButton = styled('button')(({ active }) => ({
+  flex: 1,
+  padding: '7px 10px',
+  border: 'none',
+  background: active ? 'white' : 'transparent',
+  fontWeight: '600',
+  color: active ? '#2563eb' : '#64748b',
+  cursor: 'pointer',
+  borderRadius: '12px',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+  boxShadow: active ? '0 4px 20px rgba(37, 99, 235, 0.15)' : 'none',
+  fontSize: '15px',
+  '&:hover': {
+    color: active ? '#2563eb' : '#475569',
+    transform: active ? 'translateY(-2px)' : 'none'
+  }
+}))
+
+const InputRow = styled('div')({
+  display: 'flex',
+  gap: '20px',
+  alignItems: 'flex-end',
   '@media (max-width: 768px)': {
-    gridTemplateColumns: '1fr'
+    flexDirection: 'column',
+    gap: '15px'
   }
 })
 
-const FormGroup = styled('div')({
+const InputGroup = styled('div')({
+  flex: 1,
   position: 'relative',
-  '& label': {
-    display: 'block',
-    marginBottom: '8px',
-    fontWeight: '500',
-    color: '#2c3e50',
-    fontSize: '14px'
+  minWidth: '200px'
+})
+
+const InputLabel = styled('label')({
+  display: 'block',
+  marginBottom: '10px',
+  fontWeight: '600',
+  color: '#334155',
+  fontSize: '14px',
+  paddingLeft: '12px'
+})
+
+const LocationInput = styled('div')({
+  position: 'relative',
+  backgroundColor: 'rgba(248, 250, 252, 0.7)',
+  border: '1px solid #e2e8f0',
+  borderRadius: '5px',
+  '&:before': {
+    content: '""',
+    position: 'absolute',
+    left: '18px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '20px',
+    height: '20px',
+    background: '#94a3b8',
+    mask: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'%3E%3C/path%3E%3Ccircle cx='12' cy='10' r='3'%3E%3C/circle%3E%3C/svg%3E\") no-repeat center"
   }
 })
 
 const InputField = styled('input')({
   width: '100%',
-  padding: '14px 15px',
-  border: '1px solid #e0e0e0',
-  borderRadius: '8px',
+  padding: '10px 9px 10px 50px',
+  border: '1px solid #e2e8f0',
+  borderRadius: '5px',
   fontSize: '16px',
   transition: 'all 0.3s ease',
+  background: 'rgba(248, 250, 252, 0.7)',
+  fontWeight: '500',
   '&:focus': {
     outline: 'none',
-    borderColor: '#3498db',
-    boxShadow: '0 0 0 3px rgba(52, 152, 219, 0.2)'
-  }
-})
-
-const DateDisplay = styled('div')({
-  width: '100%',
-  padding: '14px 15px',
-  border: '1px solid #e0e0e0',
-  borderRadius: '8px',
-  fontSize: '16px',
-  cursor: 'pointer',
-  background: '#fff',
-  transition: 'all 0.3s ease',
-  '&:hover': {
-    borderColor: '#3498db'
-  }
-})
-
-const DateRangeContainer = styled('div')({
-  position: 'absolute',
-  top: '100%',
-  left: '0',
-  zIndex: '100',
-  marginTop: '5px',
-  animation: `${fadeIn} 0.3s ease-out`,
-  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
-  borderRadius: '8px',
-  overflow: 'hidden'
-})
-
-const GuestDropdown = styled('div')({
-  position: 'absolute',
-  top: '100%',
-  left: '0',
-  zIndex: '100',
-  width: '280px',
-  marginTop: '5px',
-  background: '#fff',
-  borderRadius: '8px',
-  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
-  padding: '20px',
-  animation: `${fadeIn} 0.3s ease-out`
-})
-
-const GuestRow = styled('div')({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  marginBottom: '20px',
-  '&:last-child': {
-    marginBottom: '0'
-  }
-})
-
-const GuestLabel = styled('div')({
-  '& h4': {
-    fontSize: '16px',
-    fontWeight: '500',
-    marginBottom: '5px',
-    color: '#2c3e50'
+    borderColor: '#3b82f6',
+    background: 'white',
+    boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.2)'
   },
-  '& p': {
-    fontSize: '14px',
-    color: '#7f8c8d'
+  '&::placeholder': {
+    color: '#94a3b8',
+    fontWeight: 'normal'
   }
 })
 
-const GuestControls = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '15px'
-})
-
-const ControlButton = styled('button')({
-  width: '32px',
-  height: '32px',
+const SwapButton = styled('button')({
+  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+  color: 'white',
+  border: 'none',
+  width: '48px',
+  height: '48px',
   borderRadius: '50%',
-  border: '1px solid #3498db',
-  background: 'transparent',
-  color: '#3498db',
-  fontSize: '16px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   cursor: 'pointer',
   transition: 'all 0.3s ease',
+  marginBottom: '8px',
+  boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
   '&:hover': {
-    background: '#3498db',
-    color: '#fff'
-  },
-  '&:disabled': {
-    opacity: '0.5',
-    cursor: 'not-allowed',
-    '&:hover': {
-      background: 'transparent',
-      color: '#3498db'
-    }
+    transform: 'rotate(180deg) scale(1.1)',
+    boxShadow: '0 6px 20px rgba(59, 130, 246, 0.4)'
   }
 })
 
-const GuestCount = styled('div')({
-  minWidth: '20px',
-  textAlign: 'center',
+const SwapIcon = styled(MdOutlineSwapHoriz)({
+  color: 'white',
+  fontSize: '22px'
+})
+
+const DateInput = styled('div')({
+  position: 'relative',
+  '&:before': {
+    content: '""',
+    position: 'absolute',
+    left: '18px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    width: '20px',
+    height: '20px',
+    background: '#94a3b8',
+    mask: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3C/svg%3E\") no-repeat center"
+  }
+})
+
+const DateDisplay = styled('div')({
+  width: '100%',
+  padding: '9px 9px 9px 50px',
+  border: '1px solid #e2e8f0',
+  borderRadius: '5px',
   fontSize: '16px',
-  fontWeight: '500'
+  cursor: 'pointer',
+  background: 'rgba(248, 250, 252, 0.7)',
+  transition: 'all 0.3s ease',
+  fontWeight: '500',
+  '&:hover': {
+    borderColor: '#3b82f6',
+    boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.1)'
+  }
 })
 
-const Divider = styled('div')({
-  height: '1px',
-  background: '#e0e0e0',
-  margin: '15px 0'
+const DateRangeWrapper = styled('div')({
+  position: 'absolute',
+  top: 'calc(100% + 10px)',
+  left: '0',
+  zIndex: '1000',
+  animation: `${fadeIn} 0.3s ease-out`,
+  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+  borderRadius: '16px',
+  overflow: 'hidden',
+  border: '1px solid #e2e8f0'
 })
 
-const SubmitButton = styled('button')({
-  padding: '9px 12px',
+const SearchButton = styled('button')({
+  padding: '10px 32px',
+  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
   color: 'white',
   border: 'none',
-  borderRadius: '8px',
-  fontSize: '16px',
+  borderRadius: '14px',
+  fontSize: '18px',
   fontWeight: '600',
   cursor: 'pointer',
-  background: 'linear-gradient(135deg, #3498db, #2c3e50)',
-  position: 'absolute',
-  bottom: '-25px',
-  left: '50%',
-  transform: 'translateX(-50%)'
-  // transition: 'all 0.3s ease',
-  // '&:hover': {
-  //   transform: 'translateY(-2px)',
-  //   boxShadow: '0 5px 15px rgba(52, 152, 219, 0.4)'
-  // }
+  transition: 'all 0.3s ease',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '12px',
+  marginTop: '10px',
+  boxShadow: '0 10px 25px rgba(59, 130, 246, 0.3)',
+  '&:hover': {
+    transform: 'translateY(-3px)',
+    boxShadow: '0 15px 30px rgba(59, 130, 246, 0.4)',
+    animation: `${pulse} 1s infinite`
+  }
 })
 
-const TrainSearchForm = () => {
-  const [from, setFrom] = useState('')
-  const [to, setTo] = useState('')
+// TimeInput
+const TimeInput = styled(Box)(({ theme }) => ({
+  position: 'relative'
+}))
+
+// TimeDisplay
+const TimeDisplay = styled(Box)(({ theme }) => ({
+  width: '100%',
+  padding: '10px 9px 10px 42px',
+  border: '1px solid #e2e8f0',
+  borderRadius: '10px',
+  fontSize: '16px',
+  cursor: 'pointer',
+  background: 'rgba(248, 250, 252, 0.7)',
+  transition: 'all 0.3s ease',
+  display: 'flex',
+  alignItems: 'center',
+  '&:hover': {
+    borderColor: '#3b82f6'
+  }
+}))
+
+// SelectInput
+const SelectInput = styled(Box)(({ theme }) => ({
+  position: 'relative'
+}))
+
+// SelectDisplay
+const SelectDisplay = styled(Box)(({ theme }) => ({
+  width: '100%',
+  padding: '10px 9px 10px 42px',
+  border: '1px solid #e2e8f0',
+  borderRadius: '10px',
+  fontSize: '16px',
+  cursor: 'pointer',
+  background: 'rgba(248, 250, 252, 0.7)',
+  transition: 'all 0.3s ease',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  '&:hover': {
+    borderColor: '#3b82f6'
+  }
+}))
+
+// Dropdown (add animation definition externally or via keyframes)
+const Dropdown = styled(Box)(({ theme }) => ({
+  position: 'absolute',
+  top: '100%',
+  left: 0,
+  zIndex: 1000,
+  width: '100%',
+  marginTop: '8px',
+  background: 'white',
+  borderRadius: '12px',
+  boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)',
+  padding: '10px 0',
+  border: '1px solid #e2e8f0',
+  animation: 'fadeIn 0.3s ease-out'
+}))
+
+// DropdownItem
+const DropdownItem = styled(Box)(({ theme }) => ({
+  padding: '12px 16px',
+  cursor: 'pointer',
+  transition: 'all 0.2s ease',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  '&:hover': {
+    background: '#f8fafc'
+  },
+  '&.selected': {
+    background: '#eff6ff',
+    color: '#2563eb'
+  }
+}))
+
+const BusBookingForm = () => {
+  const [tripType, setTripType] = useState('one-way')
+  const [pickupLocation, setPickupLocation] = useState('')
+  const [dropLocation, setDropLocation] = useState('')
+  const [pickupDate, setPickupDate] = useState('')
+  const [pickupTime, setPickupTime] = useState('')
+  const [returnDate, setReturnDate] = useState('')
+  const [returnTime, setReturnTime] = useState('')
+  const [passengers, setPassengers] = useState(1)
+  const [cabType, setCabType] = useState('sedan')
+  const [rentalHours, setRentalHours] = useState('4')
+
   const [openDatePicker, setOpenDatePicker] = useState(false)
-  const [openGuestPicker, setOpenGuestPicker] = useState(false)
+  const [openPassengerPicker, setOpenPassengerPicker] = useState(false)
+  const [openCabTypePicker, setOpenCabTypePicker] = useState(false)
+  const [openRentalHoursPicker, setOpenRentalHoursPicker] = useState(false)
+
   const [dateRange, setDateRange] = useState([
     {
       startDate: new Date(),
@@ -212,15 +342,9 @@ const TrainSearchForm = () => {
       key: 'selection'
     }
   ])
-  const [guests, setGuests] = useState({
-    adults: 1,
-    children: 0,
-    seniors: 0
-  })
-
-  const navigate = useNavigate()
 
   const containerRef = useRef(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     function handleClickOutside (event) {
@@ -229,7 +353,9 @@ const TrainSearchForm = () => {
         !containerRef.current.contains(event.target)
       ) {
         setOpenDatePicker(false)
-        setOpenGuestPicker(false)
+        setOpenPassengerPicker(false)
+        setOpenCabTypePicker(false)
+        setOpenRentalHoursPicker(false)
       }
     }
 
@@ -241,159 +367,157 @@ const TrainSearchForm = () => {
 
   const handleDateSelect = ranges => {
     setDateRange([ranges.selection])
-  }
-
-  const updateGuestCount = (type, operation) => {
-    setGuests(prev => {
-      const newValue =
-        operation === 'increase' ? prev[type] + 1 : Math.max(0, prev[type] - 1)
-      return { ...prev, [type]: newValue }
-    })
+    setPickupDate(format(ranges.selection.startDate, 'yyyy-MM-dd'))
+    if (tripType === 'round-trip') {
+      setReturnDate(format(ranges.selection.endDate, 'yyyy-MM-dd'))
+    }
+    setOpenDatePicker(false)
   }
 
   const handleSubmit = e => {
     e.preventDefault()
+    navigate('/CabBookingFilter')
     console.log({
-      from,
-      to,
-      dateRange,
-      guests
+      tripType,
+      pickupLocation,
+      dropLocation,
+      pickupDate,
+      pickupTime,
+      returnDate,
+      returnTime,
+      passengers,
+      cabType,
+      rentalHours
     })
-    // Handle form submission logic
-    navigate('/AllHotel')
   }
+
+  const swapLocations = () => {
+    const temp = pickupLocation
+    setPickupLocation(dropLocation)
+    setDropLocation(temp)
+  }
+
+  const cabTypes = [
+    { value: 'hatchback', label: 'Hatchback', icon: <FaCar /> },
+    { value: 'sedan', label: 'Sedan', icon: <FaCar /> },
+    { value: 'suv', label: 'SUV', icon: <FaCar /> },
+    { value: 'luxury', label: 'Luxury', icon: <FaCar /> }
+  ]
+
+  const hourOptions = [
+    { value: '4', label: 'Sleeper' },
+    { value: '8', label: 'AC' },
+    { value: '12', label: '3AC' },
+    { value: '24', label: '2AC' }
+  ]
+
+  const passengerOptions = [1, 2, 3, 4, 5, 6, 7, 8]
 
   return (
     <SearchContainer ref={containerRef}>
       <SearchForm onSubmit={handleSubmit}>
-        <InputGroup>
-          <FormGroup>
-            <label>Search Location</label>
-            <InputField
-              type='text'
-              value={from}
-              onChange={e => setFrom(e.target.value)}
-              placeholder='Enter city property and location '
-            />
-          </FormGroup>
+        <InputRow>
+          <InputGroup>
+            <InputLabel>Enter Destination</InputLabel>
+            <LocationInput>
+              <InputField
+                type='text'
+                placeholder='Enter your location'
+                value={pickupLocation}
+                onChange={e => setPickupLocation(e.target.value)}
+                // required
+              />
+            </LocationInput>
+          </InputGroup>
 
-          {/* <FormGroup>
-            <label>To Station</label>
-            <InputField
-              type="text"
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-              placeholder="Enter arrival station"
-            />
-          </FormGroup> */}
+          {/* {tripType !== 'hourly' && ( */}
+          {/* <SwapButton type='button' onClick={swapLocations}>
+            <SwapIcon />
+          </SwapButton> */}
+          {/* )} */}
 
-          <FormGroup>
-            <label>Travel Date</label>
-            <DateDisplay onClick={() => setOpenDatePicker(!openDatePicker)}>
-              {format(dateRange[0].startDate, 'EEE, MMM d')}
-            </DateDisplay>
-            {openDatePicker && (
-              <DateRangeContainer>
-                <DateRange
-                  editableDateInputs={true}
-                  onChange={handleDateSelect}
-                  moveRangeOnFirstSelection={false}
-                  ranges={dateRange}
-                  locale={enUS}
-                  minDate={new Date()}
-                />
-              </DateRangeContainer>
-            )}
-          </FormGroup>
+          {/* <InputGroup>
+            <InputLabel>To City </InputLabel>
+            <LocationInput>
+              <InputField
+                type='text'
+                placeholder='City or airport'
+                value={dropLocation}
+                onChange={e => setDropLocation(e.target.value)}
+              />
+            </LocationInput>
+          </InputGroup> */}
+          {/* )} */}
+        </InputRow>
 
-          <FormGroup>
-            <label>Passengers</label>
-            <DateDisplay onClick={() => setOpenGuestPicker(!openGuestPicker)}>
-              {`${guests.adults} Adult${guests.adults !== 1 ? 's' : ''}`}
-              {guests.children > 0 &&
-                `, ${guests.children} Child${
-                  guests.children !== 1 ? 'ren' : ''
-                }`}
-              {guests.seniors > 0 &&
-                `, ${guests.seniors} Senior${guests.seniors !== 1 ? 's' : ''}`}
-            </DateDisplay>
-            {openGuestPicker && (
-              <GuestDropdown>
-                <GuestRow>
-                  <GuestLabel>
-                    <h4>Adults</h4>
-                    <p>Age 18+</p>
-                  </GuestLabel>
-                  <GuestControls>
-                    <ControlButton
-                      onClick={() => updateGuestCount('adults', 'decrease')}
-                      disabled={guests.adults <= 1}
+        <InputRow>
+          <InputGroup>
+            <InputLabel>
+              <FiCalendar size={16} /> Travel Date
+            </InputLabel>
+            <DateInput>
+              <DateDisplay onClick={() => setOpenDatePicker(!openDatePicker)}>
+                {pickupDate
+                  ? format(new Date(pickupDate), 'MMM dd, yyyy')
+                  : 'Select date'}
+              </DateDisplay>
+              {openDatePicker && (
+                <DateRangeWrapper>
+                  <DateRange
+                    editableDateInputs={true}
+                    onChange={handleDateSelect}
+                    moveRangeOnFirstSelection={false}
+                    ranges={dateRange}
+                    minDate={new Date()}
+                    rangeColors={['#3b82f6']}
+                    locale={enUS} // ✅ pass a valid locale object
+                  />
+                </DateRangeWrapper>
+              )}
+            </DateInput>
+          </InputGroup>
+
+          <InputGroup>
+            <InputLabel>
+              <FiClock size={16} /> Passenger
+            </InputLabel>
+            <SelectInput>
+              <SelectDisplay
+                onClick={() => setOpenRentalHoursPicker(!openRentalHoursPicker)}
+              >
+                <span>
+                  {hourOptions.find(opt => opt.value === rentalHours)?.label}
+                </span>
+                <FiChevronDown />
+              </SelectDisplay>
+              {openRentalHoursPicker && (
+                <Dropdown>
+                  {hourOptions.map(opt => (
+                    <DropdownItem
+                      key={opt.value}
+                      className={rentalHours === opt.value ? 'selected' : ''}
+                      onClick={() => {
+                        setRentalHours(opt.value)
+                        setOpenRentalHoursPicker(false)
+                      }}
                     >
-                      -
-                    </ControlButton>
-                    <GuestCount>{guests.adults}</GuestCount>
-                    <ControlButton
-                      onClick={() => updateGuestCount('adults', 'increase')}
-                    >
-                      +
-                    </ControlButton>
-                  </GuestControls>
-                </GuestRow>
+                      <span>{opt.label}</span>
+                      {rentalHours === opt.value && <FiCheck />}
+                    </DropdownItem>
+                  ))}
+                </Dropdown>
+              )}
+            </SelectInput>
+          </InputGroup>
+        </InputRow>
 
-                <Divider />
-
-                <GuestRow>
-                  <GuestLabel>
-                    <h4>Children</h4>
-                    <p>Ages 0-17</p>
-                  </GuestLabel>
-                  <GuestControls>
-                    <ControlButton
-                      onClick={() => updateGuestCount('children', 'decrease')}
-                      disabled={guests.children <= 0}
-                    >
-                      -
-                    </ControlButton>
-                    <GuestCount>{guests.children}</GuestCount>
-                    <ControlButton
-                      onClick={() => updateGuestCount('children', 'increase')}
-                    >
-                      +
-                    </ControlButton>
-                  </GuestControls>
-                </GuestRow>
-
-                <Divider />
-
-                <GuestRow>
-                  <GuestLabel>
-                    <h4>Seniors</h4>
-                    <p>Age 60+</p>
-                  </GuestLabel>
-                  <GuestControls>
-                    <ControlButton
-                      onClick={() => updateGuestCount('seniors', 'decrease')}
-                      disabled={guests.seniors <= 0}
-                    >
-                      -
-                    </ControlButton>
-                    <GuestCount>{guests.seniors}</GuestCount>
-                    <ControlButton
-                      onClick={() => updateGuestCount('seniors', 'increase')}
-                    >
-                      +
-                    </ControlButton>
-                  </GuestControls>
-                </GuestRow>
-              </GuestDropdown>
-            )}
-          </FormGroup>
-        </InputGroup>
-
-        <SubmitButton type='submit'>Search Hotel</SubmitButton>
+        <SearchButton type='submit'>
+          <FiSearch /> SEARCH HOTEL
+        </SearchButton>
+        {/* </div> */}
       </SearchForm>
     </SearchContainer>
   )
 }
 
-export default TrainSearchForm
+export default BusBookingForm

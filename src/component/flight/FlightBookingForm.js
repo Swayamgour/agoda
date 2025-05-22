@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import { styled, keyframes } from '@mui/system'
 import { DateRange } from 'react-date-range'
 import { format } from 'date-fns'
+import { enUS } from 'date-fns/locale'
 import {
   FiArrowRight,
   FiCalendar,
@@ -11,10 +14,8 @@ import {
   FiSearch
 } from 'react-icons/fi'
 import { MdOutlineSwapHoriz } from 'react-icons/md'
-import { styled, keyframes, width, fontSize } from '@mui/system'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
-import { enUS } from 'date-fns/locale'
 import PassengerDropdownForm from '../smallBox/PassengerDropdownForm'
 
 // Animations
@@ -31,58 +32,52 @@ const pulse = keyframes`
 
 // Styled Components
 const SearchContainer = styled('div')(({ theme }) => ({
-  // maxWidth: '1000px',
-  margin: '20px auto',
-  padding: '20px 10px',
-  background:
-    'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%)',
-  borderRadius: '16px',
-  boxShadow: '0 15px 40px rgba(0, 0, 0, 0.12)',
-  fontFamily: "'Poppins', sans-serif",
-  backdropFilter: 'blur(5px)',
-  border: '1px solid rgba(255,255,255,0.2)',
+  maxWidth: '1200px',
+  margin: '30px auto',
+  padding: '10px',
+  background: 'white',
+  borderRadius: '12px',
+  boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
+  backdropFilter: 'blur(8px)',
+  border: '1px solid rgba(255, 255, 255, 0.3)',
+  fontFamily: "'Inter', sans-serif",
   '@media (max-width: 768px)': {
-    padding: '10px',
-    margin: '10px auto'
+    padding: '20px',
+    margin: '20px auto'
   }
 }))
 
 const SearchForm = styled('form')({
   display: 'flex',
   flexDirection: 'column',
-  gap: '25px',
-  '@media (max-width: 768px)': {
-    gap: '5px'
-  }
+  gap: '25px'
 })
 
 const TripTypeSelector = styled('div')({
   display: 'flex',
   background: 'rgba(241, 245, 249, 0.7)',
-  borderRadius: '12px',
-  padding: '6px',
-  marginBottom: '5px',
-  maxWidth: '600px'
+  borderRadius: '16px',
+  padding: '8px',
+  marginBottom: '10px',
+  maxWidth: '600px',
+  boxShadow: 'inset 0 2px 4px rgba(0, 0, 0, 0.05)'
 })
 
 const TripTypeButton = styled('button')(({ active }) => ({
   flex: 1,
-  padding: '12px 16px',
+  padding: '7px 10px',
   border: 'none',
   background: active ? 'white' : 'transparent',
   fontWeight: '600',
   color: active ? '#2563eb' : '#64748b',
   cursor: 'pointer',
-  borderRadius: '8px',
-  transition: 'all 0.3s ease',
-  boxShadow: active ? '0 4px 12px rgba(37, 99, 235, 0.15)' : 'none',
-  fontSize: '14px',
+  borderRadius: '12px',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+  boxShadow: active ? '0 4px 20px rgba(37, 99, 235, 0.15)' : 'none',
+  fontSize: '15px',
   '&:hover': {
-    color: active ? '#2563eb' : '#475569'
-  },
-  '@media (max-width: 768px)': {
-    padding: '6px 8px',
-    fontSize: '12px'
+    color: active ? '#2563eb' : '#475569',
+    transform: active ? 'translateY(-2px)' : 'none'
   }
 }))
 
@@ -92,34 +87,34 @@ const InputRow = styled('div')({
   alignItems: 'flex-end',
   '@media (max-width: 768px)': {
     flexDirection: 'column',
-    gap: '10px',
-    alignItems: 'center'
+    gap: '15px'
   }
 })
 
 const InputGroup = styled('div')({
   flex: 1,
   position: 'relative',
-  '@media (max-width: 768px)': {
-    width: '100%'
-  }
+  minWidth: '200px'
 })
 
 const InputLabel = styled('label')({
   display: 'block',
-  marginBottom: '8px',
-  fontWeight: '500',
+  marginBottom: '10px',
+  fontWeight: '600',
   color: '#334155',
   fontSize: '14px',
-  paddingLeft: '8px'
+  paddingLeft: '12px'
 })
 
 const LocationInput = styled('div')({
   position: 'relative',
+  backgroundColor: 'rgba(248, 250, 252, 0.7)',
+  border: '1px solid #e2e8f0',
+  borderRadius: '5px',
   '&:before': {
     content: '""',
     position: 'absolute',
-    left: '14px',
+    left: '18px',
     top: '50%',
     transform: 'translateY(-50%)',
     width: '20px',
@@ -131,12 +126,13 @@ const LocationInput = styled('div')({
 
 const InputField = styled('input')({
   width: '100%',
-  padding: '16px 16px 16px 42px',
+  padding: '10px 9px 10px 50px',
   border: '1px solid #e2e8f0',
-  borderRadius: '10px',
+  borderRadius: '5px',
   fontSize: '16px',
   transition: 'all 0.3s ease',
   background: 'rgba(248, 250, 252, 0.7)',
+  fontWeight: '500',
   '&:focus': {
     outline: 'none',
     borderColor: '#3b82f6',
@@ -144,15 +140,17 @@ const InputField = styled('input')({
     boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.2)'
   },
   '&::placeholder': {
-    color: '#94a3b8'
+    color: '#94a3b8',
+    fontWeight: 'normal'
   }
 })
 
 const SwapButton = styled('button')({
-  background: '#f1f5f9',
+  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+  color: 'white',
   border: 'none',
-  width: '44px',
-  height: '44px',
+  width: '48px',
+  height: '48px',
   borderRadius: '50%',
   display: 'flex',
   alignItems: 'center',
@@ -160,15 +158,16 @@ const SwapButton = styled('button')({
   cursor: 'pointer',
   transition: 'all 0.3s ease',
   marginBottom: '8px',
+  boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)',
   '&:hover': {
-    background: '#e2e8f0',
-    transform: 'rotate(180deg)'
+    transform: 'rotate(180deg) scale(1.1)',
+    boxShadow: '0 6px 20px rgba(59, 130, 246, 0.4)'
   }
 })
 
 const SwapIcon = styled(MdOutlineSwapHoriz)({
-  color: '#64748b',
-  fontSize: '20px'
+  color: 'white',
+  fontSize: '22px'
 })
 
 const DateInput = styled('div')({
@@ -176,7 +175,7 @@ const DateInput = styled('div')({
   '&:before': {
     content: '""',
     position: 'absolute',
-    left: '14px',
+    left: '18px',
     top: '50%',
     transform: 'translateY(-50%)',
     width: '20px',
@@ -188,27 +187,28 @@ const DateInput = styled('div')({
 
 const DateDisplay = styled('div')({
   width: '100%',
-  padding: '16px 16px 16px 42px',
+  padding: '9px 9px 9px 50px',
   border: '1px solid #e2e8f0',
-  borderRadius: '10px',
+  borderRadius: '5px',
   fontSize: '16px',
   cursor: 'pointer',
   background: 'rgba(248, 250, 252, 0.7)',
   transition: 'all 0.3s ease',
+  fontWeight: '500',
   '&:hover': {
-    borderColor: '#3b82f6'
+    borderColor: '#3b82f6',
+    boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.1)'
   }
 })
 
 const DateRangeWrapper = styled('div')({
   position: 'absolute',
-  top: '100%',
+  top: 'calc(100% + 10px)',
   left: '0',
   zIndex: '1000',
-  marginTop: '8px',
   animation: `${fadeIn} 0.3s ease-out`,
-  boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)',
-  borderRadius: '12px',
+  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+  borderRadius: '16px',
   overflow: 'hidden',
   border: '1px solid #e2e8f0'
 })
@@ -218,7 +218,7 @@ const PassengerSelector = styled('div')({
   '&:before': {
     content: '""',
     position: 'absolute',
-    left: '14px',
+    left: '18px',
     top: '50%',
     transform: 'translateY(-50%)',
     width: '20px',
@@ -230,57 +230,45 @@ const PassengerSelector = styled('div')({
 
 const PassengerDisplay = styled('div')({
   width: '100%',
-  padding: '16px 16px 16px 42px',
+  padding: '18px 18px 18px 50px',
   border: '1px solid #e2e8f0',
-  borderRadius: '10px',
+  borderRadius: '14px',
   fontSize: '16px',
   cursor: 'pointer',
   background: 'rgba(248, 250, 252, 0.7)',
   transition: 'all 0.3s ease',
+  fontWeight: '500',
   '&:hover': {
-    borderColor: '#3b82f6'
-  }
-})
-
-const InsideFrom = styled('div')({
-  display: 'flex',
-  // flexDirection:'column',
-  // justifyContent: 'space-between',
-  gap: '10px',
-  marginBottom: '20px',
-  '@media (max-width: 768px)': {
-    flexDirection: 'column'
+    borderColor: '#3b82f6',
+    boxShadow: '0 0 0 3px rgba(59, 130, 246, 0.1)'
   }
 })
 
 const SearchButton = styled('button')({
-  padding: '9px 12px',
-  // background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+  padding: '10px 32px',
+  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
   color: 'white',
   border: 'none',
-  borderRadius: '12px',
-  fontSize: '16px',
+  borderRadius: '14px',
+  fontSize: '18px',
   fontWeight: '600',
   cursor: 'pointer',
   transition: 'all 0.3s ease',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '10px',
-  position: 'absolute',
-  bottom: '-25px',
-  left: '50%',
-  transform: 'translateX(-50%)', // ✅ Needed to center horizontally
-  background: 'linear-gradient(135deg, #3498db, #2c3e50)'
-  // transition: 'all 0.3s ease',
-  // '&:hover': {
-  //   // transform: 'translateY(-2px)',
-  //   boxShadow: '0 5px 15px rgba(52, 152, 219, 0.4)'
-  // }
+  gap: '12px',
+  marginTop: '10px',
+  boxShadow: '0 10px 25px rgba(59, 130, 246, 0.3)',
+  '&:hover': {
+    transform: 'translateY(-3px)',
+    boxShadow: '0 15px 30px rgba(59, 130, 246, 0.4)',
+    animation: `${pulse} 1s infinite`
+  }
 })
 
 const SearchIcon = styled(FiSearch)({
-  fontSize: '18px'
+  fontSize: '20px'
 })
 
 const FlightBookingForm = () => {
@@ -297,7 +285,6 @@ const FlightBookingForm = () => {
     infants: 0
   })
   const [cabinClass, setCabinClass] = useState('Economy')
-  const [includeHotel, setIncludeHotel] = useState(false)
 
   const [dateRange, setDateRange] = useState([
     {
@@ -346,16 +333,6 @@ const FlightBookingForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log({
-      tripType,
-      flyingFrom,
-      flyingTo,
-      departureDate,
-      returnDate,
-      passengers,
-      cabinClass,
-      includeHotel
-    })
     navigate('/FlightBooking')
   }
 
@@ -371,129 +348,125 @@ const FlightBookingForm = () => {
   return (
     <SearchContainer ref={containerRef}>
       <SearchForm onSubmit={handleSubmit}>
-        <div className='ds-f flex-c gp-5'>
-          <TripTypeSelector>
-            <TripTypeButton
-              type='button'
-              active={tripType === 'round-trip'}
-              onClick={() => setTripType('round-trip')}
-            >
-              Round Trip
-            </TripTypeButton>
-            <TripTypeButton
-              type='button'
-              active={tripType === 'one-way'}
-              onClick={() => setTripType('one-way')}
-            >
-              One Way
-            </TripTypeButton>
-            <TripTypeButton
-              type='button'
-              active={tripType === 'multi-city'}
-              onClick={() => setTripType('multi-city')}
-            >
-              Multi-City
-            </TripTypeButton>
-          </TripTypeSelector>
+        <TripTypeSelector>
+          <TripTypeButton
+            type='button'
+            active={tripType === 'round-trip'}
+            onClick={() => setTripType('round-trip')}
+          >
+            Round Trip
+          </TripTypeButton>
+          <TripTypeButton
+            type='button'
+            active={tripType === 'one-way'}
+            onClick={() => setTripType('one-way')}
+          >
+            One Way
+          </TripTypeButton>
+          <TripTypeButton
+            type='button'
+            active={tripType === 'multi-city'}
+            onClick={() => setTripType('multi-city')}
+          >
+            Multi-City
+          </TripTypeButton>
+        </TripTypeSelector>
 
-          <InsideFrom className={styled.InsideFrom}>
-            <InputRow>
-              <InputGroup>
-                <InputLabel>From</InputLabel>
-                <LocationInput>
-                  <InputField
-                    type='text'
-                    placeholder='City or airport'
-                    value={flyingFrom}
-                    onChange={e => setFlyingFrom(e.target.value)}
-                    // required
+        <InputRow>
+          <InputGroup>
+            <InputLabel>Flying from</InputLabel>
+            <LocationInput>
+              <InputField
+                type='text'
+                placeholder='City or airport'
+                value={flyingFrom}
+                onChange={e => setFlyingFrom(e.target.value)}
+              />
+            </LocationInput>
+          </InputGroup>
+
+          <SwapButton type='button' onClick={swapLocations}>
+            <SwapIcon />
+          </SwapButton>
+
+          <InputGroup>
+            <InputLabel>Flying to</InputLabel>
+            <LocationInput>
+              <InputField
+                type='text'
+                placeholder='City or airport'
+                value={flyingTo}
+                onChange={e => setFlyingTo(e.target.value)}
+              />
+            </LocationInput>
+          </InputGroup>
+        </InputRow>
+
+        <InputRow>
+          <InputGroup>
+            <InputLabel>Departure date</InputLabel>
+            <DateInput>
+              <DateDisplay onClick={() => setOpenDatePicker(!openDatePicker)}>
+                {departureDate
+                  ? format(new Date(departureDate), 'EEE, MMM d')
+                  : 'Select date'}
+              </DateDisplay>
+              {openDatePicker && (
+                <DateRangeWrapper>
+                  <DateRange
+                    editableDateInputs={true}
+                    onChange={handleDateSelect}
+                    moveRangeOnFirstSelection={false}
+                    ranges={dateRange}
+                    locale={enUS}
+                    minDate={new Date()}
+                    rangeColors={['#3b82f6']}
                   />
-                </LocationInput>
-              </InputGroup>
-
-              <SwapButton type='button' onClick={swapLocations}>
-                <SwapIcon />
-              </SwapButton>
-
-              <InputGroup>
-                <InputLabel>To</InputLabel>
-                <LocationInput>
-                  <InputField
-                    type='text'
-                    placeholder='City or airport'
-                    value={flyingTo}
-                    onChange={e => setFlyingTo(e.target.value)}
-                    // required
-                  />
-                </LocationInput>
-              </InputGroup>
-            </InputRow>
-
-            <InputRow>
-              <InputGroup>
-                <InputLabel>Departure</InputLabel>
-                <DateInput>
-                  <DateDisplay
-                    onClick={() => setOpenDatePicker(!openDatePicker)}
-                  >
-                    {departureDate
-                      ? format(new Date(departureDate), 'EEE, MMM d')
-                      : 'Select date'}
-                  </DateDisplay>
-                  {openDatePicker && (
-                    <DateRangeWrapper>
-                      <DateRange
-                        editableDateInputs={true}
-                        onChange={handleDateSelect}
-                        moveRangeOnFirstSelection={false}
-                        ranges={dateRange}
-                        locale={enUS}
-                        minDate={new Date()}
-                        rangeColors={['#3b82f6']}
-                      />
-                    </DateRangeWrapper>
-                  )}
-                </DateInput>
-              </InputGroup>
-
-              {tripType === 'round-trip' && (
-                <InputGroup>
-                  <InputLabel>Return</InputLabel>
-                  <DateInput>
-                    <DateDisplay
-                      onClick={() => setOpenDatePicker(!openDatePicker)}
-                    >
-                      {returnDate
-                        ? format(new Date(returnDate), 'EEE, MMM d')
-                        : 'Select date'}
-                    </DateDisplay>
-                  </DateInput>
-                </InputGroup>
+                </DateRangeWrapper>
               )}
-            </InputRow>
+            </DateInput>
+          </InputGroup>
 
-            <InputRow>
-              <InputGroup>
-                <InputLabel>Passengers & Class</InputLabel>
-                <PassengerSelector>
-                  <PassengerDisplay
-                    onClick={() => setOpenPassengerPicker(!openPassengerPicker)}
-                  >
-                    {`${totalPassengers} ${
-                      totalPassengers === 1 ? 'Passenger' : 'Passengers'
-                    }, ${cabinClass}`}
-                  </PassengerDisplay>
-                  {openPassengerPicker && <PassengerDropdownForm />}
-                </PassengerSelector>
-              </InputGroup>
-            </InputRow>
-          </InsideFrom>
+          {tripType === 'round-trip' && (
+            <InputGroup>
+              <InputLabel>Return date</InputLabel>
+              <DateInput>
+                <DateDisplay onClick={() => setOpenDatePicker(!openDatePicker)}>
+                  {returnDate
+                    ? format(new Date(returnDate), 'EEE, MMM d')
+                    : 'Select date'}
+                </DateDisplay>
+              </DateInput>
+            </InputGroup>
+          )}
 
-          <SearchButton type='submit'>
-            <SearchIcon />
-            Search Flights
-          </SearchButton>
-        </div>
+          {/* <InputGroup>
+            <InputLabel>Passengers & Class</InputLabel>
+            <PassengerSelector>
+              <PassengerDisplay
+                onClick={() => setOpenPassengerPicker(!openPassengerPicker)}
+              >
+                {`${totalPassengers} ${
+                  totalPassengers === 1 ? 'Passenger' : 'Passengers'
+                }, ${cabinClass}`}
+              </PassengerDisplay>
+              {openPassengerPicker && (
+                <PassengerDropdownForm
+                  passengers={passengers}
+                  updatePassengerCount={updatePassengerCount}
+                  cabinClass={cabinClass}
+                  setCabinClass={setCabinClass}
+                  onClose={() => setOpenPassengerPicker(false)}
+                />
+              )}
+            </PassengerSelector>
+          </InputGroup> */}
+        </InputRow>
+
+        <SearchButton type='submit'>
+          <SearchIcon />
+          Search Flights
+        </SearchButton>
       </SearchForm>
     </SearchContainer>
   )

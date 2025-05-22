@@ -7,7 +7,8 @@ import {
   KingBed as HotelIcon,
   DirectionsCar as CarIcon,
   Train as TrainIcon,
-  AirportShuttle as BusIcon
+  AirportShuttle as BusIcon,
+  LocalOffer as OfferIcon
 } from '@mui/icons-material'
 import BookHotel from '../Hotel/BookHotelFrom'
 import FlightBookingForm from '../flight/FlightBookingForm'
@@ -18,11 +19,16 @@ import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 import PublicImage from '../../utils/PublicImage'
 
 // Styled Components
-const MastheadContainer = styled('section')({
+
+const MastheadContainer = styled('section')(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
-  // background: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5))',
-  // paddingBottom: '80px',
+  // minHeight: '600px',
+  minHeight: '500px',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  background: 'linear-gradient(135deg, #0f0c29, #302b63, #24243e)',
   '& img': {
     position: 'absolute',
     top: 0,
@@ -30,36 +36,27 @@ const MastheadContainer = styled('section')({
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    zIndex: -1
+    zIndex: 0,
+    opacity: 0.7,
+    mixBlendMode: 'overlay'
   }
-})
+  // [theme.breakpoints.up('md')]: {
+  //   minHeight: '700px'
+  // }
+}))
 
-const TabsContainer = styled('div')({
-  position: 'sticky',
-  top: 0,
-  zIndex: 100,
-  background: 'rgba(0, 0, 0, 0.7)',
+const TabsContainer = styled('div')(({ theme }) => ({
+  // position: 'sticky',
+  // top: 0,
+  // zIndex: 100,
+  background: 'rgba(15, 23, 42, 0.98)',
   backdropFilter: 'blur(10px)',
-  padding: '10px 0',
-  borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
-})
+  padding: '15px 0',
+  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+  boxShadow: '0 4px 30px rgba(0, 0, 0, 0.25)'
+}))
 
-const TabsWrapper = styled('div')({
-  display: 'flex',
-  justifyContent: 'center',
-  gap: '10px',
-  overflowX: 'auto',
-  padding: '0 10px',
-  scrollbarWidth: 'none',
-  '&::-webkit-scrollbar': {
-    display: 'none'
-  },
-  '@media (max-width: 768px)': {
-    justifyContent: 'flex-start'
-  }
-})
-
-const TabButton = styled('button')(({ active }) => ({
+const TabButton = styled('button')(({ theme, active }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: '12px 24px',
@@ -68,75 +65,223 @@ const TabButton = styled('button')(({ active }) => ({
   fontSize: '16px',
   border: 'none',
   cursor: 'pointer',
-  transition: 'all 0.3s ease',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   whiteSpace: 'nowrap',
-  background: active ? 'rgba(255, 193, 7, 0.9)' : 'rgba(255, 255, 255, 0.1)',
-  color: active ? '#000' : '#fff',
-  '&:hover': {
-    background: active ? 'rgba(255, 193, 7, 1)' : 'rgba(255, 255, 255, 0.2)'
-  },
+  background: active
+    ? theme.palette.secondary.main
+    : 'rgba(255, 255, 255, 0.08)',
+  color: active ? '#111827' : '#E5E7EB',
+  boxShadow: active ? '0 4px 20px rgba(251, 191, 36, 0.3)' : 'none',
+  // '&:hover': {
+  //   background: active ? '#F59E0B' : 'rgba(255, 255, 255, 0.15)',
+  //   transform: 'translateY(-1px)'
+  // },
   '& svg': {
-    marginRight: '8px',
-    fontSize: '20px'
+    marginRight: '10px',
+    // fontSize: '20px',
+    color: active ? '#111827' : '#FBBF24'
   }
 }))
 
-const ContentContainer = styled('div')({
-  display: 'flex',
-  flexDirection: 'column-reverse',
-  alignItems: 'center',
-  // padding: '40px 20px',
-  '@media (min-width: 992px)': {
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-    // alignItems: 'flex-start',
-    // padding: '80px 20px'
-  }
-})
-
-const TextContent = styled('div')({
-  maxWidth: '600px',
+const HeroText = styled('div')(({ theme }) => ({
+  textAlign: 'center',
   marginBottom: '40px',
-  '@media (min-width: 992px)': {
-    marginBottom: 0,
-    paddingRight: '40px'
-  }
-})
+  maxWidth: '800px',
+  padding: '0 20px',
+  zIndex: 2
+}))
 
-const Title = styled('h1')({
+const Title = styled(motion.h1)(({ theme }) => ({
   fontSize: '3.5rem',
-  fontWeight: 700,
-  color: '#fff',
+  fontWeight: 800,
+  color: '#F3F4F6',
   lineHeight: 1.2,
   marginBottom: '20px',
-  '@media (max-width: 768px)': {
+  textShadow: '0 2px 15px rgba(0, 0, 0, 0.5)',
+  [theme.breakpoints.down('md')]: {
     fontSize: '2.5rem'
   }
-})
+}))
 
-const Highlight = styled('span')({
-  color: '#FFC107',
-  display: 'inline-block'
-})
+const Highlight = styled('span')(({ theme }) => ({
+  color: theme.palette.secondary.main,
+  background: 'linear-gradient(120deg, #FBBF24 0%, #F59E0B 100%)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  fontWeight: 900
+}))
 
-const Subtitle = styled('p')({
-  fontSize: '1.2rem',
-  color: 'rgba(255, 255, 255, 0.9)',
-  lineHeight: 1.6
-})
+const Subtitle = styled(motion.p)(({ theme }) => ({
+  fontSize: '1.25rem',
+  color: '#D1D5DB',
+  lineHeight: 1.6,
+  marginBottom: '30px',
+  maxWidth: '600px',
+  marginLeft: 'auto',
+  marginRight: 'auto'
+}))
 
-const FormContainer = styled('div')({
-  width: '100%',
-  // maxWidth: '600px',
-  // background: 'rgba(255, 255, 255, 0.95)',
-  borderRadius: '12px',
+const SpecialOffer = styled(motion.div)(({ theme }) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  background: 'rgba(251, 191, 36, 0.15)',
+  backdropFilter: 'blur(5px)',
   padding: '10px 20px',
-  // boxShadow: '0 15px 30px rgba(0, 0, 0, 0.2)',
-  minHeight: '300px',
-  '@media (max-width: 768px)': {
-    padding: '20px'
+  borderRadius: '30px',
+  color: '#FBBF24',
+  fontWeight: 600,
+  marginBottom: '25px',
+  border: '1px solid rgba(251, 191, 36, 0.3)',
+  '& svg': {
+    marginRight: '10px',
+    fontSize: '1.2rem'
   }
+}))
+
+const FormContainer = styled('div')(({ theme }) => ({
+  width: '60%',
+  maxWidth: '900px',
+  // background: 'rgba(17, 24, 39, 0.85)',
+  borderRadius: '16px',
+  padding: '10px',
+  minHeight: '600px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  // boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+  // border: '1px solid rgba(255, 255, 255, 0.1)',
+  // backdropFilter: 'blur(12px)',
+  zIndex: 2,
+  [theme.breakpoints.down('md')]: {
+    width: '100%',
+    padding: '10px 0'
+  },
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '4px',
+    // background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+    borderRadius: '16px 16px 0 0'
+  }
+}))
+
+// const MastheadContainer = styled('section')(({ theme }) => ({
+//   position: 'relative',
+//   overflow: 'hidden',
+//   minHeight: '600px',
+//   display: 'flex',
+//   flexDirection: 'column',
+//   justifyContent: 'center',
+//   '& img': {
+//     position: 'absolute',
+//     top: 0,
+//     left: 0,
+//     width: '100%',
+//     height: '100%',
+//     objectFit: 'cover',
+//     zIndex: -1,
+//     filter: 'brightness(0.7)'
+//   },
+//   [theme.breakpoints.up('md')]: {
+//     minHeight: '700px'
+//   }
+// }))
+
+const GradientOverlay = styled('div')({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  background:
+    'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%)',
+  zIndex: -1
 })
+
+// const TabsContainer = styled('div')(({ theme }) => ({
+//   position: 'sticky',
+//   top: 0,
+//   zIndex: 100,
+//   background: 'rgba(15, 23, 42, 0.9)',
+//   backdropFilter: 'blur(10px)',
+//   padding: '15px 0',
+//   borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+//   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
+// }))
+
+const TabsWrapper = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '15px',
+  overflowX: 'auto',
+  padding: '0 20px',
+  scrollbarWidth: 'none',
+  '&::-webkit-scrollbar': {
+    display: 'none'
+  },
+  [theme.breakpoints.down('md')]: {
+    justifyContent: 'flex-start',
+    padding: '0 15px'
+  }
+}))
+
+// const TabButton = styled('button')(({ theme, active }) => ({
+//   display: 'flex',
+//   alignItems: 'center',
+//   padding: '12px 24px',
+//   borderRadius: '30px',
+//   fontWeight: 600,
+//   fontSize: '16px',
+//   border: 'none',
+//   cursor: 'pointer',
+//   transition: 'all 0.3s ease',
+//   whiteSpace: 'nowrap',
+//   background: active
+//     ? theme.palette.secondary.main
+//     : 'rgba(255, 255, 255, 0.1)',
+//   color: active ? '#000' : '#fff',
+//   boxShadow: active ? '0 4px 15px rgba(255, 193, 7, 0.3)' : 'none',
+//   '&:hover': {
+//     background: active
+//       ? theme.palette.secondary.dark
+//       : 'rgba(255, 255, 255, 0.2)',
+//     transform: active ? 'translateY(-2px)' : 'none'
+//   },
+//   '& svg': {
+//     marginRight: '10px',
+//     fontSize: '20px'
+//   },
+//   [theme.breakpoints.down('sm')]: {
+//     padding: '10px 18px',
+//     fontSize: '14px',
+//     '& svg': {
+//       marginRight: '6px',
+//       fontSize: '18px'
+//     }
+//   }
+// }))
+
+const ContentContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: '0px 20px',
+  position: 'relative',
+  zIndex: 2,
+
+  // 👇 Default for small screens (below 768px)
+  flexDirection: 'column',
+
+  // 👇 For large screens (768px and above, or whatever 'lg' is defined as)
+  [theme.breakpoints.up('lg')]: {
+    maxWidth: '1400px',
+    margin: '0 auto',
+    width: '100%',
+    flexDirection: 'row' // or whatever layout you want on larger screens
+  }
+}))
 
 const Masthead = () => {
   const [selectTab, setSelectTab] = useState(7) // Default to Flights
@@ -186,37 +331,58 @@ const Masthead = () => {
   }
 
   return (
-    <MastheadContainer style={{ marginTop: '70px' }} className='masthead'>
-      {/* <img /> */}
+    <MastheadContainer style={{ marginTop: '75px' }} className='masthead'>
       <PublicImage src='/images/download.webp' alt='Travel background' />
+      <GradientOverlay />
 
       <TabsContainer>
         <TabsWrapper>
           {tabs.map(tab => (
-            <TabButton
+            <motion.div
               key={tab.id}
-              active={selectTab === tab.id}
-              onClick={() => handleSelectTab(tab)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {tab.icon}
-              {tab.label}
-            </TabButton>
+              <TabButton
+                active={selectTab === tab.id}
+                onClick={() => handleSelectTab(tab)}
+              >
+                {tab.icon}
+                {tab.label}
+              </TabButton>
+            </motion.div>
           ))}
         </TabsWrapper>
       </TabsContainer>
 
       <ContentContainer>
-        {/* <TextContent>
-          <Title>
-            <Highlight>Where Would</Highlight>
-            <br />
-            You Like To Go?
+        <HeroText>
+          <SpecialOffer
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <OfferIcon />
+            Limited Time: 20% Off First Booking
+          </SpecialOffer>
+
+          <Title
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Highlight>Discover Your</Highlight> Next Adventure
           </Title>
-          <Subtitle>
-            Discover and book amazing travel experiences around the world with
-            just a few clicks.
+
+          <Subtitle
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Book seamless travel experiences with our premium service and
+            exclusive deals
           </Subtitle>
-        </TextContent> */}
+        </HeroText>
 
         <FormContainer>
           <AnimatePresence mode='wait'>

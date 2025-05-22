@@ -157,7 +157,7 @@
     padding: 5px 10px;
     border-radius: 20px;
     margin-bottom: 5px;
-    
+
 }
 
 .durationIcon {
@@ -685,6 +685,80 @@
     border-color: #63b3ed;
     box-shadow: 0 0 0 3px rgba(99, 179, 237, 0.2);
     background-color: white;
+}
+
+
+/* Add these to your existing CSS */
+.savedValue {
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #2d3748;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.passengerActions {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    border-top: 1px solid #edf2f7;
+}
+
+.saveButton,
+.addMoreButton {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.saveButton {
+    background-color: #4299e1;
+    color: white;
+    border: none;
+}
+
+.saveButton:hover {
+    background-color: #3182ce;
+}
+
+.saveButton:disabled {
+    background-color: #cbd5e0;
+    cursor: not-allowed;
+}
+
+.addMoreButton {
+    background-color: white;
+    color: #4299e1;
+    border: 1px solid #4299e1;
+}
+
+.addMoreButton:hover {
+    background-color: #ebf8ff;
+}
+
+.savedContactInfo {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.savedContactItem {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.savedContactItem:last-child {
+    margin-bottom: 0;
+}
+
+.contactLabel {
+    font-weight: 600;
+    margin-right: 10px;
+    min-width: 80px;
+    color: #4a5568;
 }
 
 /* Responsive Styles */

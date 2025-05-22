@@ -18,10 +18,13 @@ import {
   FaTv,
   FaWater
 } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
 
 function SeatSelectionBus ({ bus, selectedSeats = [], onSeatSelect }) {
   const [selectedPickup, setSelectedPickup] = React.useState(null)
   const [showAmenities, setShowAmenities] = React.useState(false)
+
+  const navigate = useNavigate()
 
   const pickupPoints = bus.pickupPoints || [
     {
@@ -219,10 +222,13 @@ function SeatSelectionBus ({ bus, selectedSeats = [], onSeatSelect }) {
             <span>No seats selected</span>
           )}
         </div>
-        {console.log(selectedSeats, selectedPickup)}
+        {/* {console.log(selectedSeats, selectedPickup)}   */}
         <button
           className={styles.continueButton}
           disabled={selectedSeats.length === 0}
+          onClick={() => {
+            navigate('/BusBookingDetail')
+          }}
         >
           Continue to Payment
           <FiChevronRight className={styles.continueIcon} />

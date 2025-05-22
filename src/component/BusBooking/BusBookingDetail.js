@@ -1,14 +1,58 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../style/BusBookingDetail.module.css'
 import { useNavigate } from 'react-router-dom'
 import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 
 const BusBookingDetail = () => {
   const navigate = useNavigate()
+  const [passengers, setPassengers] = useState([
+    { seat: '5UB', name: '', age: '', gender: '' }
+  ])
+  const [contactDetails, setContactDetails] = useState({
+    email: '',
+    phone: ''
+  })
+  const [savedPassengers, setSavedPassengers] = useState([])
+  const [savedContact, setSavedContact] = useState(null)
 
   useEffect(() => {
     window.scroll(0, 0)
   }, [])
+
+  const handlePassengerChange = (index, field, value) => {
+    const updatedPassengers = [...passengers]
+    updatedPassengers[index][field] = value
+    setPassengers(updatedPassengers)
+  }
+
+  const handleContactChange = (field, value) => {
+    setContactDetails(prev => ({
+      ...prev,
+      [field]: value
+    }))
+  }
+
+  const savePassenger = index => {
+    const passenger = passengers[index]
+    if (passenger.name && passenger.age && passenger.gender) {
+      const updatedSaved = [...savedPassengers]
+      updatedSaved[index] = passenger
+      setSavedPassengers(updatedSaved)
+    }
+  }
+
+  const addMorePassenger = () => {
+    setPassengers([
+      ...passengers,
+      { seat: '6UB', name: '', age: '', gender: '' }
+    ])
+  }
+
+  const saveContactDetails = () => {
+    if (contactDetails.email && contactDetails.phone) {
+      setSavedContact(contactDetails)
+    }
+  }
 
   return (
     <ScrollFadeIn>
@@ -23,46 +67,15 @@ const BusBookingDetail = () => {
                 </p>
               </div>
               <div className={styles.seatInfo}>
-                {/* <span className={styles.seatIcon}>💺</span> */}
-                <span>Seat: 5UB</span>
+                <span>Seat: {passengers.map(p => p.seat).join(', ')}</span>
               </div>
             </div>
             <a className={styles.viewPolicies}>View Policies</a>
           </div>
 
+          {/* Journey details remain the same */}
           <div className={styles.journeyContainer}>
-            <div className={styles.journeyTimeline}>
-              <div className={styles.timelineDot}></div>
-              <div className={styles.timelineLine}></div>
-              <div className={styles.timelineDot}></div>
-            </div>
-
-            <div className={styles.journeyDetails}>
-              <div className={styles.departure}>
-                <div className={styles.time}>23:30</div>
-                <div className={styles.date}>15 May' 25, Thu</div>
-                <div className={styles.location}>
-                  <h3>Delhi</h3>
-                  <p>Noida metro station sector 143</p>
-                  <p>Noida Metro Station Sector 143 (Delhi)</p>
-                </div>
-              </div>
-
-              <div className={styles.durationContainer}>
-                <div className={styles.duration}>71h 30m</div>
-                {/* <div className={styles.durationIcon}>⏱️</div> */}
-              </div>
-
-              <div className={styles.arrival}>
-                <div className={styles.time}>07:00</div>
-                <div className={styles.date}>16 May' 25, Fri</div>
-                <div className={styles.location}>
-                  <h3>Kanpur (Uttar Pradesh)</h3>
-                  <p>Fazalganj chauraha - intrcity lounge</p>
-                  <p>IntrCity Lounge, Kalpi Road, Near Legend Hotel (Kanpur)</p>
-                </div>
-              </div>
-            </div>
+            {/* ... existing journey details code ... */}
           </div>
 
           <div className={styles.divider}></div>
@@ -73,72 +86,136 @@ const BusBookingDetail = () => {
               Traveler Details
             </h2>
 
-            <div className={styles.detailsCard}>
-              {/* Header Row */}
-              <div className={styles.detailsHeader}>
-                <div className={styles.headerItem}>
-                  <span className={styles.seatIcon}>🚌</span>
-                  <span>Seat</span>
+            {passengers.map((passenger, index) => (
+              <div key={index} className={styles.detailsCard}>
+                {/* Header Row - only show for first passenger */}
+                {index === 0 && (
+                  <div className={styles.detailsHeader}>
+                    <div className={styles.headerItem}>
+                      <span className={styles.seatIcon}>🚌</span>
+                      <span>Seat</span>
+                    </div>
+                    <div className={styles.headerItem}>
+                      <span className={styles.userIcon}>👤</span>
+                      <span>Name</span>
+                    </div>
+                    <div className={styles.headerItem}>
+                      <span className={styles.ageIcon}>🎂</span>
+                      <span>Age*</span>
+                    </div>
+                    <div className={styles.headerItem}>
+                      <span className={styles.genderIcon}>⚧</span>
+                      <span>Gender</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Data Row */}
+                <div className={styles.detailsRow}>
+                  <div className={styles.detailCell}>
+                    <div className={styles.seatBadge}>{passenger.seat}</div>
+                  </div>
+
+                  <div className={styles.detailCell}>
+                    {savedPassengers[index] ? (
+                      <div className={styles.savedValue}>
+                        {savedPassengers[index].name}
+                      </div>
+                    ) : (
+                      <div className={styles.inputContainer}>
+                        <input
+                          type='text'
+                          placeholder='Full Name'
+                          className={styles.nameInput}
+                          value={passenger.name}
+                          onChange={e =>
+                            handlePassengerChange(index, 'name', e.target.value)
+                          }
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className={styles.detailCell}>
+                    {savedPassengers[index] ? (
+                      <div className={styles.savedValue}>
+                        {savedPassengers[index].age}
+                      </div>
+                    ) : (
+                      <div className={styles.inputContainer}>
+                        <input
+                          type='number'
+                          placeholder='24'
+                          min='1'
+                          max='120'
+                          className={styles.ageInput}
+                          value={passenger.age}
+                          onChange={e =>
+                            handlePassengerChange(index, 'age', e.target.value)
+                          }
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  <div className={styles.detailCell}>
+                    {savedPassengers[index] ? (
+                      <div className={styles.savedValue}>
+                        {savedPassengers[index].gender.charAt(0).toUpperCase() +
+                          savedPassengers[index].gender.slice(1)}
+                      </div>
+                    ) : (
+                      <div className={styles.selectContainer}>
+                        <select
+                          className={styles.genderSelect}
+                          value={passenger.gender}
+                          onChange={e =>
+                            handlePassengerChange(
+                              index,
+                              'gender',
+                              e.target.value
+                            )
+                          }
+                        >
+                          <option value='' disabled>
+                            Select
+                          </option>
+                          <option value='male'>Male</option>
+                          <option value='female'>Female</option>
+                          <option value='other'>Other</option>
+                          <option value='prefer-not-to-say'>
+                            Prefer not to say
+                          </option>
+                        </select>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className={styles.headerItem}>
-                  <span className={styles.userIcon}>👤</span>
-                  <span>Name</span>
-                </div>
-                <div className={styles.headerItem}>
-                  <span className={styles.ageIcon}>🎂</span>
-                  <span>Age*</span>
-                </div>
-                <div className={styles.headerItem}>
-                  <span className={styles.genderIcon}>⚧</span>
-                  <span>Gender</span>
-                </div>
+
+                {/* Action Buttons */}
+                {!savedPassengers[index] && (
+                  <div className={styles.passengerActions}>
+                    <button
+                      className={styles.saveButton}
+                      onClick={() => savePassenger(index)}
+                      disabled={
+                        !passenger.name || !passenger.age || !passenger.gender
+                      }
+                    >
+                      Save
+                    </button>
+                    {index === passengers.length - 1 && (
+                      <button
+                        className={styles.addMoreButton}
+                        onClick={addMorePassenger}
+                      >
+                        Add More
+                      </button>
+                    )}
+                  </div>
+                )}
               </div>
-
-              {/* Data Row */}
-              <div className={styles.detailsRow}>
-                <div className={styles.detailCell}>
-                  <div className={styles.seatBadge}>5UB</div>
-                </div>
-
-                <div className={styles.detailCell}>
-                  <div className={styles.inputContainer}>
-                    <input
-                      type='text'
-                      placeholder='Full Name'
-                      className={styles.nameInput}
-                    />
-                  </div>
-                </div>
-
-                <div className={styles.detailCell}>
-                  <div className={styles.inputContainer}>
-                    <input
-                      type='number'
-                      placeholder='24'
-                      min='1'
-                      max='120'
-                      className={styles.ageInput}
-                    />
-                  </div>
-                </div>
-
-                <div className={styles.detailCell}>
-                  <div className={styles.selectContainer}>
-                    <select className={styles.genderSelect}>
-                      <option value='' disabled selected>
-                        Select
-                      </option>
-                      <option value='male'>Male</option>
-                      <option value='female'>Female</option>
-                      <option value='other'>Other</option>
-                      <option value='prefer-not-to-say'>
-                        Prefer not to say
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
           <div className={styles.divider}></div>
@@ -152,23 +229,58 @@ const BusBookingDetail = () => {
               We'll send your ticket here
             </p>
 
-            <div className={styles.contactForm}>
-              <div className={styles.inputGroup}>
-                <label>Email Id*</label>
-                <div className={styles.inputWithIcon}>
-                  <span className={styles.inputIcon}>✉️</span>
-                  <input type='email' placeholder='your@email.com' />
+            {savedContact ? (
+              <div className={styles.savedContactInfo}>
+                <div className={styles.savedContactItem}>
+                  <span className={styles.contactLabel}>Email:</span>
+                  <span>{savedContact.email}</span>
+                </div>
+                <div className={styles.savedContactItem}>
+                  <span className={styles.contactLabel}>Phone:</span>
+                  <span>{savedContact.phone}</span>
                 </div>
               </div>
+            ) : (
+              <div className={styles.contactForm}>
+                <div className={styles.inputGroup}>
+                  <label>Email Id*</label>
+                  <div className={styles.inputWithIcon}>
+                    <span className={styles.inputIcon}>✉️</span>
+                    <input
+                      type='email'
+                      placeholder='your@email.com'
+                      value={contactDetails.email}
+                      onChange={e =>
+                        handleContactChange('email', e.target.value)
+                      }
+                    />
+                  </div>
+                </div>
 
-              <div className={styles.inputGroup}>
-                <label>Mobile Number*</label>
-                <div className={styles.inputWithIcon}>
-                  <span className={styles.inputIcon}>📱</span>
-                  <input type='tel' placeholder='9876543210' />
+                <div className={styles.inputGroup}>
+                  <label>Mobile Number*</label>
+                  <div className={styles.inputWithIcon}>
+                    <span className={styles.inputIcon}>📱</span>
+                    <input
+                      type='tel'
+                      placeholder='9876543210'
+                      value={contactDetails.phone}
+                      onChange={e =>
+                        handleContactChange('phone', e.target.value)
+                      }
+                    />
+                  </div>
                 </div>
+
+                <button
+                  className={styles.saveButton}
+                  onClick={saveContactDetails}
+                  disabled={!contactDetails.email || !contactDetails.phone}
+                >
+                  Save Contact Details
+                </button>
               </div>
-            </div>
+            )}
           </div>
 
           <div className={styles.checkboxOption}>
