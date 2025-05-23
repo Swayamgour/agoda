@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import PropertyOverview from './PropertyOverview '
 import PublicImage from '../../utils/PublicImage'
 import styles from '../../style/HotelBookingDashboard.module.css'
+import '../../style/AllHotel.css' // Import the CSS file
+
 
 const HotelCard = ({ hotel }) => {
   const navigate = useNavigate()
