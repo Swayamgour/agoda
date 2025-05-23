@@ -11,8 +11,16 @@ import FlightFilterWithBottomDrawer from './FlightFilterWithBottomDrawer'
 import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 import PublicImage from '../../utils/PublicImage'
 import FlightBookingForm from './FlightBookingForm'
+import FlightSearchDialog from './FlightSearchDialog'
+import { PiAirplaneInFlightDuotone } from 'react-icons/pi'
+import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff'
+import FlightLandIcon from '@mui/icons-material/FlightLand'
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt'
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday'
+import PeopleIcon from '@mui/icons-material/People'
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
 
-const FlightBookingPage = () => {
+const FlightBookingDashboard = () => {
   const [selectedAirlines, setSelectedAirlines] = useState([])
   const [selectedStops, setSelectedStops] = useState('any')
   const [departureTimeRange, setDepartureTimeRange] = useState([0, 24])
@@ -29,9 +37,17 @@ const FlightBookingPage = () => {
   ]
 
   const [timeRange, setTimeRange] = useState([0, 24])
+  const [searchDialogOpen, setSearchDialogOpen] = useState(false)
+  const [searchParams, setSearchParams] = useState(null)
 
   const handleTimeRangeChange = (event, newValue) => {
     setTimeRange(newValue)
+  }
+
+  const handleSearch = params => {
+    setSearchParams(params)
+    // You can add your search logic here
+    console.log('Search params:', params)
   }
 
   const flights = [
@@ -136,10 +152,63 @@ const FlightBookingPage = () => {
     }
   })
 
+  const handleSwapLocations = () => {
+    // Your logic to swap locations here
+    console.log('Swap locations functionality')
+  }
+
   return (
     <div className={styles.container}>
-      {/* <FlightSearch /> */}
-      {/* <FlightBookingForm /> */}
+      <div
+        onClick={() => setSearchDialogOpen(true)}
+        className={styles.searchHeader}
+      >
+        <div className={styles.routeContainer}>
+          <div className={styles.location}>
+            <FlightTakeoffIcon className={styles.flightIcon} />
+            <div>
+              <span className={styles.city}>Kanpur</span>
+              <span className={styles.airport}>(KNU)</span>
+            </div>
+          </div>
+
+          <div className={styles.middleSection}>
+            <button
+              className={styles.swapButton}
+              onClick={handleSwapLocations}
+              aria-label='Swap locations'
+            >
+              <SwapHorizIcon className={styles.swapIcon} />
+            </button>
+            
+          </div>
+
+          <div className={styles.location}>
+            <FlightLandIcon className={styles.flightIcon} />
+            <div>
+              <span className={styles.city}>Delhi</span>
+              <span className={styles.airport}>(DEL)</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.detailsContainer}>
+          <div className={styles.detailItem}>
+            <CalendarTodayIcon className={styles.detailIcon} />
+            <span>15 Jun 2023 - 20 Jun 2023</span>
+          </div>
+          <div className={styles.detailItem}>
+            <PeopleIcon className={styles.detailIcon} />
+            <span>2 Adults, 2 Children</span>
+          </div>
+        </div>
+      </div>
+
+      <FlightSearchDialog
+        open={searchDialogOpen}
+        onClose={() => setSearchDialogOpen(false)}
+        onSearch={handleSearch}
+      />
 
       <div className={styles.bookingContainer}>
         <aside className={styles.filtersSidebar}>
@@ -427,4 +496,4 @@ const FlightBookingPage = () => {
   )
 }
 
-export default FlightBookingPage
+export default FlightBookingDashboard

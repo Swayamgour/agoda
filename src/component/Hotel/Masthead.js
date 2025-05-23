@@ -23,7 +23,7 @@ import PublicImage from '../../utils/PublicImage'
 const MastheadContainer = styled('section')(({ theme }) => ({
   position: 'relative',
   overflow: 'hidden',
-  // minHeight: '600px',
+  minHeight: '600px',
   minHeight: '500px',
   display: 'flex',
   flexDirection: 'column',
@@ -135,6 +135,12 @@ const SpecialOffer = styled(motion.div)(({ theme }) => ({
   '& svg': {
     marginRight: '10px',
     fontSize: '1.2rem'
+  },
+  '@media (max-width: 480px)': {
+    padding: '20px',
+    margin: '20px auto',
+    fontSize: '12px',
+    padding: '10px'
   }
 }))
 
@@ -154,7 +160,8 @@ const FormContainer = styled('div')(({ theme }) => ({
   zIndex: 2,
   [theme.breakpoints.down('md')]: {
     width: '100%',
-    padding: '10px 0'
+    padding: '10px 0',
+    minHeight: 'unset'
   },
   '&::before': {
     content: '""',
@@ -272,7 +279,7 @@ const ContentContainer = styled('div')(({ theme }) => ({
   zIndex: 2,
 
   // 👇 Default for small screens (below 768px)
-  flexDirection: 'column',
+  flexDirection: 'column-reverse',
 
   // 👇 For large screens (768px and above, or whatever 'lg' is defined as)
   [theme.breakpoints.up('lg')]: {

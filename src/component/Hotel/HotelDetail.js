@@ -23,7 +23,6 @@ const HotelPage = () => {
     }
   ]
 
-
   const navigate = useNavigate()
 
   const images = {
@@ -112,7 +111,9 @@ const HotelPage = () => {
             <span>RS. </span>
             <span>427 </span>
           </div>
-          <div className='view-deal' onClick={()=>navigate('/BookingReview')} >Book Now</div>
+          <div className='view-deal' onClick={() => navigate('/BookingReview')}>
+            Book Now
+          </div>
         </div>
       </div>
 
@@ -146,17 +147,16 @@ const HotelPage = () => {
 
           <div className='hotel-header-box'>
             <h2 className='hotel-header'>Highlights</h2>
-           <div className="custom-grid-wrapper">
-  {cleanList?.map((e, i) => (
-    <div key={i} className="custom-grid-item">
-      <div className="custom-image-box">
-        <PublicImage src={e?.image} />
-      </div>
-      <div className="custom-title-text">{e?.title}</div>
-    </div>
-  ))}
-</div>
-
+            <div className='custom-grid-wrapper'>
+              {cleanList?.map((e, i) => (
+                <div key={i} className='custom-grid-item'>
+                  <div className='custom-image-box'>
+                    <PublicImage src={e?.image} />
+                  </div>
+                  <div className='custom-title-text'>{e?.title}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className='hotel-header-box'>

@@ -1,24 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 // import BookHotel from './BookHotel'a
-import '../../style/AllHotel.css' // Import the CSS file
+// import '../../style/AllHotel.css' // Import the CSS file
 import HotelCard from './HotelsCard'
 import BookHotelFrom from './BookHotelFrom'
 import HotelSectionFrom from './HotelSectionFrom'
 import FilterWithBottomDrawer from './FilterWithBottomDrawer'
 import ScrollFadeIn from '../scrollview/ScrollFadeIn'
 // import HotelCard from '../../HotelsCard'
+import styles from '../../style/HotelBookingDashboard.module.css'
 
-function AllHotel () {
+
+import {
+  LocationOn,
+  SwapHoriz,
+  CalendarToday,
+  Hotel as HotelIcon,
+  People,
+  Star,
+  Search
+} from '@mui/icons-material'
+import HotelSearchDialogBox from './HotelSearchDialogBox'
+
+function HotelBookingDashboard () {
   const location = useLocation()
   const backgroundImage = location?.state?.item?.img
   const country = location?.state?.item?.country
 
   const [activeFilter, setActiveFilter] = useState(null)
-
-  const handleFilterClick = filterName => {
-    setActiveFilter(activeFilter === filterName ? null : filterName)
-  }
+  const [timeRange, setTimeRange] = useState([0, 24])
+  const [searchDialogOpen, setSearchDialogOpen] = useState(false)
+  const [searchParams, setSearchParams] = useState(null)
 
   const [filters, setFilters] = useState({
     starRating: [],
@@ -26,6 +38,7 @@ function AllHotel () {
     sortBy: 'bestReviewed'
   })
 
+  // Sample hotel data
   const hotels = [
     {
       id: 1,
@@ -96,6 +109,10 @@ function AllHotel () {
     }
   ]
 
+  const handleFilterClick = filterName => {
+    setActiveFilter(activeFilter === filterName ? null : filterName)
+  }
+
   const handleStarRatingChange = star => {
     setFilters(prev => ({
       ...prev,
@@ -119,7 +136,6 @@ function AllHotel () {
   }
 
   const filteredHotels = hotels.filter(hotel => {
-    // Filter by star rating
     if (
       filters.starRating.length > 0 &&
       !filters.starRating.includes(hotel.stars)
@@ -127,7 +143,6 @@ function AllHotel () {
       return false
     }
 
-    // Filter by review score
     if (filters.reviewScore.length > 0) {
       const scoreRanges = {
         '9+': [9, 10],
@@ -155,7 +170,6 @@ function AllHotel () {
           parseFloat(b.price.replace(/[^0-9.]/g, ''))
         )
       case 'nearest':
-        // Implement nearest logic if you have location data
         return 0
       case 'bestReviewed':
       default:
@@ -167,83 +181,107 @@ function AllHotel () {
     window.scroll(0, 0)
   }, [])
 
+  const handleSearch = params => {
+    setSearchParams(params)
+    console.log('Search params:', params)
+  }
+
   return (
-    <>
-      {/* <HotelSectionFrom /> */}
+    <div className={styles.container}>
+      <div className={styles.cardContainer}>
+        <h1 className={styles.heading}>{country} hotels and places to stay</h1>
 
-      <div style={{ marginTop: '70px' }}>
-        <BookHotelFrom />
-      </div>
+        <div
+          onClick={() => setSearchDialogOpen(true)}
+          className={styles.searchHeader}
+        >
+          <div className={styles.locationContainer}>
+            <div className={styles.locationInput}>
+              <LocationOn className={styles.locationIcon} />
+              <div className={styles.locationText}>
+                <span className={styles.city}>New York</span>
+                <span className={styles.area}>Manhattan</span>
+              </div>
+            </div>
+          </div>
 
-      <div className='AllHotel-card-container'>
-        <h2 className='allhotel-heading-second'>
-          {country} hotels and places to stay
-        </h2>
+          <div className={styles.detailsContainer}>
+            <div className={styles.detailItem}>
+              <CalendarToday className={styles.detailIcon} />
+              <span>15 Jun 2023 - 20 Jun 2023</span>
+              <span className={styles.duration}>(5 nights)</span>
+            </div>
 
-        <div className='hotel-listing-container'>
-          <div className='filters-sidebar'>
+            <div className={styles.detailItem}>
+              <HotelIcon className={styles.detailIcon} />
+              <span>2 Rooms</span>
+            </div>
+
+            <div className={styles.detailItem}>
+              <People className={styles.detailIcon} />
+              <span>2 Adults, 2 Children</span>
+            </div>
+          </div>
+        </div>
+
+        <HotelSearchDialogBox
+          open={searchDialogOpen}
+          onClose={() => setSearchDialogOpen(false)}
+          onSearch={handleSearch}
+        />
+
+        <div className={styles.hotelListingContainer}>
+          <div className={styles.filtersSidebar}>
             <h2>Filters</h2>
 
-            <div className='filter-section'>
+            <div className={styles.filterSection}>
               <h3>Star rating</h3>
               {[5, 4, 3, 2, 1].map(star => (
-                <label key={star} className='filter-option'>
+                <label key={star} className={styles.filterOption}>
                   <input
                     type='checkbox'
                     checked={filters.starRating.includes(star)}
                     onChange={() => handleStarRatingChange(star)}
-                    style={{ width: 'unset' }}
                   />
-                  {star} {star === 1 ? 'star' : 'stars'}
+                  {Array(star)
+                    .fill()
+                    .map((_, i) => (
+                      <Star
+                        key={i}
+                        style={{ color: '#FFD700', fontSize: '1rem' }}
+                      />
+                    ))}
+                  {star === 1 ? ' star' : ' stars'}
                 </label>
               ))}
             </div>
 
-            <div className='filter-section'>
+            <div className={styles.filterSection}>
               <h3>Review score</h3>
-              <label className='filter-option'>
-                <input
-                  type='checkbox'
-                  checked={filters.reviewScore.includes('9+')}
-                  onChange={() => handleReviewScoreChange('9+')}
-                  style={{ width: 'unset' }}
-                />
-                Exceptional 9+
-              </label>
-              <label className='filter-option'>
-                <input
-                  type='checkbox'
-                  checked={filters.reviewScore.includes('8+')}
-                  onChange={() => handleReviewScoreChange('8+')}
-                  style={{ width: 'unset' }}
-                />
-                Very good 8+
-              </label>
-              <label className='filter-option'>
-                <input
-                  type='checkbox'
-                  checked={filters.reviewScore.includes('7+')}
-                  onChange={() => handleReviewScoreChange('7+')}
-                  style={{ width: 'unset' }}
-                />
-                Good 7+
-              </label>
-              <label className='filter-option'>
-                <input
-                  type='checkbox'
-                  checked={filters.reviewScore.includes('6+')}
-                  onChange={() => handleReviewScoreChange('6+')}
-                  style={{ width: 'unset' }}
-                />
-                Pleasant 6+
-              </label>
+              {['9+', '8+', '7+', '6+'].map(score => (
+                <label key={score} className={styles.filterOption}>
+                  <input
+                    type='checkbox'
+                    checked={filters.reviewScore.includes(score)}
+                    onChange={() => handleReviewScoreChange(score)}
+                  />
+                  {score === '9+'
+                    ? 'Exceptional'
+                    : score === '8+'
+                    ? 'Very Good'
+                    : score === '7+'
+                    ? 'Good'
+                    : 'Pleasant'}{' '}
+                  {score}
+                </label>
+              ))}
             </div>
           </div>
 
           <FilterWithBottomDrawer />
 
-          <div className='hotels-list'>
-            <div className='hotel-list-sort-options'>
+          <div className={styles.hotelsList}>
+            <div className={styles.hotelListSortOptions}>
               <span>Sort by:</span>
               <button
                 className={filters.sortBy === 'bestReviewed' ? 'active' : ''}
@@ -255,38 +293,46 @@ function AllHotel () {
                 className={filters.sortBy === 'lowestPrice' ? 'active' : ''}
                 onClick={() => handleSortChange('lowestPrice')}
               >
-                Lowest price first
+                Lowest price
               </button>
               <button
                 className={filters.sortBy === 'nearest' ? 'active' : ''}
                 onClick={() => handleSortChange('nearest')}
-                style={{ width: 'unset' }}
               >
                 Nearest to me
               </button>
             </div>
 
-            <div className='filter-input-box'>
-              <i className='icon-search text-20 mr-10'></i>
-              <input placeholder='Search Hotel' />
+            <div className={styles.filterInputBox}>
+              <Search style={{ color: '#6c757d', marginRight: '8px' }} />
+              <input placeholder='Search hotels by name or location...' />
             </div>
 
             <ScrollFadeIn>
-              <div className='hotels-container'>
+              <div className={styles.hotelsContainer}>
                 {sortedHotels.length > 0 ? (
                   sortedHotels.map(hotel => (
                     <HotelCard key={hotel.id} hotel={hotel} />
                   ))
                 ) : (
-                  <p>No hotels match your filters.</p>
+                  <div
+                    style={{
+                      textAlign: 'center',
+                      padding: '40px',
+                      gridColumn: '1 / -1'
+                    }}
+                  >
+                    <h3>No hotels match your filters</h3>
+                    <p>Try adjusting your filters to see more results</p>
+                  </div>
                 )}
               </div>
             </ScrollFadeIn>
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
-export default AllHotel
+export default HotelBookingDashboard;

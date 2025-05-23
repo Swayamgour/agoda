@@ -11,7 +11,7 @@ import CleaningServicesIcon from '@mui/icons-material/CleaningServices'
 import FilterBAndWIcon from '@mui/icons-material/FilterBAndW'
 import { useNavigate } from 'react-router-dom'
 import PublicImage from '../../utils/PublicImage'
-// import './PropertyOverview.css';
+import '../../style/HotelCard.css'
 
 const PropertyOverview = ({ open, setOpen }) => {
   const [activeTab, setActiveTab] = useState('all')
@@ -154,10 +154,7 @@ const PropertyOverview = ({ open, setOpen }) => {
                 className='grid-item'
                 onClick={() => handleImageClick(index)}
               >
-                <PublicImage
-                  src={image.url}
-                  alt={`Property ${image.id}`}
-                />
+                <PublicImage src={image.url} alt={`Property ${image.id}`} />
                 {index === 5 && images[activeTab].length > 6 && (
                   <div className='more-overlay'>
                     <span>+{images[activeTab].length - 6} more</span>

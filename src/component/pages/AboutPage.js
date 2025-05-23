@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
 import { keyframes } from '@emotion/react';
-import '../../style/AboutPage.css';
+// import '../../style/AboutPage.css';
 import PublicImage from '../../utils/PublicImage';
 
 // Animations

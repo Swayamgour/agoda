@@ -310,223 +310,234 @@ const Header = () => {
     //     padding: '1rem'
     //   }}
     // >
-      <HeaderContainer
-        sx={{
-          height: scrolled ? '70px' : '80px',
-          boxShadow: scrolled ? '0 4px 30px rgba(0, 0, 0, 0.2)' : 'none'
-        }}
-      >
-        <HeaderContent>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-            <SideBar />
-            <LogoContainer onClick={() => navigate('/Agota')}>
-              <PublicImage src='/images/logo_of_tajde.png' alt='Logo' />
-            </LogoContainer>
-          </div>
+    <HeaderContainer
+      sx={{
+        height: scrolled ? '70px' : '80px',
+        boxShadow: scrolled ? '0 4px 30px rgba(0, 0, 0, 0.2)' : 'none'
+      }}
+    >
+      <HeaderContent>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          <SideBar />
+          <LogoContainer onClick={() => navigate('/Agota')}>
+            <PublicImage src='/images/logo_of_tajde.png' alt='Logo' />
+          </LogoContainer>
+        </div>
 
-          <SearchContainer>
-            <StyledTextField
-              fullWidth
-              variant='outlined'
-              placeholder='Search destinations, hotels, flights...'
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              onKeyPress={handleSearch}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position='start'>
-                    <SearchIcon sx={{ color: 'rgba(255, 255, 255, 0.7)' }} />
-                  </InputAdornment>
-                )
-              }}
-            />
-          </SearchContainer>
+        <SearchContainer>
+          <StyledTextField
+            fullWidth
+            variant='outlined'
+            placeholder='Search destinations, hotels, flights...'
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            onKeyPress={handleSearch}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position='start'>
+                  <SearchIcon sx={{ color: 'rgba(255, 255, 255, 0.7)' }} />
+                </InputAdornment>
+              )
+            }}
+          />
+        </SearchContainer>
 
-          <NavControls>
-            <Tooltip title='Quick Links' arrow>
-              <div style={{ position: 'relative' }}>
-                <ControlButton
-                  onClick={() => setShowQuickLinks(!showQuickLinks)}
-                  sx={{ minWidth: 'auto', px: 2 }}
-                >
-                  <SearchIcon />
-                </ControlButton>
-
-                {showQuickLinks && (
-                  <ClickAwayListener
-                    onClickAway={() => setShowQuickLinks(false)}
-                  >
-                    <Grow in={showQuickLinks}>
-                      <QuickLinksMenu ref={quickLinksRef}>
-                        <Typography variant='subtitle1' fontWeight='600' mb={1}>
-                          Quick Links
-                        </Typography>
-                        <List>
-                          {quickLinks.map((link, index) => (
-                            <QuickLinkItem
-                              key={index}
-                              onClick={() => {
-                                navigate(link.path)
-                                setShowQuickLinks(false)
-                              }}
-                            >
-                              <ListItemIcon>{link.icon}</ListItemIcon>
-                              <ListItemText primary={link.text} />
-                            </QuickLinkItem>
-                          ))}
-                        </List>
-                      </QuickLinksMenu>
-                    </Grow>
-                  </ClickAwayListener>
-                )}
-              </div>
-            </Tooltip>
-
-            <Tooltip title='Currency' arrow>
+        <NavControls>
+          <Tooltip title='Quick Links' arrow>
+            <div style={{ position: 'relative' }}>
               <ControlButton
-                ref={triggerRef}
-                onClick={() => setShowDialog(true)}
-                sx={{ minWidth: '90px' }}
-              >
-                {selectedCurrency.split(' ')[0]}
-              </ControlButton>
-            </Tooltip>
-
-            {showDialog && (
-              <CurrencyDialog
-                onClose={() => setShowDialog(false)}
-                onCurrencySelect={currency => {
-                  setSelectedCurrency(currency)
-                  setShowDialog(false)
-                }}
-                triggerRef={triggerRef}
-              />
-            )}
-
-            <Tooltip title='Wishlist' arrow>
-              <IconButton sx={{ color: 'white' }}>
-                <Badge badgeContent={user.wishlist} color='secondary'>
-                  <WishlistIcon />
-                </Badge>
-              </IconButton>
-            </Tooltip>
-
-            <Tooltip title='Notifications' arrow>
-              <IconButton sx={{ color: 'white' }}>
-                <Badge badgeContent={user.notifications} color='error'>
-                  <NotificationIcon />
-                </Badge>
-              </IconButton>
-            </Tooltip>
-
-            {user ? (
-              <UserMenu onClick={handleUserMenuOpen}>
-                <Avatar
-                  src={user.profileImage}
-                  alt={user.name}
-                  sx={{ width: 36, height: 36 }}
-                />
-                <UserName>{user.name}</UserName>
-              </UserMenu>
-            ) : (
-              <Button
-                variant='contained'
-                color='secondary'
+                onClick={() => setShowQuickLinks(!showQuickLinks)}
+                // sx={{ minWidth: 'auto', px: 2 }}
                 sx={{
-                  borderRadius: '20px',
-                  textTransform: 'none',
-                  fontWeight: '500',
-                  px: 3,
-                  py: 1,
-                  boxShadow: '0 4px 15px rgba(255, 193, 7, 0.3)',
-                  '&:hover': {
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 6px 20px rgba(255, 193, 7, 0.4)'
-                  },
-                  transition: 'all 0.3s ease'
-                }}
-                onClick={() => setOpenLogin(true)}
-              >
-                Sign In
-              </Button>
-            )}
-
-            <Menu
-              anchorEl={anchorEl}
-              open={openUserMenu}
-              onClose={handleUserMenuClose}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right'
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right'
-              }}
-              PaperProps={{
-                elevation: 5,
-                sx: {
-                  mt: 1.5,
-                  borderRadius: '12px',
-                  minWidth: '220px',
-                  overflow: 'visible',
-                  '&:before': {
-                    content: '""',
-                    display: 'block',
-                    position: 'absolute',
-                    top: 0,
-                    right: 14,
-                    width: 10,
-                    height: 10,
-                    bgcolor: 'background.paper',
-                    transform: 'translateY(-50%) rotate(45deg)',
-                    zIndex: 0
+                  minWidth: 'auto',
+                  px: 2,
+                  '@media (max-width:480px)': {
+                    display: 'none'
                   }
+                }}
+              >
+                <SearchIcon />
+              </ControlButton>
+
+              {showQuickLinks && (
+                <ClickAwayListener onClickAway={() => setShowQuickLinks(false)}>
+                  <Grow in={showQuickLinks}>
+                    <QuickLinksMenu ref={quickLinksRef}>
+                      <Typography variant='subtitle1' fontWeight='600' mb={1}>
+                        Quick Links
+                      </Typography>
+                      <List>
+                        {quickLinks.map((link, index) => (
+                          <QuickLinkItem
+                            key={index}
+                            onClick={() => {
+                              navigate(link.path)
+                              setShowQuickLinks(false)
+                            }}
+                          >
+                            <ListItemIcon>{link.icon}</ListItemIcon>
+                            <ListItemText primary={link.text} />
+                          </QuickLinkItem>
+                        ))}
+                      </List>
+                    </QuickLinksMenu>
+                  </Grow>
+                </ClickAwayListener>
+              )}
+            </div>
+          </Tooltip>
+
+          <Tooltip title='Currency' arrow>
+            <ControlButton
+              ref={triggerRef}
+              onClick={() => setShowDialog(true)}
+              sx={{
+                minWidth: '90px',
+
+                '@media (max-width:480px)': {
+                  display: 'none'
                 }
               }}
             >
-              <MenuItem
-                onClick={() => {
-                  navigate('/profile')
-                  handleUserMenuClose()
-                }}
-                sx={{ py: 1.5 }}
-              >
-                <UserIcon sx={{ mr: 2, color: 'primary.main' }} />
-                <span>My Profile</span>
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  navigate('/bookings')
-                  handleUserMenuClose()
-                }}
-                sx={{ py: 1.5 }}
-              >
-                <CartIcon sx={{ mr: 2, color: 'primary.main' }} />
-                <span>My Bookings</span>
-              </MenuItem>
+              {selectedCurrency.split(' ')[0]}
+            </ControlButton>
+          </Tooltip>
 
-              <MenuItem
-                onClick={() => {
-                  navigate('/settings')
-                  handleUserMenuClose()
-                }}
-                sx={{ py: 1.5 }}
-              >
-                <SettingsIcon sx={{ mr: 2, color: 'primary.main' }} />
-                <span>Settings</span>
-              </MenuItem>
-              <Divider />
-              <MenuItem onClick={handleUserMenuClose} sx={{ py: 1.5 }}>
-                <LogoutIcon sx={{ mr: 2, color: 'error.main' }} />
-                <span>Logout</span>
-              </MenuItem>
-            </Menu>
-          </NavControls>
-        </HeaderContent>
+          {showDialog && (
+            <CurrencyDialog
+              onClose={() => setShowDialog(false)}
+              onCurrencySelect={currency => {
+                setSelectedCurrency(currency)
+                setShowDialog(false)
+              }}
+              triggerRef={triggerRef}
+            />
+          )}
 
-        <Login open={openLogin} setOpen={setOpenLogin} />
-      </HeaderContainer>
+          <Tooltip title='Wishlist' arrow>
+            <IconButton sx={{ color: 'white' }}>
+              <Badge badgeContent={user.wishlist} color='secondary'>
+                <WishlistIcon />
+              </Badge>
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title='Notifications' arrow>
+            <IconButton sx={{ color: 'white' }}>
+              <Badge badgeContent={user.notifications} color='error'>
+                <NotificationIcon />
+              </Badge>
+            </IconButton>
+          </Tooltip>
+
+          {user ? (
+            <UserMenu onClick={handleUserMenuOpen}>
+              <Avatar
+                src={user.profileImage}
+                alt={user.name}
+                sx={{ width: 36, height: 36 }}
+              />
+              <UserName>{user.name}</UserName>
+            </UserMenu>
+          ) : (
+            <Button
+              variant='contained'
+              color='secondary'
+              sx={{
+                borderRadius: '20px',
+                textTransform: 'none',
+                fontWeight: '500',
+                px: 3,
+                py: 1,
+                boxShadow: '0 4px 15px rgba(255, 193, 7, 0.3)',
+                '&:hover': {
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 6px 20px rgba(255, 193, 7, 0.4)'
+                },
+                transition: 'all 0.3s ease'
+              }}
+              onClick={() => setOpenLogin(true)}
+            >
+              Sign In
+            </Button>
+          )}
+
+          <Menu
+            anchorEl={anchorEl}
+            open={openUserMenu}
+            onClose={handleUserMenuClose}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right'
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right'
+            }}
+            PaperProps={{
+              elevation: 5,
+              sx: {
+                mt: 1.5,
+                borderRadius: '12px',
+                minWidth: '220px',
+                overflow: 'visible',
+                '&:before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: 'background.paper',
+                  transform: 'translateY(-50%) rotate(45deg)',
+                  zIndex: 0
+                }
+              }
+            }}
+          >
+            <MenuItem
+              onClick={() => {
+                navigate('/profile')
+                handleUserMenuClose()
+              }}
+              sx={{ py: 1.5 }}
+            >
+              <UserIcon sx={{ mr: 2, color: 'primary.main' }} />
+              <span>My Profile</span>
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate('/bookings')
+                handleUserMenuClose()
+              }}
+              sx={{ py: 1.5 }}
+            >
+              <CartIcon sx={{ mr: 2, color: 'primary.main' }} />
+              <span>My Bookings</span>
+            </MenuItem>
+
+            <MenuItem
+              onClick={() => {
+                navigate('/settings')
+                handleUserMenuClose()
+              }}
+              sx={{ py: 1.5 }}
+            >
+              <SettingsIcon sx={{ mr: 2, color: 'primary.main' }} />
+              <span>Settings</span>
+            </MenuItem>
+            <Divider />
+            <MenuItem onClick={handleUserMenuClose} sx={{ py: 1.5 }}>
+              <LogoutIcon sx={{ mr: 2, color: 'error.main' }} />
+              <span>Logout</span>
+            </MenuItem>
+          </Menu>
+        </NavControls>
+      </HeaderContent>
+
+      <Login open={openLogin} setOpen={setOpenLogin} />
+    </HeaderContainer>
     // </div>
   )
 }

@@ -1,9 +1,26 @@
-import React from 'react';
-import { FiPhone, FiMail, FiMapPin, FiDownload, FiGlobe, FiDollarSign } from 'react-icons/fi';
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaApple, FaGooglePlay } from 'react-icons/fa';
-import styles from '../style/Footer.module.css';
+import React from 'react'
+import {
+  FiPhone,
+  FiMail,
+  FiMapPin,
+  FiDownload,
+  FiGlobe,
+  FiDollarSign
+} from 'react-icons/fi'
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedinIn,
+  FaApple,
+  FaGooglePlay
+} from 'react-icons/fa'
+import styles from '../style/Footer.module.css'
+import { useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+  const navigate = useNavigate()
+
   return (
     <footer className={styles.footer}>
       <div className={styles.floatingCircle1}></div>
@@ -33,7 +50,9 @@ const Footer = () => {
                   <FiMapPin className={styles.contactIcon} />
                   <div>
                     <p className={styles.contactLabel}>Our Office</p>
-                    <p className={styles.contactValue}>123 Travel St, Adventure City</p>
+                    <p className={styles.contactValue}>
+                      123 Travel St, Adventure City
+                    </p>
                   </div>
                 </div>
               </div>
@@ -43,9 +62,18 @@ const Footer = () => {
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>Explore</h3>
             <ul className={styles.linkList}>
-              {['Destinations', 'Tour Packages', 'Adventure Tours', 'Luxury Getaways', 'Travel Guides'].map(item => (
+              {[
+                'Destinations',
+                'Tour Packages',
+                'Adventure Tours',
+                'Luxury Getaways',
+                'Travel Guides'
+              ].map(item => (
                 <li key={item}>
-                  <button className={styles.link}><span className={styles.linkHover}></span>{item}</button>
+                  <button className={styles.link}>
+                    <span className={styles.linkHover}></span>
+                    {item}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -54,22 +82,29 @@ const Footer = () => {
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>Company</h3>
             <ul className={styles.linkList}>
-              {['About Us', 'Careers', 'Blog', 'Press', 'Partners'].map(item => (
-                <li key={item}>
-                  <button className={styles.link}><span className={styles.linkHover}></span>{item}</button>
-                </li>
-              ))}
+              {['About Us', 'Careers', 'Blog', 'Press', 'Partners'].map(
+                item => (
+                  <li key={item}>
+                    <button className={styles.link}>
+                      <span className={styles.linkHover}></span>
+                      {item}
+                    </button>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>Stay Updated</h3>
             <div className={styles.newsletter}>
-              <p className={styles.newsletterText}>Subscribe for exclusive deals and travel tips</p>
+              <p className={styles.newsletterText}>
+                Subscribe for exclusive deals and travel tips
+              </p>
               <div className={styles.newsletterForm}>
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
+                <input
+                  type='email'
+                  placeholder='Your email address'
                   className={styles.newsletterInput}
                 />
                 <button className={styles.newsletterButton}>
@@ -84,7 +119,9 @@ const Footer = () => {
                 <button className={styles.appButton}>
                   <FaApple className={styles.appIcon} />
                   <div>
-                    <span className={styles.downloadLabel}>Download on the</span>
+                    <span className={styles.downloadLabel}>
+                      Download on the
+                    </span>
                     <span className={styles.appStore}>App Store</span>
                   </div>
                 </button>
@@ -106,22 +143,38 @@ const Footer = () => {
           </div>
 
           <div className={styles.socialMedia}>
-            {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map((Icon, index) => (
-              <button key={index} className={styles.socialLink} aria-label={`Social ${index}`}>
-                <Icon />
-              </button>
-            ))}
+            {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map(
+              (Icon, index) => (
+                <button
+                  key={index}
+                  className={styles.socialLink}
+                  aria-label={`Social ${index}`}
+                >
+                  <Icon />
+                </button>
+              )
+            )}
           </div>
 
           <div className={styles.utilityLinks}>
             {/* Language & currency selectors were commented out */}
-            <button className={styles.legalLink}>Privacy Policy</button>
-            <button className={styles.legalLink}>Terms of Service</button>
+            <button
+              onClick={() => navigate('/PrivacyPolicy')}
+              className={styles.legalLink}
+            >
+              Privacy Policy
+            </button>
+            <button
+              onClick={() => navigate('/TermsAndConditions')}
+              className={styles.legalLink}
+            >
+              Terms & Condition{' '}
+            </button>
           </div>
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

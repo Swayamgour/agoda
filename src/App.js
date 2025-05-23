@@ -1,19 +1,12 @@
 import './App.css'
-// App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Header from './component/Header/Header'
-import Footer from './component/Footer'
 import Home from './component/Home/Home'
-import AllHotel from './component/Hotel/AllHotel'
 import Layout from './Layout'
 import HotelDetail from './component/Hotel/HotelDetail'
 import ContactPage from './component/pages/ContactPage'
 import AboutPage from './component/pages/AboutPage'
-import FlightBookingPage from './component/flight/FlightBookingPage'
-// import BookingConfirmation from './component/pages/BookingConfirmation'
 import CabBookingFilter from './component/car/CabBookingFilter'
 import TrainDashboard from './component/Train/TrainDashboard'
-// import ProfilePage from './component/pages/ProfilePage'
 import BookingConfirmation from './component/flight/BookingConfirmation'
 import BookingReview from './component/Hotel/BookingReview'
 import HotelBookingPaymentPage from './component/Hotel/HotelBookingPaymentPage'
@@ -31,7 +24,8 @@ import FlightMyBooking from './component/flight/FlightMyBooking'
 import TermsAndConditions from './component/pages/TermsAndConditions'
 import PrivacyPolicy from './component/pages/PrivacyPolicy'
 import ProfilePage from './component/profile/ProfilePage'
-// import FlightBookingPage from './component/pages/FlightBookingPage'
+import FlightBookingDashboard from './component/flight/FlightBookingDashboard'
+import HotelBookingDashboard from './component/Hotel/HotelBookingDashboard'
 
 function App () {
   return (
@@ -42,11 +36,11 @@ function App () {
       <Layout>
         <Routes>
           <Route path='/Agota' element={<Home />} />
-          <Route path='/AllHotel' element={<AllHotel />} />
+          <Route path='/AllHotel' element={<HotelBookingDashboard />} />
           <Route path='/HotelDetail' element={<HotelDetail />} />
           <Route path='/contact' element={<ContactPage />} />
           <Route path='/About' element={<AboutPage />} />
-          <Route path='/FlightBooking' element={<FlightBookingPage />} />
+          <Route path='/FlightBookingDashboard' element={<FlightBookingDashboard />} />
           <Route
             path='/BookingConfirmation'
             element={<BookingConfirmation />}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { styled } from '@mui/material/styles'
 import { keyframes } from '@emotion/react'
-import '../../style/ContactPage.css'
+// import '../../style/ContactPage.css'
 import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock } from 'react-icons/fa';
 
 // Animation for form elements

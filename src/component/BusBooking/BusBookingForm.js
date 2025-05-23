@@ -89,7 +89,7 @@ const InputRow = styled('div')({
   gap: '20px',
   alignItems: 'flex-end',
   '@media (max-width: 768px)': {
-    flexDirection: 'column',
+    // flexDirection: 'column',
     gap: '15px'
   }
 })
@@ -97,7 +97,7 @@ const InputRow = styled('div')({
 const InputGroup = styled('div')({
   flex: 1,
   position: 'relative',
-  minWidth: '200px'
+  // minWidth: '200px'
 })
 
 const InputLabel = styled('label')({
@@ -375,7 +375,7 @@ const BusBookingForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    navigate('/CabBookingFilter')
+    navigate('/BusBooking')
     console.log({
       tripType,
       pickupLocation,
@@ -461,7 +461,7 @@ const BusBookingForm = () => {
                   : 'Select date'}
               </DateDisplay>
               {openDatePicker && (
-                <DateRangeWrapper>
+                <DateRangeWrapper >
                   <DateRange
                     editableDateInputs={true}
                     onChange={handleDateSelect}
